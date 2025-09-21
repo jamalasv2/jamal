@@ -69,7 +69,7 @@ def bhs(key, _res: bool = True):
         )
 
 
-def get_cgr(key):
+def get_bhs(key):
     doc = cgr(f"{key}", _res=False)
     if doc:
         return bhs("cmds") + doc
