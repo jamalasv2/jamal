@@ -12,4 +12,4 @@ from Jamal.database.saved import *
 from Jamal.database.userbot import *
 from Jamal.database.pref import *
 from Jamal.database.otp import *
-from jamal.database.variabel import *
+from Jamal.database.variabel import *
