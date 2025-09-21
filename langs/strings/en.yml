@@ -1,4 +1,8 @@
 name : English
 
 
-cmds: 
+cmds: "**command helps**"
+
+
+#start
+start_1 : "hi,nice to meet u!"
