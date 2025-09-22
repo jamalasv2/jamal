@@ -81,7 +81,7 @@ async def _(client, callback_query):
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     else:
-        return await callback_data="add_ubot"
+        
 
 
 @PY.CALLBACK("bahan")
