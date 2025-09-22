@@ -56,7 +56,7 @@ class Button:
                     callback_data="bahan"
                 )
             ],
-            ,
+            [
                 InlineKeyboardButton(
                     bhs("cb_inline3"), callback_data="memek"
                 ),
