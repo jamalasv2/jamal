@@ -143,12 +143,12 @@ async def _(client, callback_query):
             CONFIRM_PAYMENT.remove(get_user.id)
             buttons_home = Button.start(callback_query)
             return await callback_query.edit_message_text(
-                bhs("start_1"),
+                bhs("start_1").format(f"<a href=tg://user?id={message.from_user.id}>{message.from_user.first_name} {message.from_user.last_name or ''}</a>", bot.me.first_name or ''),
                 reply_markup=InlineKeyboardMarkup(buttons_home),
             )
         else:
             buttons_home = Button.start(callback_query)
             return await callback_query.edit_message_text(
-                bhs("start_1"),
+                bhs("start_1").format(f"<a href=tg://user?id={message.from_user.id}>{message.from_user.first_name} {message.from_user.last_name or ''}</a>", bot.me.first_name or ''),
                 reply_markup=InlineKeyboardMarkup(buttons_home),
             )
