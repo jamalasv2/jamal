@@ -16,7 +16,7 @@ from pyrogram.handlers import CallbackQueryHandler, MessageHandler
 from pyrogram.types import Message
 from pyromod import listen
 from rich.logging import RichHandler
-from PyroUbot.config import *
+from Jamal.config import *
 from pytgcalls import GroupCallFactory
 
 
@@ -160,6 +160,6 @@ bot = Bot(
 ubot = Ubot(name="ubot")
 
 
-from PyroUbot.core.database import *
-from PyroUbot.core.function import *
-from PyroUbot.core.helpers import *
+from Jamal.database import *
+from Jamal.core.function import *
+from Jamal.core.helpers import *
