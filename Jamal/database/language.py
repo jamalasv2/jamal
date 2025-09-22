@@ -1,11 +1,15 @@
 from Jamal.database import mongodb
 
-langs = mongodb["Jamal"]["language"]
+# Ambil collection 'users' di database Jamal.language
+langs = mongodb["Jamal"]["language"]["users"]
 
-async def get_lang(user_id):
+# Cache dictionary
+langm = {}
+
+async def get_lang(user_id: int):
     mode = langm.get(user_id)
     if not mode:
-        lang = await langs.users.find_one({"_id": user_id})
+        lang = await langs.find_one({"_id": user_id})
         if not lang:
             langm[user_id] = "en"
             return "en"
@@ -14,6 +18,10 @@ async def get_lang(user_id):
     return mode
 
 
-async def set_lang(user_id):
+async def set_lang(user_id: int, lang: str):
     langm[user_id] = lang
-    await langs.users.update_one({"_id": user_id}, {"$set": {"lang": lang}}, upsert=True)
+    await langs.update_one(
+        {"_id": user_id},
+        {"$set": {"lang": lang}},
+        upsert=True
+    )
