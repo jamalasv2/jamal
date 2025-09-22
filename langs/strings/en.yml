@@ -10,6 +10,7 @@ cb_cls : "❌ close"
 cb_buy : "💵 buy userbot"
 cb_install : "🛠️ install userbot"
 cb_confirm : "✅ confirm"
+cb_cancel : "🚫 cancel"
 
 
 
