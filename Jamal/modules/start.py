@@ -37,7 +37,7 @@ async def _(client, message):
         buttons = Button.start(message)
         msg = MSG.START(message)
         await message.reply(
-            bhs("start_1").format(message.from.user.mention, bot.me.first_name or ''),
+            bhs("start_1").format(message.from.user.first_name or '', bot.me.first_name or ''),
             reply_markup=InlineKeyboardMarkup(buttons)
         )
     else:
