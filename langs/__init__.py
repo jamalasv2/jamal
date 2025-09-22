@@ -36,7 +36,7 @@ load(loc_lang.format(cek_bahasa))
 
 
 def bhs(key, _res: bool = True):
-    cek_bahasa = await get_lang(client.me.id) or BAHASA
+    cek_bahasa = get_lang(client.me.id) or BAHASA
     lang = cek_bahasa or "en"
     try:
         return bahasa_[lang][key]
