@@ -7,7 +7,7 @@ import tornado.platform.asyncio
 from pyrogram import idle
 from pyrogram.errors import UserDeactivated
 
-from PyroUbot import *
+from Jamal import *
 
 async def main():
     await bot.start()
