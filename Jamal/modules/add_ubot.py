@@ -45,15 +45,9 @@ async def _(client, callback_query):
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     else:
-        buttons = [[InlineKeyboardButton(" ʟᴀɴᴊᴜᴛᴋᴀɴ", callback_data="add_ubot")]]
+        buttons = [[InlineKeyboardButton(bhs("text_continue"), callback_data="add_ubot")]]
         return await callback_query.edit_message_text(
-            """
-<b> ᴜɴᴛᴜᴋ ᴍᴇᴍʙᴜᴀᴛ ᴜsᴇʀʙᴏᴛ sɪᴀᴘᴋᴀɴ ʙᴀʜᴀɴ ʙᴇʀɪᴋᴜᴛ
-
-    • <code>ᴘʜᴏɴᴇ_ɴᴜᴍʙᴇʀ</code>: ɴᴏᴍᴇʀ ʜᴘ ᴀᴋᴜɴ ᴛᴇʟᴇɢʀᴀᴍ
-
-☑️ ᴊɪᴋᴀ sᴜᴅᴀʜ ᴛᴇʀsᴇᴅɪᴀ sɪʟᴀʜᴋᴀɴ ᴋʟɪᴋ ᴛᴏᴍʙᴏɪ ᴅɪʙᴀᴡᴀʜ</b>
-""",
+            bhs("text_install"),
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(buttons),
         )
@@ -67,7 +61,7 @@ async def _(client, callback_query):
             [InlineKeyboardButton(bhs("text_back"), callback_data=f"home {user_id}")],
         ]
         return await callback_query.edit_message_text(
-            bhs("cb_installed"),
+            bhs("text_installed"),
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(buttons),
         )
@@ -76,7 +70,7 @@ async def _(client, callback_query):
             [InlineKeyboardButton(bhs("text_back"), callback_data=f"home {user_id}")],
         ]
         return await callback_query.edit_message_text(
-            bhs("cb_limit"),
+            bhs("text_limit"),
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(buttons),
         )
@@ -93,7 +87,7 @@ async def _(client, callback_query):
     else:
         buttons = [[InlineKeyboardButton(bhs("text_continue"), callback_data="memek")]]
         return await callback_query.edit_message_text(
-            bhs("cb_acces"),
+            bhs("text_acces"),
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(buttons),
         )
@@ -104,7 +98,7 @@ async def _(client, callback_query):
     user_id = callback_query.from_user.id
     buttons = Button.plus_minus(1, user_id)
     return await callback_query.edit_message_text(
-        bhs("pay_text").format(20, 20, 1),
+        bhs("text_payment").format(20, 20, 1),
         disable_web_page_preview=True,
         reply_markup=InlineKeyboardMarkup(buttons),
     )
