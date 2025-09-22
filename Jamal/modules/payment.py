@@ -6,6 +6,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from pytz import timezone
 
 from Jamal import *
+from langs import bhs
 
 CONFIRM_PAYMENT = []
 
@@ -17,27 +18,27 @@ async def _(client, callback_query):
     get = await bot.get_users(user_id)
     CONFIRM_PAYMENT.append(get.id)
     try:
-        button = [[InlineKeyboardButton("❌ ʙᴀᴛᴀʟᴋᴀɴ", callback_data=f"home {user_id}")]]
+        button = [[InlineKeyboardButton(bhs("cb_cancel"), callback_data=f"home {user_id}")]]
         await callback_query.message.delete()
         pesan = await bot.ask(
             user_id,
-            f"<b>💬 sɪʟᴀʜᴋᴀɴ ᴋɪʀɪᴍᴋᴀɴ ʙᴜᴋᴛɪ sᴄʀᴇᴇɴsʜᴏᴛ ᴘᴇᴍʙᴀʏᴀʀᴀɴ ᴀɴᴅᴀ: {full_name}</b>",
+            bhs("pay_bukti"),
             reply_markup=InlineKeyboardMarkup(button),
             timeout=300,
         )
     except asyncio.TimeoutError as out:
         if get.id in CONFIRM_PAYMENT:
             CONFIRM_PAYMENT.remove(get.id)
-            buttonx = [[InlineKeyboardButton("ᴛᴜᴛᴜᴘ", callback_data=f"0_cls")]]
+            buttonx = [[InlineKeyboardButton(bhs("cb_cls"), callback_data=f"0_cls")]]
             await pesan.request.edit(
-                f"<b>💬 sɪʟᴀʜᴋᴀɴ ᴋɪʀɪᴍᴋᴀɴ ʙᴜᴋᴛɪ sᴄʀᴇᴇɴsʜᴏᴛ ᴘᴇᴍʙᴀʏᴀʀᴀɴ ᴀɴᴅᴀ: {full_name}</b>",
+                bhs("pay_bukti"),
                 reply_markup=InlineKeyboardMarkup(buttonx),
             )
             return await bot.send_message(get.id, "ᴘᴇᴍʙᴀᴛᴀʟᴀɴ ᴏᴛᴏᴍᴀᴛɪs")
     if get.id in CONFIRM_PAYMENT:
         if not pesan.photo:
             CONFIRM_PAYMENT.remove(get.id)
-            buttons = [[InlineKeyboardButton("✅ ᴋᴏɴꜰɪʀᴍᴀsɪ", callback_data="confirm")]]
+            buttons = [[InlineKeyboardButton(bhs("cb_confirm"), callback_data="confirm")]]
             return await bot.send_message(
                 user_id,
                 """
