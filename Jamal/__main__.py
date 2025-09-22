@@ -1,92 +1,72 @@
 import asyncio
-import signal
-import tornado.ioloop
-import tornado.platform.asyncio
+import logging
+import os
+import sys
 
-from pyrogram import idle
-from pyrogram.errors import UserDeactivated
+from rich.logging import RichHandler
 
-from Jamal import bot, Ubot
-from Jamal.database.userbot import get_userbots, remove_ubot
-from Jamal.core.function import loadPlugins, installPeer, expiredUserbots  # assume these exist
+from Jamal.config import API_ID, API_HASH
+from Jamal import bot, ubot
+from Jamal.database.userbot import get_userbots
+from Jamal.core.function import loadPlugins, expiredUserbots, install_my_peer
 
-# keep track of running ubot instances so they can be stopped cleanly
-running_ubots = []
 
-async def shutdown(sig, loop):
-    print(f"[INFO] Received exit signal {sig.name}...")
-    # stop all running ubots
-    for ub in list(running_ubots):
-        try:
-            await ub.stop()
-            print(f"[INFO] Stopped ubot {getattr(ub, 'me', {}).id if getattr(ub, 'me', None) else 'unknown'}")
-        except Exception as e:
-            print(f"[ERROR] Stopping ubot: {e}")
-    # stop main bot
-    try:
-        await bot.stop()
-    except Exception:
-        pass
-    # cancel remaining tasks and stop loop
-    tasks = [t for t in asyncio.all_tasks() if t is not asyncio.current_task()]
-    [task.cancel() for task in tasks]
-    await asyncio.gather(*tasks, return_exceptions=True)
-    loop.stop()
+# ========== Logging Setup ==========
+class ConnectionHandler(logging.Handler):
+    def emit(self, record):
+        for error_type in ["OSErro", "TimeoutError"]:
+            if error_type in record.getMessage():
+                os.execl(sys.executable, sys.executable, "-m", "Jamal")
 
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(filename)s:%(lineno)s %(levelname)s: %(message)s",
+    datefmt="%m-%d %H:%M",
+    handlers=[RichHandler(), ConnectionHandler()],
+)
+
+logger = logging.getLogger(__name__)
+
+
+# ========== Main Runner ==========
 async def main():
+    # start bot utama
     await bot.start()
 
-    # load ubots from DB
-    _userbots = await get_userbots() or []
-    for _ubot in _userbots:
-        try:
-            client = Ubot(
-                name=str(_ubot["user_id"]),
-                api_id=_ubot["api_id"],
-                api_hash=_ubot["api_hash"],
-                session_string=_ubot["session_string"],
-                in_memory=True,
-            )
-            await asyncio.wait_for(client.start(), timeout=20)
-            running_ubots.append(client)
-            # try join chat but ignore errors
+    # load semua plugins
+    loadPlugins()
+
+    # ambil userbot dari db
+    userbots = await get_userbots()
+    if not userbots:
+        logger.warning("Tidak ada userbot di database!")
+    else:
+        for data in userbots:
             try:
-                await client.join_chat("newhiganbana")
-            except Exception:
-                pass
-            print(f"[INFO] Loaded ubot { _ubot['user_id'] }")
-        except asyncio.TimeoutError:
-            print(f"[INFO] {_ubot['user_id']} did not respond (timeout)")
-        except UserDeactivated:
-            await remove_ubot(int(_ubot["user_id"]))
-            print(f"[INFO] {_ubot['user_id']} account deactivated; removed from DB")
-        except Exception as e:
-            print(f"[ERROR] Cannot start ubot {_ubot.get('user_id')}: {e}")
-            try:
-                await remove_ubot(int(_ubot["user_id"]))
-            except Exception:
-                pass
+                client = ubot.__class__(
+                    name=data["name"],
+                    api_id=data["api_id"],
+                    api_hash=data["api_hash"],
+                    session_string=data["session_string"],
+                )
+                await client.start()
+                await install_my_peer(client)
+                logger.info(f"Userbot {client.me.id} berhasil dijalankan ✅")
+            except Exception as e:
+                logger.error(f"Gagal start userbot {data['name']}: {e}")
 
-    # start background tasks (plugins/peers/expiry)
-    try:
-        await asyncio.gather(loadPlugins(), installPeer(), expiredUserbots(), return_exceptions=True)
-    except Exception as e:
-        print(f"[WARN] background tasks error: {e}")
+    # jalanin expired checker
+    asyncio.create_task(expiredUserbots(bot))
 
-    # register signal handlers for graceful shutdown
-    loop = asyncio.get_running_loop()
-    for s in (signal.SIGINT, signal.SIGTERM):
-        loop.add_signal_handler(s, lambda sig=s: asyncio.create_task(shutdown(sig, loop)))
+    logger.info("Bot dan semua userbot sudah berjalan 🚀")
 
-    # idle until signalled
-    print("[MAIN] Bot is running. Press Ctrl+C to stop.")
-    try:
-        await idle()
-    finally:
-        # final cleanup
-        await shutdown(signal.Signals.SIGTERM, loop)
+    # biar tetap jalan
+    await asyncio.Event().wait()
+
 
 if __name__ == "__main__":
-    tornado.platform.asyncio.AsyncIOMainLoop().install()
-    loop = tornado.ioloop.IOLoop.current().asyncio_loop
-    loop.run_until_complete(main())
+    try:
+        asyncio.run(main())
+    except (KeyboardInterrupt, SystemExit):
+        logger.info("Shutdown... sampai jumpa 👋")
