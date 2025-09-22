@@ -110,7 +110,7 @@ async def _(client, callback_query):
     await callback_query.message.delete()
     keyboard = ReplyKeyboardMarkup(
         [
-            [KeyboardButton("Bagikan Kontak", request_contact=True)]
+            [KeyboardButton(bhs("text_contact"), request_contact=True)]
         ],
         resize_keyboard=True,
         one_time_keyboard=True,
@@ -118,14 +118,12 @@ async def _(client, callback_query):
     try:
         phone = await bot.ask(
             user_id,
-            (
-                "klik bagikan contact untuk melanjutkan proses pembuatan userbot"
-            ),
+            bhs("text_share"),
             timeout=300,
             reply_markup=keyboard
         )
     except asyncio.TimeoutError:
-        return await bot.send_message(user_id, "ᴘᴇᴍʙᴀᴛᴀʟᴀɴ ᴏᴛᴏᴍᴀᴛɪs")
+        return await bot.send_message(user_id, bhs("text_rto"))
     ph = phone.contact
     phone_number = ph.phone_number
     new_client = Ubot(
@@ -134,7 +132,7 @@ async def _(client, callback_query):
         api_hash=API_HASH,
         in_memory=True,
     )
-    get_otp = await bot.send_message(user_id, "<b>mengirim kode otp</b>", reply_markup=ReplyKeyboardRemove())
+    get_otp = await bot.send_message(user_id, bhs("text_sendotp"), reply_markup=ReplyKeyboardRemove())
     await new_client.connect()
     try:
         code = await new_client.send_code(phone_number.strip())
@@ -158,25 +156,23 @@ async def _(client, callback_query):
         return await bot.send_message(user_id, f"<b>ERROR:</b> {error}")
     try:
         sent_code = {
-            SentCodeType.APP: "<a href=tg://openmessage?user_id=777000>ᴀᴋᴜɴ ᴛᴇʟᴇɢʀᴀᴍ</a> ʀᴇsᴍɪ",
-            SentCodeType.SMS: "sᴍs ᴀɴᴅᴀ",
-            SentCodeType.CALL: "ᴘᴀɴɢɢɪʟᴀɴ ᴛᴇʟᴘᴏɴ",
-            SentCodeType.FLASH_CALL: "ᴘᴀɴɢɢɪʟᴀɴ ᴋɪʟᴀᴛ ᴛᴇʟᴇᴘᴏɴ",
-            SentCodeType.FRAGMENT_SMS: "ꜰʀᴀɢᴍᴇɴᴛ sᴍs",
-            SentCodeType.EMAIL_CODE: "ᴇᴍᴀɪʟ ᴀɴᴅᴀ",
+            SentCodeType.APP: bhs("text_otptype1").format(f"<a href=tg://openmessage?user_id=777000>ᴀᴋᴜɴ ᴛᴇʟᴇɢʀᴀᴍ</a> ʀᴇsᴍɪ"),
+            SentCodeType.SMS: bhs("text_otptype2"),
+            SentCodeType.CALL: bhs("text_otptype3"),
+            SentCodeType.FLASH_CALL: bhs("text_otptype4"),
+            SentCodeType.FRAGMENT_SMS: bhs("text_otptype5"),
+            SentCodeType.EMAIL_CODE: bhs("text_otptype6"),
         }
         await get_otp.delete()
         otp = await bot.ask(
             user_id,
             (
-                f"<b>sɪʟᴀᴋᴀɴ ᴘᴇʀɪᴋsᴀ ᴋᴏᴅᴇ ᴏᴛᴘ ᴅᴀʀɪ {sent_code[code.type]}. ᴋɪʀɪᴍ ᴋᴏᴅᴇ ᴏᴛᴘ ᴋᴇ sɪɴɪ sᴇᴛᴇʟᴀʜ ᴍᴇᴍʙᴀᴄᴀ ꜰᴏʀᴍᴀᴛ ᴅɪ ʙᴀᴡᴀʜ ɪɴɪ.</b>\n"
-                "\nᴊɪᴋᴀ ᴋᴏᴅᴇ ᴏᴛᴘ ᴀᴅᴀʟᴀʜ <ᴄᴏᴅᴇ>12345</ᴄᴏᴅᴇ> ᴛᴏʟᴏɴɢ <b>[ ᴛᴀᴍʙᴀʜᴋᴀɴ sᴘᴀsɪ ]</b> ᴋɪʀɪᴍᴋᴀɴ sᴇᴘᴇʀᴛɪ ɪɴɪ <code>1 2 3 4 5</code>\n"
-                "\n<b>ɢᴜɴᴀᴋᴀɴ /cancel ᴜɴᴛᴜᴋ ᴍᴇᴍʙᴀᴛᴀʟᴋᴀɴ ᴘʀᴏsᴇs ᴍᴇᴍʙᴜᴀᴛ ᴜsᴇʀʙᴏᴛ</b>"
+                bhs("text_askotp")
             ),
             timeout=300,
         )
     except asyncio.TimeoutError:
-        return await bot.send_message(user_id, "ᴡᴀᴋᴛᴜ ᴛᴇʟᴀʜ ʜᴀʙɪs")
+        return await bot.send_message(user_id, bhs("text_rto"))
     if await is_cancel(callback_query, otp.text):
         return
     otp_code = otp.text
@@ -196,11 +192,11 @@ async def _(client, callback_query):
         try:
             two_step_code = await bot.ask(
                 user_id,
-                "<b>ᴀᴋᴜɴ ᴀɴᴅᴀ ᴛᴇʟᴀʜ ᴍᴇɴɢᴀᴋᴛɪꜰᴋᴀɴ ᴠᴇʀɪꜰɪᴋᴀsɪ ᴅᴜᴀ ʟᴀɴɢᴋᴀʜ. sɪʟᴀʜᴋᴀɴ ᴋɪʀɪᴍᴋᴀɴ ᴘᴀssᴡᴏʀᴅɴʏᴀ.\n\nɢᴜɴᴀᴋᴀɴ /cancel ᴜɴᴛᴜᴋ ᴍᴇᴍʙᴀᴛᴀʟᴋᴀɴ ᴘʀᴏsᴇs ᴍᴇᴍʙᴜᴀᴛ ᴜsᴇʀʙᴏᴛ</b>",
+                bhs("text_askv2l"),
                 timeout=300,
             )
         except asyncio.TimeoutError:
-            return await bot.send_message(user_id, "ᴘᴇᴍʙᴀᴛᴀʟᴀɴ ᴏᴛᴏᴍᴀᴛɪs")
+            return await bot.send_message(user_id, bhs("text_rto"))
         if await is_cancel(callback_query, two_step_code.text):
             return
         new_code = two_step_code.text
@@ -215,7 +211,7 @@ async def _(client, callback_query):
     new_client.in_memory = True
     bot_msg = await bot.send_message(
         user_id,
-        "sᴇᴅᴀɴɢ ᴍᴇᴍᴘʀᴏsᴇs....\n\nsɪʟᴀʜᴋᴀɴ ᴛᴜɴɢɢᴜ sᴇʙᴇɴᴛᴀʀ",
+        bhs("text_proses"),
         disable_web_page_preview=True,
     )
     await new_client.start()
@@ -223,7 +219,7 @@ async def _(client, callback_query):
         ubot._ubot.remove(new_client)
         await rem_two_factor(new_client.me.id)
         return await bot_msg.edit(
-            "<b>ʜᴀʀᴀᴘ ɢᴜɴᴀᴋᴀɴ ɴᴏᴍᴇʀ ᴛᴇʟᴇɢʀᴀᴍ ᴀɴᴅᴀ ᴅɪ ᴀᴋᴜɴ ᴀɴᴅᴀ sᴀᴀᴛ ɪɴɪ ᴅᴀɴ ʙᴜᴋᴀɴ ɴᴏᴍᴇʀ ᴛᴇʟᴇɢʀᴀᴍ ᴅᴀʀɪ ᴀᴋᴜɴ ʟᴀɪɴ</>"
+            bhs("text_wrong")
         )
     await add_ubot(
         user_id=int(new_client.me.id),
@@ -233,18 +229,12 @@ async def _(client, callback_query):
     )
     await set_vars(client.me.id, "UPTIME", time())
     for mod in loadModule():
-        importlib.reload(importlib.import_module(f"PyroUbot.modules.{mod}"))
+        importlib.reload(importlib.import_module(f"Jamal.modules.{mod}"))
     SH = await ubot.get_prefix(new_client.me.id)
     buttons = [
-            [InlineKeyboardButton("⬅️ ᴋᴇᴍʙᴀʟɪ", callback_data=f"home {user_id}")],
+            [InlineKeyboardButton(bhs("text_back"), callback_data=f"home {user_id}")],
         ]
-    text_done = f"""
-<b> ᴜsᴇʀʙᴏᴛ ᴅɪᴀᴋᴛɪғᴋᴀɴ</b>
-<b> ɴᴀᴍᴇ :</b> <a href=tg://user?id={new_client.me.id}>{new_client.me.first_name} {new_client.me.last_name or ''}</a>
-<b> ɪᴅ :</b> <code>{new_client.me.id}</code>
-<b> ᴘʀᴇғɪxᴇs :</b> <code>{' '.join(SH)}</code>
-<b> ᴇxᴘɪʀᴇᴅ :</b>
-        """
+    text_done = bhs("text_activated").format(f"<a href=tg://user?id={new_client.me.id}>{new_client.me.first_name} {new_client.me.last_name or ''}</a>", new_client.me.id, ''.join(sh), 
     await bot_msg.edit(text_done, disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(buttons))
     await install_my_peer(new_client)
@@ -257,7 +247,7 @@ async def _(client, callback_query):
 async def is_cancel(callback_query, text):
     if text.startswith("/cancel"):
         await bot.send_message(
-            callback_query.from_user.id, "<b>ᴍᴇᴍʙᴀᴛᴀʟᴋᴀɴ ᴘʀᴏsᴇs!</b>"
+            callback_query.from_user.id, bhs("text_cancelled")
         )
         return True
     return False
