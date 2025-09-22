@@ -5,8 +5,10 @@ cmds : "**command helps**"
 
 #cb_inline
 cb_inline1 : "◀ back"
-cb_inline2 : "💵 buy userbot"
-cb_inline3 : "🛠️ install userbot"
+cb_inline2 : "▶ continue"
+cb_inline3: "💵 buy userbot"
+cb_inline4 : "🛠️ install userbot"
+
 
 
 #start
