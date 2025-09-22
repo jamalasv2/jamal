@@ -13,7 +13,7 @@ from Jamal.config import BAHASA
 from Jamal import *
 from Jamal.database.language import get_lang, set_lang
 
-cek_bahasa = get_lang(client.me.id) or BAHASA
+cek_bahasa = get_lang(Message.chat.id) or BAHASA
 
 bahasa_ = {}
 bahasa_present = {}
