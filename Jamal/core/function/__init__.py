@@ -1,2 +1,2 @@
-from PyroUbot.core.function.expired import *
-from PyroUbot.core.function.plugins import *
+from Jamal.core.function.expired import *
+from Jamal.core.function.plugins import *
