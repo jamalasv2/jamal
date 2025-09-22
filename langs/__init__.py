@@ -10,17 +10,44 @@ import requests
 from yaml import safe_load
 
 from Jamal.config import BAHASA
-from Jamal import *
 from Jamal.database import mongodb
 
-cek_bahasa = mongodb.get("language") or BAHASA
+# ambil collection users (nyimpen bahasa user)
+langs_db = mongodb["Jamal"]["language"]["users"]
+
+# cache default/global language
+cek_bahasa = None  
 
 bahasa_ = {}
 bahasa_present = {}
 loc_lang = "langs/strings/{}.yml"
 
 
+async def get_lang(user_id: int):
+    """ambil bahasa user dari cache/db"""
+    global cek_bahasa
+    lang = cek_bahasa
+    # coba ambil dari DB user
+    user = await langs_db.find_one({"_id": user_id})
+    if user:
+        lang = user.get("lang", BAHASA)
+    # kalau belum ada → fallback config default
+    if not lang:
+        lang = BAHASA
+    return lang
+
+
+async def set_lang(user_id: int, lang: str):
+    """update bahasa user ke db"""
+    await langs_db.update_one(
+        {"_id": user_id},
+        {"$set": {"lang": lang}},
+        upsert=True
+    )
+
+
 def load(file):
+    """load file yaml"""
     if not file.endswith(".yml"):
         return
     elif not os.path.exists(file):
@@ -34,11 +61,9 @@ def load(file):
         print(f"Error in {file[:-4]}\n\n{er} language file")
 
 
-load(loc_lang.format(cek_bahasa))
-
-
-def bhs(key, _res: bool = True):
-    lang = cek_bahasa or "en"
+def bhs(key, lang: str = None, _res: bool = True):
+    """ambil string bahasa sesuai user"""
+    lang = lang or cek_bahasa or "en"
     try:
         return bahasa_[lang][key]
     except KeyError:
@@ -54,12 +79,8 @@ def bhs(key, _res: bool = True):
             return tr
         except KeyError as e:
             if not _res:
-                print(
-                    f"Warning: could not load any string with the key `{key}` {e}"
-                )
+                print(f"Warning: could not load any string with the key `{key}` {e}")
                 return
-        except TypeError:
-            pass
         except Exception as er:
             print(f"Warning: could not load any string with the key `{er}`")
         if not _res:
@@ -67,12 +88,6 @@ def bhs(key, _res: bool = True):
         return bahasa_["en"].get(key) or print(
             f"Failed to load language string '{key}'"
         )
-
-
-def get_bhs(key):
-    doc = cgr(f"{key}", _res=False)
-    if doc:
-        return bhs("cmds") + doc
 
 
 def get_bahasa_() -> List[Dict[str, Union[str, List[str]]]]:
@@ -83,16 +98,14 @@ def get_bahasa_() -> List[Dict[str, Union[str, List[str]]]]:
         for code, data in bahasa_.items():
             if data is not None:
                 bahasa_list.append(
-                    {
-                        "code": code,
-                        "name": data.get("name", ""),
-                    }
+                    {"code": code, "name": data.get("name", "")}
                 )
         return bahasa_list
     except KeyError as e:
         print(f"KeyError: {e} not found in language file")
 
 
+# init bahasa default (fallback)
 for filename in os.listdir(r"./langs/strings/"):
     if "en" not in bahasa_:
         bahasa_["en"] = yaml.safe_load(
@@ -114,5 +127,3 @@ for filename in os.listdir(r"./langs/strings/"):
     except:
         print("There is some issue with the language file inside bot.")
         sys.exit(1)
-
-
