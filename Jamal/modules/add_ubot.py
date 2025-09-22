@@ -13,48 +13,12 @@ from Jamal import *
 from langs import *
 
 
-@PY.CALLBACK("pler")
-async def _(client, callback_query):
-    user_id = callback_query.from_user.id
-    if user_id in ubot._get_my_id:
-        buttons = [
-            [InlineKeyboardButton(
-                bhs("cb_inline1"),
-                callback_data=f"home {user_id}")],
-        ]
-        exp = await get_expired_date(user_id)
-        prefix = await get_pref(user_id)
-        waktu = exp.strftime("%d-%m-%Y") if exp else "None"
-        return await callback_query.edit_message_text(
-            f"""
-<b>sᴛᴀᴛᴜs :</b> <code>ᴘʀᴇᴍɪᴜᴍ</code>
-<b>ᴘʀᴇғɪxᴇs :</b> <code>{prefix[0]}</code>
-<b>ʙᴏᴛ_ᴜᴘᴛɪᴍᴇ :</b> <code>-</code>
-""",
-            disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup(buttons),
-        )
-    else:
-        buttons = [
-            [InlineKeyboardButton(" ʙᴇʟɪ ᴜsᴇʀʙᴏᴛ", callback_data=f"bahan")],
-            [InlineKeyboardButton("⬅️ ᴋᴇᴍʙᴀʟɪ", callback_data=f"home {user_id}")],
-        ]
-        return await callback_query.edit_message_text(
-            f"""o
-<b>‼️ ᴀɴᴅᴀ ʙᴇʟᴜᴍ ᴍᴇᴍɪʟɪᴋɪ ᴜsᴇʀʙᴏᴛ ɪɴɪ</b>
-<b> sɪʟᴀʜᴋᴀɴ ʙᴇʟɪ ᴜsᴇʀʙᴏᴛ ɴʏᴀ</b>
-""",
-            disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup(buttons),
-    )
-
-
 @PY.CALLBACK("memek")
 async def _(client, callback_query):
     user_id = callback_query.from_user.id
     if user_id in ubot._get_my_id:
         buttons = [
-            [InlineKeyboardButton(bhs("cb_back"), callback_data=f"home {user_id}")],
+            [InlineKeyboardButton(bhs("text_back"), callback_data=f"home {user_id}")],
         ]
         return await callback_query.edit_message_text(
             bhs("cb_installed"),
@@ -63,7 +27,7 @@ async def _(client, callback_query):
         )
     elif len(ubot._ubot) + 1 > MAX_BOT:
         buttons = [
-            [InlineKeyboardButton(bhs("cb_back"), callback_data=f"home {user_id}")],
+            [InlineKeyboardButton(bhs("text_back"), callback_data=f"home {user_id}")],
         ]
         return await callback_query.edit_message_text(
             bhs("cb_limit"),
@@ -72,8 +36,8 @@ async def _(client, callback_query):
         )
     if user_id not in await get_list_from_vars(client.me.id, "PREM_USERS"):
         buttons = [
-            [InlineKeyboardButton(bhs("cb_buy"), callback_data="bahan")],
-            [InlineKeyboardButton(bhs("cb_back"), callback_data=f"home {user_id}")],
+            [InlineKeyboardButton(bhs("text_buy"), callback_data="bahan")],
+            [InlineKeyboardButton(bhs("text_back"), callback_data=f"home {user_id}")],
         ]
         return await callback_query.edit_message_text(
             bhs("cb_noacces"),
@@ -100,7 +64,7 @@ async def _(client, callback_query):
     user_id = callback_query.from_user.id
     if user_id in ubot._get_my_id:
         buttons = [
-            [InlineKeyboardButton(bhs("cb_back"), callback_data=f"home {user_id}")],
+            [InlineKeyboardButton(bhs("text_back"), callback_data=f"home {user_id}")],
         ]
         return await callback_query.edit_message_text(
             bhs("cb_installed"),
@@ -109,7 +73,7 @@ async def _(client, callback_query):
         )
     elif len(ubot._ubot) + 1 > MAX_BOT:
         buttons = [
-            [InlineKeyboardButton(bhs("cb_back"), callback_data=f"home {user_id}")],
+            [InlineKeyboardButton(bhs("text_back"), callback_data=f"home {user_id}")],
         ]
         return await callback_query.edit_message_text(
             bhs("cb_limit"),
@@ -118,16 +82,16 @@ async def _(client, callback_query):
         )
     if user_id not in await get_list_from_vars(client.me.id, "PREM_USERS"):
         buttons = [
-            [InlineKeyboardButton(bhs("cb_continue"), callback_data="bayar_dulu")],
-            [InlineKeyboardButton(bhs("cb_back"), callback_data=f"home {user_id}")],
+            [InlineKeyboardButton(bhs("text_continue"), callback_data="bayar_dulu")],
+            [InlineKeyboardButton(bhs("text_back"), callback_data=f"home {user_id}")],
         ]
         return await callback_query.edit_message_text(
-            bhs("start_2"),
+            bhs("text_attention"),
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     else:
-        buttons = [[InlineKeyboardButton(bhs("cb_continue"), callback_data="memek")]]
+        buttons = [[InlineKeyboardButton(bhs("text_continue"), callback_data="memek")]]
         return await callback_query.edit_message_text(
             bhs("cb_acces"),
             disable_web_page_preview=True,
