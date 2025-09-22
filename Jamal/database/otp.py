@@ -1,4 +1,4 @@
-from PyroUbot.core.database import mongodb
+from Jamal.database import mongodb
 
 getopt = mongodb["Jamal"]["twofactor"]
 
