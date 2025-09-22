@@ -1,7 +1,7 @@
 from Jamal.config import DEVS
 
 from Jamal.core.helpers import *
-from Jamal.core.database import *
+from Jamal.database import *
 from Jamal import bot, ubot
 
 
