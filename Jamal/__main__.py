@@ -7,7 +7,7 @@ from pyrogram import idle
 from pyrogram.errors import UserDeactivated
 
 from Jamal import bot, Ubot
-from Jamal.database.ubot import get_userbots, remove_ubot
+from Jamal.database.userbot import get_userbots, remove_ubot
 from Jamal.core.function import loadPlugins, installPeer, expiredUserbots  # assume these exist
 
 # keep track of running ubot instances so they can be stopped cleanly
