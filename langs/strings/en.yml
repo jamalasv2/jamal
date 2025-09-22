@@ -11,6 +11,9 @@ cb_buy : "💵 buy userbot"
 cb_install : "🛠️ install userbot"
 cb_confirm : "✅ confirm"
 cb_cancel : "🚫 cancel"
+cb_installed : "❌ you have installed userbot\n⚠️ if userbot can't be used, please type /restart to refresh your userbot"
+cb_limit : "⚠️ Unable to create userbot due to limit reached.\n\n📞 Contact admin for more information"
+cb_noacces : "❌ You don't have access to install userbot.\n⚠️ Please purchase first to get access."
 
 #payment
 pay : "💵 make payment"
