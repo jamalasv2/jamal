@@ -8,7 +8,8 @@ from pyrogram.errors import *
 from pyrogram.types import *
 from pyrogram.raw import functions
 
-from PyroUbot import *
+from Jamal import *
+from langs import *
 
 
 @PY.CALLBACK("pler")
