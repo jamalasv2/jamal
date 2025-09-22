@@ -11,6 +11,8 @@ cb_inline2 : "💵 buy userbot"
 
 #start
 start_1 : "hi {}\n\n{} is a useful userbot that can help you use Telegram or manage your group chats easily. This bot is equipped with features such as automatic broadcasts, AI, note-taking, and more.\nclick the button below for more information "
+start_2 : "⚠️ Attention!\nwe recommended to install userbot on accounts that have been registered for more than 2 months.\n\nAccount deletion, suspended, limits, and other issues are beyond our control.\n\nBy purchasing, you agree to the terms and conditions and understand the risks."
+
 
 #status
 status_1 : "**status:** <code>premium</code>\n**prefix:** <code>{}</code>\n**bot uptime:** <i>{}</i>"
