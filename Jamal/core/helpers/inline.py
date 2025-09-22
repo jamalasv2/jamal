@@ -3,8 +3,8 @@ from pyrogram.errors import MessageNotModified
 from pyrogram.types import (InlineKeyboardButton, InlineQueryResultArticle,
                             InputTextMessageContent)
 
-from PyroUbot import *
-from PyroUbot.config import *
+from Jamal import *
+from Jamal.config import *
 
 
 class Button:
