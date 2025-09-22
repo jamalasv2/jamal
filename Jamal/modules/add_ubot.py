@@ -8,6 +8,7 @@ from pyrogram.errors import *
 from pyrogram.types import *
 from pyrogram.raw import functions
 
+from Jamal.core.helpers._client import PY
 from Jamal import *
 from langs import *
 
