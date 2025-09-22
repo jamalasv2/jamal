@@ -2,11 +2,11 @@ from importlib import import_module
 
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
-from PyroUbot import bot
-from PyroUbot.config import SUPPORT, OWNER_ID
-from PyroUbot.core.helpers import PY
-from PyroUbot.modules import loadModule
-from PyroUbot.core.database import *
+from Jamal import bot
+from Jamal.config import SUPPORT, OWNER_ID
+from Jamal.core.helpers import PY
+from Jamal.modules import loadModule
+from Jamal.database import *
 
 HELP_COMMANDS = {}
 
@@ -14,7 +14,7 @@ HELP_COMMANDS = {}
 async def loadPlugins():
     modules = loadModule()
     for mod in modules:
-        imported_module = import_module(f"PyroUbot.modules.{mod}")
+        imported_module = import_module(f"Jamal.modules.{mod}")
         module_name = getattr(imported_module, "__MODULE__", "").replace(" ", "_").lower()
         if module_name:
             HELP_COMMANDS[module_name] = imported_module
