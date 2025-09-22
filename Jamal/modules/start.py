@@ -32,7 +32,7 @@ async def _(client, message):
 @PY.PRIVATE
 async def _(client, message):
     if len(message.command) < 2:
-        pat = "storage/higan.jpg"
+        pat = "https://files.catbox.moe/pbkev2.jpg"
         buttons = Button.start(message)
         msg = MSG.START(message)
         await message.reply_photo(
