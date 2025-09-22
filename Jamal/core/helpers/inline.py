@@ -12,7 +12,7 @@ class Button:
         button = [
             [
                 InlineKeyboardButton(
-                    text="ᴛᴜᴛᴜᴘ",
+                    bhs("cb_inline3"),
                     callback_data="alv_cls",
                 )
             ]
