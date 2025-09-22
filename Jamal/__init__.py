@@ -67,6 +67,10 @@ class Bot(Client):
         await super().start()
 
 
+from pyrogram import Client
+from pyrogram.session import StringSession
+from pytgcalls import GroupCallFactory
+
 class Ubot(Client):
     _ubot = []
     _prefix = {}
@@ -74,11 +78,16 @@ class Ubot(Client):
     _translate = {}
     _get_my_peer = {}
 
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs, device_model="ʜɪɢᴀɴʙᴀɴᴀ ᴘʀᴇᴍɪᴜᴍ")
+    def __init__(self, user_id, api_id, api_hash, session_string, **kwargs):
+        super().__init__(
+            name=f"ubot_{user_id}",
+            session=StringSession(session_string),
+            api_id=api_id,
+            api_hash=api_hash,
+            **kwargs,
+        )
         self.group_call = GroupCallFactory(self).get_file_group_call()
 
-    
     def on_message(self, filters=None, group=-1):
         def decorator(func):
             for ub in self._ubot:
