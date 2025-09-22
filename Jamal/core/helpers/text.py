@@ -53,7 +53,7 @@ class MSG:
 """
 
     def POLICY():
-        return """bhs("start_2")"""
+        return bhs("start_2")
 
 
 async def sending_user(user_id):
