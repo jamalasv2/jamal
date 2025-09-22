@@ -13,6 +13,7 @@ cb_confirm : "✅ confirm"
 cb_cancel : "🚫 cancel"
 
 #payment
+pay : "💵 make payment"
 pay_bukti : "Please send a screenshot of proof of payment."
 pay_cancel : "time out. the transaction will be cancelled automatically"
 pay_invalid : "❌cannot be processed.\n⚠️ Please send valid proof of payment.\n✅ reconfirm your payment."
