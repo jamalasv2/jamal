@@ -7,6 +7,7 @@ from pyrogram.raw.functions import Ping
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 from Jamal import *
+from langs import *
 
 
 emoji_categories = [
