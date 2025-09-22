@@ -12,7 +12,7 @@ class Button:
         button = [
             [
                 InlineKeyboardButton(
-                    bhs("cb_cls"),
+                    bhs("text_close"),
                     callback_data="alv_cls",
                 )
             ]
@@ -44,7 +44,7 @@ class Button:
 
     def expired_button_bot():
         button = [
-            [InlineKeyboardButton(bhs("cb_buy"), callback_data="bahan")]
+            [InlineKeyboardButton(bhs("text_buy"), callback_data="bahan")]
         ]
         return button
 
@@ -52,13 +52,13 @@ class Button:
         button = [
             [
                 InlineKeyboardButton(
-                    bhs("cb_buy"),
+                    bhs("text_buy"),
                     callback_data="bahan"
                 )
             ],
             [
                 InlineKeyboardButton(
-                    bhs("cb_install"), callback_data="memek"
+                    bhs("text_install"), callback_data="memek"
                 ),
             ],
             # [InlineKeyboardButton("🤩 ᴜsᴇʀʙᴏᴛ ɢʀᴀᴛɪs 🤩", callback_data="grts")],
@@ -77,8 +77,8 @@ class Button:
                     callback_data=f"tambah {query}",
                 ),
             ],
-            [InlineKeyboardButton(bhs("cb_confirm"), callback_data="confirm")],
-            [InlineKeyboardButton(bhs("cb_back"), callback_data=f"home {user_id}")],
+            [InlineKeyboardButton(bhs("text_confirm"), callback_data="confirm")],
+            [InlineKeyboardButton(bhs("text_back"), callback_data=f"home {user_id}")],
         ]
         return button
 
@@ -131,11 +131,11 @@ class Button:
         button = [
             [
                 InlineKeyboardButton(
-                    bhs("cb_back"),
+                    bhs("text_back"),
                     callback_data=f"p_ub {int(count)}"
                 ),
                 InlineKeyboardButton(
-                    bhs("cb_confirm"), callback_data=f"deak_akun {int(count)}",
+                    bhs("text_confirm"), callback_data=f"deak_akun {int(count)}",
                 ),
             ],
         ]
