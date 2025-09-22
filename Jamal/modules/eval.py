@@ -8,7 +8,8 @@ from io import BytesIO, StringIO
 
 import psutil
 
-from PyroUbot import *
+from Jamal import *
+from Jamal.config import DEVS
 
 
 @bot.on_message(filters.command(["sh"]) & filters.user(DEVS))
@@ -47,7 +48,7 @@ async def handle_shutdown(message):
 
 async def handle_restart(message):
     await message.reply("✅ System berhasil direstart", quote=True)
-    os.execl(sys.executable, sys.executable, "-m", "PyroUbot")
+    os.execl(sys.executable, sys.executable, "-m", "Jamal")
 
 
 async def handle_update(message):
@@ -58,7 +59,7 @@ async def handle_update(message):
         await send_large_output(message, out)
     else:
         await message.reply(f"```{out}```", quote=True)
-    os.execl(sys.executable, sys.executable, "-m", "PyroUbot")
+    os.execl(sys.executable, sys.executable, "-m", "Jamal")
 
 
 async def handle_clean(message):
