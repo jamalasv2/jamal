@@ -12,7 +12,8 @@ cb_install : "🛠️ install userbot"
 cb_confirm : "✅ confirm"
 cb_cancel : "🚫 cancel"
 
-
+#payment
+pay_bukti : "Please send a screenshot of proof of payment."
 
 #start
 start_1 : "hi {}\n\n{} is a useful userbot that can help you use Telegram or manage your group chats easily. This bot is equipped with features such as automatic broadcasts, AI, note-taking, and more.\nclick the button below for more information "
