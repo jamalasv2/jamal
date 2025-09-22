@@ -78,7 +78,7 @@ async def _(client, callback_query):
                 TOTAL_HARGA = HARGA * BULAN
         buttons = Button.plus_minus(BULAN, callback_query.from_user.id)
         await callback_query.message.edit_text(
-            MSG.TEXT_PAYMENT(HARGA, TOTAL_HARGA, BULAN),
+            bhs("text_payment").format(HARGA, TOTAL_HARGA, BULAN),
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(buttons),
         )
