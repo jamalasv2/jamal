@@ -44,7 +44,7 @@ class Button:
 
     def expired_button_bot():
         button = [
-            [InlineKeyboardButton(" ʙᴇʟɪ ᴜsᴇʀʙᴏᴛ ", callback_data="bahan")]
+            [InlineKeyboardButton(bhs("cb_buy"), callback_data="bahan")]
         ]
         return button
 
