@@ -13,6 +13,8 @@ from Jamal.config import BAHASA
 from Jamal import *
 from Jamal.database.language import get_lang, set_lang
 
+cek_bahasa = get_lang(client.me.id) or BAHASA
+
 bahasa_ = {}
 bahasa_present = {}
 loc_lang = "langs/strings/{}.yml"
@@ -36,7 +38,6 @@ load(loc_lang.format(cek_bahasa))
 
 
 def bhs(key, _res: bool = True):
-    cek_bahasa = get_lang(client.me.id) or BAHASA
     lang = cek_bahasa or "en"
     try:
         return bahasa_[lang][key]
