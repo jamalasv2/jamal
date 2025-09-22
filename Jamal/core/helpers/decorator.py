@@ -1,6 +1,6 @@
 from pyrogram.enums import ChatType
 
-from PyroUbot import OWNER_ID, bot, ubot
+from Jamal import OWNER_ID, bot, ubot
 
 
 async def get_private_and_group_chats(client):
