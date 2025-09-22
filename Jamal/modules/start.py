@@ -37,7 +37,7 @@ async def _(client, message):
         buttons = Button.start(message)
         msg = MSG.START(message)
         await message.reply(
-            bhs("start_1").format(f"<a href=tg://user?id={message.from_user.id}>{message.from_user.first_name} {message.from_user.last_name or ''}</a>", bot.me.first_name or ''),
+            bhs("text_start").format(f"<a href=tg://user?id={message.from_user.id}>{message.from_user.first_name} {message.from_user.last_name or ''}</a>", bot.me.first_name or ''),
             reply_markup=InlineKeyboardMarkup(buttons)
         )
     else:
