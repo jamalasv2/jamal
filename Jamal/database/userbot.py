@@ -1,4 +1,4 @@
-from Jamal.database import mongodb
+from PyroUbot.core.database import mongodb
 
 ubotdb = mongodb.ubot
 
