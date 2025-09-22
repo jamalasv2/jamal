@@ -89,47 +89,36 @@ async def _(client, callback_query):
     user_id = callback_query.from_user.id
     if user_id in ubot._get_my_id:
         buttons = [
-            [InlineKeyboardButton("⬅️ ᴋᴇᴍʙᴀʟɪ", callback_data=f"home {user_id}")],
+            [InlineKeyboardButton(bhs("cb_back"), callback_data=f"home {user_id}")],
         ]
         return await callback_query.edit_message_text(
-            f"""
-<b>ᴀɴᴅᴀ sᴜᴅᴀʜ ᴍᴇᴍʙᴜᴀᴛ ᴜsᴇʀʙᴏᴛ</b>
-<b>Jɪᴋᴀ ᴜsᴇʀʙᴏᴛ ᴀɴᴅᴀ ᴛɪᴅᴀᴋ ʙɪsᴀ ᴅɪɢᴜɴᴀᴋᴀɴ sɪʟᴀʜᴋᴀɴ ᴋʟɪᴋ: /restart</b>
-""",
+            bhs("cb_installed"),
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     elif len(ubot._ubot) + 1 > MAX_BOT:
         buttons = [
-            [InlineKeyboardButton("⬅️ ᴋᴇᴍʙᴀʟɪ", callback_data=f"home {user_id}")],
+            [InlineKeyboardButton(bhs("cb_back"), callback_data=f"home {user_id}")],
         ]
         return await callback_query.edit_message_text(
-            f"""
-<b> ᴛɪᴅᴀᴋ ʙɪsᴀ ᴍᴇᴍʙᴜᴀᴛ ᴜsᴇʀʙᴏᴛ!</b>
-
-<b> ᴋᴀʀᴇɴᴀ ᴍᴀᴋsɪᴍᴀʟ ᴜsᴇʀʙᴏᴛ ᴀᴅᴀʟᴀʜ {Fonts.smallcap(str(len(ubot._ubot)))} ᴛᴇʟᴀʜ ᴛᴇʀᴄᴀᴘᴀɪ</b>
-
-<b> sɪʟᴀʜᴋᴀɴ ʜᴜʙᴜɴɢɪ: <a href=tg://openmessage?user_id={OWNER_ID}>ᴀᴅᴍɪɴ</a> ᴊɪᴋᴀ ᴍᴀᴜ ᴅɪʙᴜᴀᴛᴋᴀɴ ʙᴏᴛ sᴇᴘᴇʀᴛɪ sᴀʏᴀ</b>
-""",
+            bhs("cb_limit"),
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     if user_id not in await get_list_from_vars(client.me.id, "PREM_USERS"):
         buttons = [
-            [InlineKeyboardButton("ʟᴀɴᴊᴜᴛᴋᴀɴ", callback_data="bayar_dulu")],
-            [InlineKeyboardButton("ᴋᴇᴍʙᴀʟɪ", callback_data=f"home {user_id}")],
+            [InlineKeyboardButton(bhs("cb_continue"), callback_data="bayar_dulu")],
+            [InlineKeyboardButton(bhs("cb_back"), callback_data=f"home {user_id}")],
         ]
         return await callback_query.edit_message_text(
-            MSG.POLICY(),
+            bhs("start_2"),
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     else:
-        buttons = [[InlineKeyboardButton("ʟᴀɴᴊᴜᴛᴋᴀɴ", callback_data="memek")]]
+        buttons = [[InlineKeyboardButton(bhs("cb_continue"), callback_data="memek")]]
         return await callback_query.edit_message_text(
-            """
-<b>‼️ ᴀɴᴅᴀ ᴛᴇʟᴀʜ ᴍᴇᴍʙᴇʟɪ ᴜsᴇʀʙᴏᴛ ‼️\nsɪʟᴀʜᴋᴀɴ ᴘᴇɴᴄᴇᴛ ᴛᴏᴍʙᴏʟ ʟᴀɴJᴜᴛᴋᴀɴ ᴜɴᴛᴜᴋ ᴍᴇᴍʙᴜᴀᴛ ᴜsᴇʀʙᴏᴛ</b>
-""",
+            bhs("cb_acces"),
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(buttons),
         )
@@ -140,7 +129,7 @@ async def _(client, callback_query):
     user_id = callback_query.from_user.id
     buttons = Button.plus_minus(1, user_id)
     return await callback_query.edit_message_text(
-        MSG.TEXT_PAYMENT(30, 30, 1),
+        bhs("pay_text").format(20, 20, 1),
         disable_web_page_preview=True,
         reply_markup=InlineKeyboardMarkup(buttons),
     )
