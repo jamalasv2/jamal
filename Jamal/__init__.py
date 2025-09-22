@@ -16,7 +16,7 @@ from pyrogram.handlers import CallbackQueryHandler, MessageHandler
 from pyrogram.types import Message
 from pyromod import listen
 from rich.logging import RichHandler
-from Jamal.config import *
+from PyroUbot.config import *
 from pytgcalls import GroupCallFactory
 
 
@@ -74,15 +74,11 @@ class Ubot(Client):
     _translate = {}
     _get_my_peer = {}
 
-    def __init__(self, user_id, api_id, api_hash, **kwargs):
-        super().__init__(
-            name=f"ubot_{user_id}",
-            api_id=api_id,
-            api_hash=api_hash,
-            **kwargs,
-        )
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs, device_model="ʜɪɢᴀɴʙᴀɴᴀ ᴘʀᴇᴍɪᴜᴍ")
         self.group_call = GroupCallFactory(self).get_file_group_call()
 
+    
     def on_message(self, filters=None, group=-1):
         def decorator(func):
             for ub in self._ubot:
@@ -164,6 +160,6 @@ bot = Bot(
 ubot = Ubot(name="ubot")
 
 
-from Jamal.database import *
-from Jamal.core.function import *
-from Jamal.core.helpers import *
+from PyroUbot.core.database import *
+from PyroUbot.core.function import *
+from PyroUbot.core.helpers import *
