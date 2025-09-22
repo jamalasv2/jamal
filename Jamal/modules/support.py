@@ -3,8 +3,7 @@ import asyncio
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 
-from PyroUbot import *
-
+from Jamal import *
 
 
 @PY.CALLBACK("^profil")
