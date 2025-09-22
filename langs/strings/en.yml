@@ -16,6 +16,7 @@ cb_cancel : "🚫 cancel"
 pay_bukti : "Please send a screenshot of proof of payment."
 pay_cancel : "time out. the transaction will be cancelled automatically"
 pay_invalid : "❌cannot be processed.\n⚠️ Please send valid proof of payment.\n✅ reconfirm your payment."
+pay_proses : "✅ Payment has been processed.\nPlease wait 1-6 business hours.\n⚠️ do not send spam messages while the process is on-going or your account will be blocked"
 
 #start
 start_1 : "hi {}\n\n{} is a useful userbot that can help you use Telegram or manage your group chats easily. This bot is equipped with features such as automatic broadcasts, AI, note-taking, and more.\nclick the button below for more information "
