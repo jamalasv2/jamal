@@ -5,7 +5,7 @@ from time import time
 from pyrogram import enums
 from pyrogram.types import InlineKeyboardButton
 
-from PyroUbot.core.helpers.font_tool import Fonts
+from Jamal.core.helpers.font_tool import Fonts
 
 
 async def extract_userid(message, text):
