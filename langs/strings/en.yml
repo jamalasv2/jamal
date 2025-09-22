@@ -4,11 +4,12 @@ name : English
 cmds : "**command helps**"
 
 #cb_inline
-cb_inline1 : "◀ back"
-cb_inline2 : "▶ continue"
-cb_inline3 : "❌ close"
-cb_inline4 : "💵 buy userbot"
-cb_inline5 : "🛠️ install userbot"
+cb_back : "◀ back"
+cb_continue : "▶ continue"
+cb_cls : "❌ close"
+cb_buy : "💵 buy userbot"
+cb_install : "🛠️ install userbot"
+cb_confirm : "✅ confirm"
 
 
 
