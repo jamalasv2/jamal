@@ -12,7 +12,7 @@ class Button:
         button = [
             [
                 InlineKeyboardButton(
-                    bhs("cb_inline3"),
+                    bhs("cb_cls"),
                     callback_data="alv_cls",
                 )
             ]
@@ -52,13 +52,13 @@ class Button:
         button = [
             [
                 InlineKeyboardButton(
-                    bhs("cb_inline2"),
+                    bhs("cb_buy"),
                     callback_data="bahan"
                 )
             ],
             [
                 InlineKeyboardButton(
-                    bhs("cb_inline3"), callback_data="memek"
+                    bhs("cb_install"), callback_data="memek"
                 ),
             ],
             # [InlineKeyboardButton("🤩 ᴜsᴇʀʙᴏᴛ ɢʀᴀᴛɪs 🤩", callback_data="grts")],
@@ -77,8 +77,8 @@ class Button:
                     callback_data=f"tambah {query}",
                 ),
             ],
-            [InlineKeyboardButton(" ᴋᴏɴꜰɪʀᴍᴀsɪ ", callback_data="confirm")],
-            [InlineKeyboardButton(bhs("cb_inline1"), callback_data=f"home {user_id}")],
+            [InlineKeyboardButton(bhs("cb_confirm"), callback_data="confirm")],
+            [InlineKeyboardButton(bhs("cb_back"), callback_data=f"home {user_id}")],
         ]
         return button
 
@@ -131,11 +131,11 @@ class Button:
         button = [
             [
                 InlineKeyboardButton(
-                    "⬅️ ᴋᴇᴍʙᴀʟɪ",
+                    bhs("cb_back"),
                     callback_data=f"p_ub {int(count)}"
                 ),
                 InlineKeyboardButton(
-                    "sᴇᴛᴜJᴜɪ ✅", callback_data=f"deak_akun {int(count)}",
+                    bhs("cb_confirm"), callback_data=f"deak_akun {int(count)}",
                 ),
             ],
         ]
