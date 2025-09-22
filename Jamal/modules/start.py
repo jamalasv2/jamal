@@ -35,9 +35,8 @@ async def _(client, message):
         pat = "https://files.catbox.moe/pbkev2.jpg"
         buttons = Button.start(message)
         msg = MSG.START(message)
-        await message.reply_photo(
-            photo=pat,
-            caption=msg,
+        await message.reply(
+            bhs("start_1"),
             reply_markup=InlineKeyboardMarkup(buttons)
         )
     else:
