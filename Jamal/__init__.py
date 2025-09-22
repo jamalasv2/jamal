@@ -18,6 +18,7 @@ from pyromod import listen
 from rich.logging import RichHandler
 from Jamal.config import *
 from pytgcalls import GroupCallFactory
+from pyrogram.types import StringSession
 
 
 class ConnectionHandler(logging.Handler):
@@ -66,10 +67,6 @@ class Bot(Client):
     async def start(self):
         await super().start()
 
-
-from pyrogram import Client
-from pyrogram.session import StringSession
-from pytgcalls import GroupCallFactory
 
 class Ubot(Client):
     _ubot = []
