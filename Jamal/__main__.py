@@ -57,7 +57,7 @@ async def main():
                 logger.error(f"Gagal start userbot {data['name']}: {e}")
 
     # jalanin expired checker
-    asyncio.create_task(expiredUserbots(bot))
+    asyncio.create_task(expiredUserbots())
 
     logger.info("Bot dan semua userbot sudah berjalan 🚀")
 
