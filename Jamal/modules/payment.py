@@ -34,7 +34,7 @@ async def _(client, callback_query):
                 bhs("pay_bukti"),
                 reply_markup=InlineKeyboardMarkup(buttonx),
             )
-            return await bot.send_message(get.id, "ᴘᴇᴍʙᴀᴛᴀʟᴀɴ ᴏᴛᴏᴍᴀᴛɪs")
+            return await bot.send_message(get.id, bhs("pay_cancel"))
     if get.id in CONFIRM_PAYMENT:
         if not pesan.photo:
             CONFIRM_PAYMENT.remove(get.id)
