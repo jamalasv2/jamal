@@ -3,12 +3,6 @@ name : English
 
 cmds : "**command helps**"
 
-#cb_inline
-cb_installed : "❌ you have installed userbot\n⚠️ if userbot can't be used, please type /restart to refresh your userbot"
-cb_limit : "⚠️ Unable to create userbot due to limit reached.\n\n📞 Contact admin for more information"
-cb_noacces : "❌ You don't have access to install userbot.\n⚠️ Please purchase first to get access."
-cb_acces : "❌ you have purchased userbot. click button below to continue installing userbot"
-
 #payment
 pay : "💵 make payment"
 pay_text : "⚠️ Please make your payment first!\n**🎟️ Monthly price:** Rp{}.000\n**🔖 Total price:** Rp{}.000\n**🗓️ Total time:** {}\n\n✅ Click the confirmation button to send proof of your payment."
@@ -32,6 +26,10 @@ text_buy : "💵 buy userbot"
 text_install : "🛠️ install userbot"
 text_confirm : "✅ confirm"
 text_cancel : "🚫 cancel"
+text_installed : "❌ you have installed userbot\n⚠️ if userbot can't be used, please type /restart to refresh your userbot"
+text_limit : "⚠️ Unable to create userbot due to limit reached.\n\n📞 Contact admin for more information"
+text_noacces : "❌ You don't have access to install userbot.\n⚠️ Please purchase first to get access."
+text_acces : "❌ you have purchased userbot. click button below to continue installing userbot"
 
 
 #status
