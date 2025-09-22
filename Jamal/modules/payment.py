@@ -19,7 +19,7 @@ async def _(client, callback_query):
     get = await bot.get_users(user_id)
     CONFIRM_PAYMENT.append(get.id)
     try:
-        button = [[InlineKeyboardButton(bhs("cb_cancel"), callback_data=f"home {user_id}")]]
+        button = [[InlineKeyboardButton(bhs("text_cancel"), callback_data=f"home {user_id}")]]
         await callback_query.message.delete()
         pesan = await bot.ask(
             user_id,
@@ -30,7 +30,7 @@ async def _(client, callback_query):
     except asyncio.TimeoutError as out:
         if get.id in CONFIRM_PAYMENT:
             CONFIRM_PAYMENT.remove(get.id)
-            buttonx = [[InlineKeyboardButton(bhs("cb_cls"), callback_data=f"0_cls")]]
+            buttonx = [[InlineKeyboardButton(bhs("text_close"), callback_data=f"0_cls")]]
             await pesan.request.edit(
                 bhs("pay_bukti"),
                 reply_markup=InlineKeyboardMarkup(buttonx),
@@ -39,7 +39,7 @@ async def _(client, callback_query):
     if get.id in CONFIRM_PAYMENT:
         if not pesan.photo:
             CONFIRM_PAYMENT.remove(get.id)
-            buttons = [[InlineKeyboardButton(bhs("cb_confirm"), callback_data="confirm")]]
+            buttons = [[InlineKeyboardButton(bhs("text_confirm"), callback_data="confirm")]]
             return await bot.send_message(
                 bhs("pay_invalid"),
                 reply_markup=InlineKeyboardMarkup(buttons),
@@ -51,7 +51,7 @@ async def _(client, callback_query):
                 reply_markup=buttons,
             )
             CONFIRM_PAYMENT.remove(get.id)
-            buttonz = [[InlineKeyboardButton(bhs("cb_cls"), callback_data=f"0_cls")]]
+            buttonz = [[InlineKeyboardButton(bhs("text_close"), callback_data=f"0_cls")]]
             await pesan.request.edit(
                 bhs("pay_bukti"),
                 reply_markup=InlineKeyboardMarkup(buttonz),
@@ -101,7 +101,7 @@ async def _(client, callback_query):
         )
         buttons_success = [
             [
-                InlineKeyboardButton(bhs("cb_cls"), callback_data=f"0_cls")
+                InlineKeyboardButton(bhs("text_close"), callback_data=f"0_cls")
             ],
         ]
         await add_to_vars(client.me.id, "PREM_USERS", get_user.id)
@@ -129,7 +129,7 @@ async def _(client, callback_query):
         )
         buttons_failed = [
             [
-                InlineKeyboardButton(bhs("cb_cls"), callback_data=f"0_cls")
+                InlineKeyboardButton(bhs("text_close"), callback_data=f"0_cls")
             ],
         ]
         return await callback_query.edit_message_text(
