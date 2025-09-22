@@ -1,72 +1,46 @@
 import asyncio
-import logging
-import os
-import sys
+import signal
 
-from rich.logging import RichHandler
+import tornado.ioloop
+import tornado.platform.asyncio
 
-from Jamal.config import API_ID, API_HASH
-from Jamal import bot, ubot
-from Jamal.database.userbot import get_userbots
-from Jamal.core.function import loadPlugins, expiredUserbots, install_my_peer
+from pyrogram import idle
+from pyrogram.errors import UserDeactivated
 
+from PyroUbot import *
 
-# ========== Logging Setup ==========
-class ConnectionHandler(logging.Handler):
-    def emit(self, record):
-        for error_type in ["OSErro", "TimeoutError"]:
-            if error_type in record.getMessage():
-                os.execl(sys.executable, sys.executable, "-m", "Jamal")
-
-
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(filename)s:%(lineno)s %(levelname)s: %(message)s",
-    datefmt="%m-%d %H:%M",
-    handlers=[RichHandler(), ConnectionHandler()],
-)
-
-logger = logging.getLogger(__name__)
-
-
-# ========== Main Runner ==========
 async def main():
-    # start bot utama
     await bot.start()
-
-    # load semua plugins
-    loadPlugins()
-
-    # ambil userbot dari db
-    userbots = await get_userbots()
-    if not userbots:
-        logger.warning("Tidak ada userbot di database!")
-    else:
-        for data in userbots:
-            try:
-                client = ubot.__class__(
-                    name=data["name"],
-                    api_id=data["api_id"],
-                    api_hash=data["api_hash"],
-                    session_string=data["session_string"],
-                )
-                await client.start()
-                await install_my_peer(client)
-                logger.info(f"Userbot {client.me.id} berhasil dijalankan ✅")
-            except Exception as e:
-                logger.error(f"Gagal start userbot {data['name']}: {e}")
-
-    # jalanin expired checker
-    asyncio.create_task(expiredUserbots())
-
-    logger.info("Bot dan semua userbot sudah berjalan 🚀")
-
-    # biar tetap jalan
-    await asyncio.Event().wait()
-
+    for _ubot in await get_userbots():
+        ubot_ = Ubot(**_ubot)
+        try:
+            await asyncio.wait_for(ubot_.start(), timeout=10)
+            await ubot_.join_chat("newhiganbana")
+        except asyncio.TimeoutError:
+            print(f"[𝗜𝗡𝗙𝗢]: {int(_ubot['name'])} 𝗧𝗜𝗗𝗔𝗞 𝗗𝗔𝗣𝗔𝗧 𝗠𝗘𝗥𝗘𝗦𝗣𝗢𝗡")
+        except Exception as e:
+            await remove_ubot(int(_ubot["name"]))
+            await rem_expired_date(int(_ubot["name"]))
+            print(f"[𝗜𝗡𝗙𝗢]: {int(_ubot['name'])}\n{e}")
+        except UserDeactivated:
+            await remove_ubot(int(_ubot["name"]))
+            await rem_expired_date(int(_ubot["name"]))
+            await remove_all_vars(int(_ubot["name"]))
+            await remove_from_vars(bot.me.id, "PREM_USERS", int(_ubot["name"]))
+            print(f"[ INFO ]: {int(_ubot['name'])} akun terhapus dibersihkan")
+    await asyncio.gather(loadPlugins(), installPeer(), expiredUserbots(), idle())
+    stop_event = asyncio.Event()
+    loop = asyncio.get_running_loop()
+    for s in (signal.SIGINT, signal.SIGTERM):
+        loop.add_signal_handler(s, lambda: asyncio.create_task(shutdown(s, loop)))
+    try:
+        await stop_event.wait()
+    except asyncio.CancelledError:
+        pass
+    finally:
+        await bot.stop()
 
 if __name__ == "__main__":
-    try:
-        asyncio.run(main())
-    except (KeyboardInterrupt, SystemExit):
-        logger.info("Shutdown... sampai jumpa 👋")
+    tornado.platform.asyncio.AsyncIOMainLoop().install()
+    loop = tornado.ioloop.IOLoop.current().asyncio_loop
+    loop.run_until_complete(main())

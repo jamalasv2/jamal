@@ -9,38 +9,42 @@ import sys
 import asyncio
 
 from aiohttp import ClientSession
+
 from pyrogram import Client, filters
 from pyrogram.enums import ParseMode
 from pyrogram.handlers import CallbackQueryHandler, MessageHandler
+from pyrogram.types import Message
 from pyromod import listen
 from rich.logging import RichHandler
+from PyroUbot.config import *
 from pytgcalls import GroupCallFactory
 
-from Jamal.config import API_ID, API_HASH, BOT_TOKEN
 
-
-# ========== Logging Handler ==========
 class ConnectionHandler(logging.Handler):
     def emit(self, record):
         for error_type in ["OSErro", "TimeoutError"]:
             if error_type in record.getMessage():
-                os.execl(sys.executable, sys.executable, "-m", "Jamal")
+                os.execl(sys.executable, sys.executable, "-m", "PyroUbot")
 
 
 logging.basicConfig(
-    level=logging.INFO,
+    level=logging.ERROR,
     format="%(filename)s:%(lineno)s %(levelname)s: %(message)s",
     datefmt="%m-%d %H:%M",
-    handlers=[RichHandler(), ConnectionHandler()],
+    handlers=[ConnectionHandler()],
 )
 
-logger = logging.getLogger(__name__)
+console = logging.StreamHandler()
+console.setLevel(logging.ERROR)
+console.setFormatter(
+    logging.Formatter("%(filename)s:%(lineno)s %(levelname)s: %(message)s")
+)
+logging.getLogger("").addHandler(console)
 
-# aiohttp global session
+
 aiosession = ClientSession()
 
 
-# ========== Bot Utama ==========
 class Bot(Client):
     def __init__(self, **kwargs):
         super().__init__(**kwargs, device_model="ʜɪɢᴀɴʙᴀɴᴀ ᴘʀᴇᴍɪᴜᴍ")
@@ -49,16 +53,20 @@ class Bot(Client):
         def decorator(func):
             self.add_handler(MessageHandler(func, filters), group)
             return func
+
         return decorator
 
     def on_callback_query(self, filters=None, group=-1):
         def decorator(func):
             self.add_handler(CallbackQueryHandler(func, filters), group)
             return func
+
         return decorator
 
+    async def start(self):
+        await super().start()
 
-# ========== Userbot (multi client) ==========
+
 class Ubot(Client):
     _ubot = []
     _prefix = {}
@@ -70,11 +78,13 @@ class Ubot(Client):
         super().__init__(**kwargs, device_model="ʜɪɢᴀɴʙᴀɴᴀ ᴘʀᴇᴍɪᴜᴍ")
         self.group_call = GroupCallFactory(self).get_file_group_call()
 
+    
     def on_message(self, filters=None, group=-1):
         def decorator(func):
             for ub in self._ubot:
                 ub.add_handler(MessageHandler(func, filters), group)
             return func
+
         return decorator
 
     def set_prefix(self, user_id, prefix):
@@ -99,7 +109,7 @@ class Ubot(Client):
                     if not text.startswith(prefix):
                         continue
 
-                    without_prefix = text[len(prefix):]
+                    without_prefix = text[len(prefix) :]
 
                     for command in cmd.split("|"):
                         if not re.match(
@@ -122,20 +132,24 @@ class Ubot(Client):
                         ]
 
                         return True
+
                 return False
 
         return filters.create(func)
 
     async def start(self):
         await super().start()
-        self._prefix[self.me.id] = ["."]
+        handler = await get_pref(self.me.id)
+        if handler:
+            self._prefix[self.me.id] = handler
+        else:
+            self._prefix[self.me.id] = ["."]
         self._ubot.append(self)
         self._get_my_id.append(self.me.id)
         self._translate[self.me.id] = "id"
         print(f"[𝐈𝐍𝐅𝐎] - ({self.me.id}) - 𝐒𝐓𝐀𝐑𝐓𝐄𝐃")
 
 
-# ========== Inisialisasi Instance ==========
 bot = Bot(
     name="bot",
     api_id=API_ID,
@@ -146,7 +160,6 @@ bot = Bot(
 ubot = Ubot(name="ubot")
 
 
-# Import helper, database, dll setelah client siap
-from Jamal.database import *
-from Jamal.core.function import *
-from Jamal.core.helpers import *
+from PyroUbot.core.database import *
+from PyroUbot.core.function import *
+from PyroUbot.core.helpers import *
