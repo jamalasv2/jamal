@@ -81,7 +81,18 @@ async def _(client, callback_query):
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     else:
-        
+        buttons = [[InlineKeyboardButton(" ʟᴀɴᴊᴜᴛᴋᴀɴ", callback_data="add_ubot")]]
+        return await callback_query.edit_message_text(
+            """
+<b> ᴜɴᴛᴜᴋ ᴍᴇᴍʙᴜᴀᴛ ᴜsᴇʀʙᴏᴛ sɪᴀᴘᴋᴀɴ ʙᴀʜᴀɴ ʙᴇʀɪᴋᴜᴛ
+
+    • <code>ᴘʜᴏɴᴇ_ɴᴜᴍʙᴇʀ</code>: ɴᴏᴍᴇʀ ʜᴘ ᴀᴋᴜɴ ᴛᴇʟᴇɢʀᴀᴍ
+
+☑️ ᴊɪᴋᴀ sᴜᴅᴀʜ ᴛᴇʀsᴇᴅɪᴀ sɪʟᴀʜᴋᴀɴ ᴋʟɪᴋ ᴛᴏᴍʙᴏɪ ᴅɪʙᴀᴡᴀʜ</b>
+""",
+            disable_web_page_preview=True,
+            reply_markup=InlineKeyboardMarkup(buttons),
+        )
 
 
 @PY.CALLBACK("bahan")
