@@ -1,8 +1,8 @@
-from PyroUbot.config import DEVS
+from Jamal.config import DEVS
 
-from PyroUbot.core.helpers import *
-from PyroUbot.core.database import *
-from PyroUbot import bot, ubot
+from Jamal.core.helpers import *
+from Jamal.core.database import *
+from Jamal import bot, ubot
 
 
 @PY.BOT("getubot")
