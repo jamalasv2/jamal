@@ -16,6 +16,7 @@ cb_cancel : "🚫 cancel"
 pay_bukti : "Please send a screenshot of proof of payment."
 pay_cancel : "time out. the transaction will be cancelled automatically"
 pay_invalid : "❌cannot be processed.\n⚠️ Please send valid proof of payment.\n✅ reconfirm your payment."
+pay_valid : "✅ Your payment has been confirmed. now you can install the userbot."
 pay_proses : "✅ Payment has been processed.\nPlease wait 1-6 business hours.\n⚠️ do not send spam messages while the process is on-going or your account will be blocked"
 
 #start
