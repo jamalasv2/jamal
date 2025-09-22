@@ -11,9 +11,9 @@ from yaml import safe_load
 
 from Jamal.config import BAHASA
 from Jamal import *
-from Jamal.database.language import get_lang, set_lang
+from Jamal.database import mongodb
 
-cek_bahasa = get_lang(Client.me.id) or BAHASA
+cek_bahasa = mongodb.get("language") or BAHASA
 
 bahasa_ = {}
 bahasa_present = {}
