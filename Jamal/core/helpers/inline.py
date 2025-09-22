@@ -5,7 +5,7 @@ from pyrogram.types import (InlineKeyboardButton, InlineQueryResultArticle,
 
 from Jamal import *
 from Jamal.config import *
-from langs import *
+from langs import bhs
 
 class Button:
     def alive(get_id):
@@ -50,13 +50,15 @@ class Button:
 
     def start(message):
         button = [
-            [InlineKeyboardButton(" ʙᴇʟɪ ᴜsᴇʀʙᴏᴛ ", callback_data="bahan")],
             [
                 InlineKeyboardButton(
-                    " sᴛᴀᴛᴜs ᴀᴋᴜɴ", callback_data="pler"
-                ),
+                    bhs("cb_inline2"),
+                    callback_data="bahan"
+                )
+            ],
+            ,
                 InlineKeyboardButton(
-                    "ʙᴜᴀᴛ ᴜsᴇʀʙᴏᴛ ", callback_data="memek"
+                    bhs("cb_inline3"), callback_data="memek"
                 ),
             ],
             # [InlineKeyboardButton("🤩 ᴜsᴇʀʙᴏᴛ ɢʀᴀᴛɪs 🤩", callback_data="grts")],
