@@ -40,14 +40,7 @@ async def _(client, callback_query):
             CONFIRM_PAYMENT.remove(get.id)
             buttons = [[InlineKeyboardButton(bhs("cb_confirm"), callback_data="confirm")]]
             return await bot.send_message(
-                user_id,
-                """
-<b>❌ ᴛɪᴅᴀᴋ ᴅᴀᴘᴀᴛ ᴅɪᴘʀᴏsᴇs</b>
-
-<b>💬 ʜᴀʀᴀᴘ ᴋɪʀɪᴍᴋᴀɴ sᴄʀᴇᴇɴsʜᴏᴛ ʙᴜᴋᴛɪ ᴘᴇᴍʙᴀʏᴀʀᴀɴ ᴀɴᴅᴀ ʏᴀɴɢ ᴠᴀʟɪᴅ</b>
-
-<b>✅ sɪʟᴀʜᴋᴀɴ ᴋᴏɴꜰɪʀᴍᴀsɪ ᴜʟᴀɴɢ ᴘᴇᴍʙᴀʏᴀʀᴀɴ ᴀɴᴅᴀ</b>
-""",
+                bhs("pay_invalid"),
                 reply_markup=InlineKeyboardMarkup(buttons),
             )
         elif pesan.photo:
@@ -57,9 +50,9 @@ async def _(client, callback_query):
                 reply_markup=buttons,
             )
             CONFIRM_PAYMENT.remove(get.id)
-            buttonz = [[InlineKeyboardButton("ᴛᴜᴛᴜᴘ", callback_data=f"0_cls")]]
+            buttonz = [[InlineKeyboardButton(bhs("cb_cls"), callback_data=f"0_cls")]]
             await pesan.request.edit(
-                f"<b>💬 sɪʟᴀʜᴋᴀɴ ᴋɪʀɪᴍᴋᴀɴ ʙᴜᴋᴛɪ sᴄʀᴇᴇɴsʜᴏᴛ ᴘᴇᴍʙᴀʏᴀʀᴀɴ ᴀɴᴅᴀ: {full_name}</b>",
+                bhs("pay_bukti"),
                 reply_markup=InlineKeyboardMarkup(buttonz),
             )
             buttons = [
