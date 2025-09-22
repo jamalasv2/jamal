@@ -29,21 +29,7 @@ class MSG:
 """
 
     def TEXT_PAYMENT(harga, total, bulan):
-        return f"""
-<BLOCKQUOTE><b>💬 sɪʟᴀʜᴋᴀɴ ᴍᴇʟᴀᴋᴜᴋᴀɴ ᴘᴇᴍʙᴀʏᴀʀᴀɴ ᴛᴇʀʟᴇʙɪʜ ᴅᴀʜᴜʟᴜ</b>
-
-<b>🎟️ ʜᴀʀɢᴀ ᴘᴇʀʙᴜʟᴀɴ: {harga}.000</b>
-
-<b>💳 ᴍᴏᴛᴏᴅᴇ ᴘᴇᴍʙᴀʏᴀʀᴀɴ:</b>
- <b>├──• ᴅᴀɴᴀ </b>
- <b>├─• <code>‪085603220147</code></b>
- <b>└──• <a href=https://link.dana.id/qr/c7g8ia1o>ᴋʟɪᴋ ᴅɪsɪɴɪ</a></b>
-
-<b>🔖 ᴛᴏᴛᴀʟ ʜᴀʀɢᴀ: ʀᴘ {total}.000</b>
-<b>🗓️ ᴛᴏᴛᴀʟ ʙᴜʟᴀɴ: {bulan}</b> 
-
-<b>✅ ᴋʟɪᴋ ᴛᴏᴍʙᴏʟ ᴋᴏɴꜰɪʀᴍᴀsɪ ᴜɴᴛᴜᴋ ᴋɪʀɪᴍ ʙᴜᴋᴛɪ ᴘᴇᴍʙᴀʏᴀʀᴀɴ ᴀɴᴅᴀ</b></BLOCKQUOTE>
-"""
+        return bhs("pay_text")
 
     async def USERBOT(count):
         return f"""
