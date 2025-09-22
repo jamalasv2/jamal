@@ -8,6 +8,24 @@ from pyrogram import idle
 from pyrogram.errors import UserDeactivated
 
 from Jamal import *
+import os
+import glob
+
+# --- AUTO CLEANER SESSION ---
+def clean_sessions():
+    session_files = glob.glob("*.session*")
+    if session_files:
+        print(f"[CLEANER] Menghapus sisa session: {session_files}")
+        for f in session_files:
+            try:
+                os.remove(f)
+            except Exception as e:
+                print(f"[CLEANER] Gagal hapus {f}: {e}")
+    else:
+        print("[CLEANER] Tidak ada file .session tersisa")
+
+clean_sessions()
+
 
 async def main():
     await bot.start()
