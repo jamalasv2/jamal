@@ -4,11 +4,11 @@ from datetime import datetime
 from pyrogram.types import InlineKeyboardMarkup
 from pytz import timezone
 
-from PyroUbot import bot, ubot
-from PyroUbot.core.database import (get_chat, get_expired_date,
+from Jamal import bot, ubot
+from Jamal.database import (get_chat, get_expired_date,
                                     rem_expired_date, remove_chat, remove_ubot,
                                     rm_all, remove_all_vars, rem_pref, remove_from_vars)
-from PyroUbot.core.helpers import MSG, Button
+from Jamal.core.helpers import MSG, Button
 
 
 async def expiredUserbots():
