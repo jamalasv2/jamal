@@ -18,7 +18,6 @@ from pyromod import listen
 from rich.logging import RichHandler
 from Jamal.config import *
 from pytgcalls import GroupCallFactory
-from pyrogram.types import StringSession
 
 
 class ConnectionHandler(logging.Handler):
@@ -75,10 +74,9 @@ class Ubot(Client):
     _translate = {}
     _get_my_peer = {}
 
-    def __init__(self, user_id, api_id, api_hash, session_string, **kwargs):
+    def __init__(self, user_id, api_id, api_hash, **kwargs):
         super().__init__(
             name=f"ubot_{user_id}",
-            session=StringSession(session_string),
             api_id=api_id,
             api_hash=api_hash,
             **kwargs,
