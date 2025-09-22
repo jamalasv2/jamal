@@ -6,6 +6,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from pytz import timezone
 
 from Jamal import *
+from Jamal.database import *
 from langs import bhs
 
 CONFIRM_PAYMENT = []
@@ -55,24 +56,16 @@ async def _(client, callback_query):
                 bhs("pay_bukti"),
                 reply_markup=InlineKeyboardMarkup(buttonz),
             )
-            buttons = [
-                [InlineKeyboardButton("👮‍♀️ ᴀᴅᴍɪɴ", url="https://t.me/roronoajamals")]
-            ]
             return await bot.send_message(
                 user_id,
-                f"""
-<b>💬 ʙᴀɪᴋ {full_name} sɪʟᴀʜᴋᴀɴ ᴅɪᴛᴜɴɢɢᴜ ᴅᴀɴ ᴊᴀɴɢᴀɴ sᴘᴀᴍ ʏᴀ</b>
-<b>🏦 ᴘᴇᴍʙᴀʏᴀʀᴀɴ ᴀɴᴅᴀ ᴀᴋᴀɴ ᴅɪᴋᴏɴꜰɪʀᴍᴀsɪ sᴇᴛᴇʟᴀʜ 1-12 ᴊᴀᴍ ᴋᴇʀᴊᴀ</b>
-<b>‼️ Jɪᴋᴀ ᴘᴇᴍʙᴀʏᴀʀᴀɴ ᴀɴᴅᴀ ʙᴇʟᴜᴍ ᴅɪ ᴋᴏɴғɪʀᴍᴀsɪ sɪʟᴀʜᴋᴀɴ ʜᴜʙᴜɴɢɪ ᴀᴅᴍɪɴ</b>
-""",
-                reply_markup=InlineKeyboardMarkup(buttons),
+                bhs("pay_proses")
             )
 
 
 @PY.CALLBACK("^(kurang|tambah)")
 async def _(client, callback_query):
     BULAN = int(callback_query.data.split()[1])
-    HARGA = 30
+    HARGA = 20
     QUERY = callback_query.data.split()[0]
     try:
         if QUERY == "kurang":
@@ -99,20 +92,16 @@ async def _(client, callback_query):
     get_user = await bot.get_users(query[1])
     if query[0] == "success":
         buttons = [
-            [InlineKeyboardButton("⚒️ ʙᴜᴀᴛ ᴜsᴇʀʙᴏᴛ ⚒️", callback_data="memek")],
+            [InlineKeyboardButton(bhs("cb_install"), callback_data="memek")],
         ]
         await bot.send_message(
             get_user.id,
-            f"""
-<b>✅ ᴘᴇᴍʙᴀʏᴀʀᴀɴ ᴀɴᴅᴀ ʙᴇʀʜᴀsɪʟ ᴅɪᴋᴏɴꜰɪʀᴍᴀsɪ</b>
-
-<b>💬 sᴇᴋᴀʀᴀɴɢ ᴀɴᴅᴀ ʙɪsᴀ ᴍᴇᴍʙᴜᴀᴛ ᴜsᴇʀʙᴏᴛ</b>
-""",
+            bhs("pay_valid"),
             reply_markup=InlineKeyboardMarkup(buttons),
         )
         buttons_success = [
             [
-                InlineKeyboardButton("ᴛᴜᴛᴜᴘ", callback_data=f"0_cls")
+                InlineKeyboardButton(bhs("cb_cls"), callback_data=f"0_cls")
             ],
         ]
         await add_to_vars(client.me.id, "PREM_USERS", get_user.id)
@@ -129,22 +118,18 @@ async def _(client, callback_query):
         buttons = [
             [
                 InlineKeyboardButton(
-                    "💳 ʟᴀᴋᴜᴋᴀɴ ᴘᴇᴍʙᴀʏᴀʀᴀɴ 💳", callback_data="bayar_dulu"
+                    bhs("pay"), callback_data="bayar_dulu"
                 )
             ],
         ]
         await bot.send_message(
             get_user.id,
-            """
-<b>❌ ᴘᴇᴍʙᴀʏᴀʀᴀɴ ᴀɴᴅᴀ ᴛɪᴅᴀᴋ ʙɪsᴀ ᴅɪᴋᴏɴꜰɪʀᴍᴀsɪ</b>
-
-<b>💬 sɪʟᴀʜᴋᴀɴ ʟᴀᴋᴜᴋᴀɴ ᴘᴇᴍʙᴀʏᴀʀᴀɴ ᴅᴇɴɢᴀɴ ʙᴇɴᴀʀ</b>
-""",
+            bhs("pay_invalid"),
             reply_markup=InlineKeyboardMarkup(buttons),
         )
         buttons_failed = [
             [
-                InlineKeyboardButton("ᴛᴜᴛᴜᴘ", callback_data=f"0_cls")
+                InlineKeyboardButton(bhs("cb_cls"), callback_data=f"0_cls")
             ],
         ]
         return await callback_query.edit_message_text(
@@ -158,12 +143,12 @@ async def _(client, callback_query):
             CONFIRM_PAYMENT.remove(get_user.id)
             buttons_home = Button.start(callback_query)
             return await callback_query.edit_message_text(
-                MSG.START(callback_query),
+                bhs("start_1"),
                 reply_markup=InlineKeyboardMarkup(buttons_home),
             )
         else:
             buttons_home = Button.start(callback_query)
             return await callback_query.edit_message_text(
-                MSG.START(callback_query),
+                bhs("start_1"),
                 reply_markup=InlineKeyboardMarkup(buttons_home),
             )
