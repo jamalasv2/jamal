@@ -1,8 +1,16 @@
 name : English
 
 
-cmds: "**command helps**"
+cmds : "**command helps**"
+
+#cb_inline
+cb_inline1 : "◀ back"
+cb_inline2 : "💵 buy userbot"
+
 
 
 #start
 start_1 : "hi {}\n\n{} is a useful userbot that can help you use Telegram or manage your group chats easily. This bot is equipped with features such as automatic broadcasts, AI, note-taking, and more.\nclick the button below for more information "
+
+#status
+status_1 : "**status:** <code>premium</code>\n**prefix:** <code>{}</code>\n**bot uptime:** <i>{}</i>"
