@@ -12,7 +12,7 @@ SUPPORT = int(os.getenv("SUPPORT", "-1002023991424"))
 LOG_SELES = int(os.getenv("LOG_SELES", "-1002291357152"))
 MAX_BOT = int(os.getenv("MAX_BOT", "100"))
 RMBG_API = os.getenv("RMBG_API", "a6qxsmMJ3CsNo7HyxuKGsP1o")
-BAHASA = os.getenv("BAHASA", "en")
+BAHASA = os.getenv("BAHASA", "id")
 
 OPENAI_KEY = os.getenv(
     "OPENAI_KEY",
