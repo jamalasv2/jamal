@@ -19,6 +19,7 @@ class Emojik:
         self.group = "🗂"
         self.keterangan = "📝"
         self.menunggu = "⏰"
+        self.afk = "‼️"
 
     async def initialize(self):
         """Ambil emoji dari DB lalu simpan ke cache"""
@@ -33,6 +34,7 @@ class Emojik:
             "group":      ("EMOJI_GROUP", "5431736674147114227", "🗂"),
             "keterangan": ("EMOJI_KETERANGAN", "5334882760735598374", "📝"),
             "menunggu":   ("EMOJI_MENUNGGU", "5413704112220949842", "⏰"),
+            "afk": ("EMOJI_AFK", "5467890025217661107", "‼️"),
         }
 
         for attr, (var_key, fallback_id, fallback_txt) in vars_map.items():
