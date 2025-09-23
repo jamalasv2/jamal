@@ -41,5 +41,5 @@ async def _(client, message):
         afk_time = vars.get("time")
         afk_runtime = await get_time(time() - afk_time)
         teks = bhs("filters_unafk").format(em.afk, em.menunggu, em.keterangan, afk_runtime)
-        await message.reply(text)
+        await message.reply(teks)
         return await remove_vars(client.me.id, "AFK")
