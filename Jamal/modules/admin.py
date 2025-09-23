@@ -124,27 +124,25 @@ async def _(client, message):
         await message.reply(error)
     try:
         await message.chat.unban_member(user_id)
-        await message.reply(bhs("admins_un").format(em.berhasil, mention, em.mention, mention))
+        await message.reply(bhs("admins_un").format(em.berhasil, 'muted', em.mention, mention))
     except Exception as error:
         await message.reply(error)
 
 
 @PY.UBOT("unban", sudo=True)
 @PY.GROUP
-@PY.TOP_CMD
 async def _(client, message):
-    brhsl = await EMO.BERHASIL(client)
-    ggl = await EMO.GAGAL(client)
+    em = get_emo(client)
     user_id = await extract_user(message)
     if not user_id:
-        return await message.reply_text(f"{ggl}berikan nama pengguna, id pengguna atau balas pesan untuk melepas pemblokiran pengguna di group")
+        return await message.reply_text(bhs("admins_gagal").format(em.gagal, 'unbanned'))
     try:
         mention = (await client.get_users(user_id)).mention
     except Exception as error:
         await message.reply(error)
     try:
         await message.chat.unban_member(user_id)
-        await message.reply(f"<b>{brhsl} {mention} sᴜᴅᴀʜ ʙɪsᴀ ᴊᴏɪɴ ʟᴀɢɪ</b>")
+        await message.reply(bhs("admins_un").format(em.berhasil, 'banned', em.mention, mention)
     except Exception as error:
         await message.reply(error)
 
