@@ -20,7 +20,7 @@ async def _(client, message):
         return await message.reply_text(bhs("admins_gagal").format(em.gagal, 'kick'))
     if user_id == (await client.get_me()).id:
         return await message.reply_text(
-            bhs("admins_self").format(em.gagal, 'kick'))
+            bhs("admins_self").format(em.gagal, 'kick')
         )
     if user_id == DEVS:
         return await message.reply_text(bhs("admins_devs").format(em.gagal, 'kick'))
