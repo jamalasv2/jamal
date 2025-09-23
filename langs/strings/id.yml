@@ -1,0 +1,65 @@
+name : Indonesia
+
+
+cmds : "**bantuan perintah**"
+
+#helpcommands
+help_text : "<blockquote>**🗂️ inline menu**\n<code>🛠️ prefix:</code> {}"
+
+#admins
+admins_cmd : "<blockquote>❏ <code>{0}kick</code>\n— untuk mengeluarkan pengguna dari grup\n\n❏ <code>{0}ban</code> | <code>{0}unban</code>\n— untuk memblokir / melepas blokir pengguna dari grup\n\n❏ <code>{0}mute</code> | <code>{0}unmute</code>\n— untuk membisukan / membunyikan pengguna dari grup\n\n❏ <code>{0}zombies</code>\n— untuk mengeluarkan akun terhapus dari grup</blockquote>"
+admins_gagal : "{} pengguna tidak ditemukan. ketik nama pengguna, id pengguna atau balas pesan untuk {} pengguna dari grup"
+admins_self : "{} kamu tidak bisa {} diri kamu sendiri"
+admins_devs : "{} kamu tidak bisa {} developer botmu!"
+admins_staff : "{} {} adalah bagian dari staff grup. kamu tidak bisa {}"
+admins_succes : "<blockquote>{} user {}\n{} user: {}\n{} reason: {}</blockquote>"
+admins_un : "<blockquote>{} user un{}:\n{} user: {}</blockquote>"
+admins_zombie : "{} {} deleted account has been removed from this group chat"
+admins_zombie2 : "{} no deleted accounts found in this group chat"
+
+#payment
+pay : "💵 make payment"
+pay_bukti : "Please send a screenshot of proof of payment."
+pay_cancel : "time out. the transaction will be cancelled automatically"
+pay_invalid : "❌cannot be processed.\n⚠️ Please send valid proof of payment.\n✅ reconfirm your payment."
+pay_valid : "✅ Your payment has been confirmed. now you can install the userbot."
+pay_proses : "✅ Payment has been processed.\nPlease wait 1-6 business hours.\n⚠️ do not send spam messages while the process is on-going or your account will be blocked"
+
+#text1
+text_proses : "{} processing..."
+
+#text2
+text_install : "✅ click button below to install userbot"
+text_start : "🔥 hi {}\n\n🤖 {} is a useful userbot that can help you use Telegram or manage your group chats easily. This bot is equipped with features such as automatic broadcasts, AI, note-taking, and more.\nclick the button below for more information."
+text_attention : "⚠️ Attention!\nwe recommended to install userbot on accounts that have been registered for more than 2 months.\n\nAccount deletion, suspended, limits, and other issues are beyond our control.\n\nBy purchasing, you agree to the terms and conditions and understand the risks."
+text_back : "◀ back"
+text_continue : "▶ continue"
+text_close : "❌ close"
+text_buy : "💵 buy userbot"
+text_install : "🛠️ install userbot"
+text_confirm : "✅ confirm"
+text_cancel : "🚫 cancel"
+text_installed : "❌ you have installed userbot\n⚠️ if userbot can't be used, please type /restart to refresh your userbot"
+text_limit : "⚠️ Unable to create userbot due to limit reached.\n\n📞 Contact admin for more information"
+text_noacces : "❌ You don't have access to install userbot.\n⚠️ Please purchase first to get access."
+text_acces : "❌ you have purchased userbot. click button below to continue installing userbot"
+text_payment : "⚠️ Please make your payment first!\n**🎟️ Monthly price:** Rp{}.000\n**🔖 Total price:** Rp{}.000\n**🗓️ Total time:** {}\n\n✅ Click the confirmation button to send proof of your payment."
+text_share : "✅ share contact for receive otp code or use /cancel if you want to cancel install userbot"
+text_contact : "🛜 share contact"
+text_rto : "⏱️ process cancelled automatically because request time out"
+text_sendotp : "📤 sending otp code to your account"
+text_otptype1 : "{}"
+text_otptype2 : "your text sms"
+text_otptype3 : "your phone call"
+text_otptype4 : "flash phone call"
+text_otptype5 : "your sms fragment"
+text_otptype6 : "your email"
+text_askotp : "please check otp code from {}. then send the code here and please use space while send the code.\n**example:** 0 9 1 2 3"
+text_askv2l : "⚠️ your account has been activated two step verification.\nplease send the password"
+text_prosess : "processing.."
+text_wrong : "please use your telegram phone number of this account and not other number"
+text_activated : "<blockquote>**🤖 userbot activated**\n\n**🪪 name:** {}\n**🫆 id:** {}\n**🛠️ prefixes:** {}\n**⏱️ time:** {} days</blockquote>"
+
+
+#status
+status_1 : "**status:** <code>premium</code>\n**prefix:** <code>{}</code>\n**bot uptime:** <i>{}</i>"
