@@ -2,8 +2,8 @@ import asyncio
 
 from pyrogram.types import ChatPermissions
 
-from PyroUbot.config import DEVS
-from PyroUbot.core.helpers.class_emoji import *
+from Jamal.config import DEVS
+from Jamal.core.helpers.class_emoji import *
 from .. import *
 
 __MODULE__ = "admin"
