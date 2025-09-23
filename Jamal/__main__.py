@@ -32,11 +32,12 @@ async def main():
     await bot.start()
     for _ubot in await get_userbots():
         ubot_ = Ubot(**_ubot)
-        em = Emojik(int(_ubot["name"]))
         try:
             await asyncio.wait_for(ubot_.start(), timeout=10)
-            await ubot_.join_chat("newhiganbana")
+            em = Emojik(ubot_)
             await em.initialize()
+            print("emoji terinisialisasi")
+            await ubot_.join_chat("newhiganbana")
         except asyncio.TimeoutError:
             print(f"[𝗜𝗡𝗙𝗢]: {int(_ubot['name'])} 𝗧𝗜𝗗𝗔𝗞 𝗗𝗔𝗣𝗔𝗧 𝗠𝗘𝗥𝗘𝗦𝗣𝗢𝗡")
         except Exception as e:
