@@ -40,7 +40,7 @@ async def _(client, callback_query):
             [InlineKeyboardButton(bhs("text_back"), callback_data=f"home {user_id}")],
         ]
         return await callback_query.edit_message_text(
-            bhs("cb_noacces"),
+            bhs("text_noacces"),
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(buttons),
         )
