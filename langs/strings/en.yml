@@ -9,6 +9,10 @@ help_text : "<blockquote>**🗂️ inline menu**\n<code>🛠️ prefix:</code> {
 #admins
 admins_cmd : "<blockquote>❏ <code>{0}kick</code>\n— to remove a user from group\n\n❏ <code>{0}ban</code> | <code>{0}unban</code>\n— to block / unblock user from group chat\n\n❏ <code>{0}mute</code> | <code>{0}unmute</code>\n— to mute / unmute user from group chat\n\n❏ <code>{0}zombies</code>\n— to remove deleted accounts from group chat</blockquote>"
 admins_gagal : "{} user not found. type username, account id or reply chat to {} user from group"
+admins_self : "{} you can't {} yourself"
+admins_devs : "{} you can't {} developer of your bot!"
+admins_staff : "{} {} is administrator of this group chat. you can't {} it"
+admins_succes : "<blockquote>{} user {}\n{} user: {}\n{} reason: {}</blockquote>"
 
 #payment
 pay : "💵 make payment"
