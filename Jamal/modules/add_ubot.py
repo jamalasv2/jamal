@@ -167,7 +167,7 @@ async def _(client, callback_query):
         otp = await bot.ask(
             user_id,
             (
-                bhs("text_askotp")
+                bhs("text_askotp").format(sent_code[code_type])
             ),
             timeout=300,
         )
