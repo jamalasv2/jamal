@@ -48,19 +48,18 @@ async def _(client, message):
 
 @PY.UBOT("ban|dban", sudo=True)
 @PY.GROUP
-@PY.TOP_CMD
 async def _(client, message):
     em = get_emo(client)
     user_id, reason = await extract_user_and_reason(message)
     if not user_id:
-        return await message.reply_text()
+        return await message.reply_text(bhs("admins_gagal").format(em.gagal, 'block'))
     if user_id == (await client.get_me()).id:
         return await message.reply_text(
-            f"<b>{ggl}tidak bisa memblokir diri sendiri</b>"
+            bhs("admins_self").format(em.gagal, 'block')
         )
     if user_id == DEVS:
         return await message.reply_text(
-            f"<b>{ggl}tidak bisa memblokir developer botmu</b>"
+            bhs("admins_devs").format(em.gagal, 'block')
         )
     try:
         mention = (await client.get_users(user_id)).mention
@@ -68,7 +67,7 @@ async def _(client, message):
         await message.reply(error)
     if user_id in (await list_admins(message)):
         return await message.reply(
-            f"<b>{ggl} {mention} adalah bagian dari staff group. kamu tidak bisa memblokirnya </b>"
+            bhs("admins_staff").format(em.gagal, mention, 'block')
         )
     titit = reason if reason else "—"
     msg = f"<BLOCKQUOTE><b>{brhsl}berhasil diblokir</b>\n{xtion}pengguna : {mention}\n<b>{ktrg}alasan :</b> {titit}</BLOCKQUOTE>"
