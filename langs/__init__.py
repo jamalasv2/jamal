@@ -51,7 +51,7 @@ def load(file):
     if not file.endswith(".yml"):
         return
     elif not os.path.exists(file):
-        file = loc_lang.format("en")
+        file = loc_lang.format("id")
     code = file.split("/")[-1].split("\\")[-1][:-4]
     try:
         with open(file, encoding="UTF-8") as f:
@@ -68,7 +68,7 @@ def bhs(key, lang: str = None, _res: bool = True):
         return bahasa_[lang][key]
     except KeyError:
         try:
-            en_ = bahasa_["en"][key]
+            en_ = bahasa_["id"][key]
             tr = translate(en_, lang_tgt=lang).replace("\ N", "\n")
             if en_.count("{}") != tr.count("{}"):
                 tr = en_
@@ -85,7 +85,7 @@ def bhs(key, lang: str = None, _res: bool = True):
             print(f"Warning: could not load any string with the key `{er}`")
         if not _res:
             return None
-        return bahasa_["en"].get(key) or print(
+        return bahasa_["id"].get(key) or print(
             f"Failed to load language string '{key}'"
         )
 
@@ -114,20 +114,20 @@ def get_bahasa_() -> List[Dict[str, Union[str, List[str]]]]:
 # init bahasa default (fallback)
 for filename in os.listdir(r"./langs/strings/"):
     if "en" not in bahasa_:
-        bahasa_["en"] = yaml.safe_load(
+        bahasa_["id"] = yaml.safe_load(
             open(r"./langs/strings/en.yml", encoding="utf8")
         )
-        bahasa_present["en"] = bahasa_["en"]["name"]
+        bahasa_present["id"] = bahasa_["en"]["name"]
     if filename.endswith(".yml"):
         language_name = filename[:-4]
-        if language_name == "en":
+        if language_name == "id":
             continue
         bahasa_[language_name] = yaml.safe_load(
             open(r"./langs/strings/" + filename, encoding="utf8")
         )
-        for item in bahasa_["en"]:
+        for item in bahasa_["id"]:
             if item not in bahasa_[language_name]:
-                bahasa_[language_name][item] = bahasa_["en"][item]
+                bahasa_[language_name][item] = bahasa_["id"][item]
     try:
         bahasa_present[language_name] = bahasa_[language_name]["name"]
     except:
