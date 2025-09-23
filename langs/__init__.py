@@ -93,8 +93,7 @@ def bhs(key, lang: str = None, _res: bool = True):
 def get_bhs(key):
     doc = bhs(f"{key}", _res=False)
     if doc:
-        return cgr("cmds") + doc
-
+        return bhs("cmds") + doc
 
 
 def get_bahasa_() -> List[Dict[str, Union[str, List[str]]]]:
