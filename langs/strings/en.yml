@@ -32,6 +32,7 @@ text_acces : "❌ you have purchased userbot. click button below to continue ins
 text_payment : "⚠️ Please make your payment first!\n**🎟️ Monthly price:** Rp{}.000\n**🔖 Total price:** Rp{}.000\n**🗓️ Total time:** {}\n\n✅ Click the confirmation button to send proof of your payment."
 text_share : "✅ share contact for receive otp code or use /cancel if you want to cancel install userbot"
 text_contact : "🛜 share contact"
+text_sendotp : "
 
 
 #status
