@@ -15,7 +15,7 @@ async def _(client, message):
     db_afk = {"time": time(), "reason": reason}
     em = get_emo(client)
     tks = reason if reason else "—"
-    teks = bhs("filters_afk").format(em.afk, tks)
+    teks = bhs("filters_afk").format(em.afk, em.keterangan, tks)
     await set_vars(client.me.id, "AFK", db_afk)
     return await message.reply(msg_afk)
 
