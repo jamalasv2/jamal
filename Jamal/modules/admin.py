@@ -34,7 +34,7 @@ async def _(client, message):
             bhs("admins_staff").format(em.gagal, mention, 'remove')
         )
     titit = reason if reason else "—"
-    msg = bhs("admins_succes").format(em.berhasil, 'removed', em.keterangan, titit)
+    msg = bhs("admins_succes").format(em.berhasil, 'removed', em.mention, mention, em.keterangan, titit)
     try:
         if message.command[0] == "dkick":
             await message.reply_to_message.delete()
