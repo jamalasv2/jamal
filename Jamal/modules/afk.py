@@ -21,10 +21,7 @@ __HELP__ = """
 async def _(client, message):
     reason = get_arg(message)
     db_afk = {"time": time(), "reason": reason}
-    emot_1 = await get_vars(client.me.id, "EMOJI_AFK")
-    emot_2 = await get_vars(client.me.id, "EMOJI_REASON")
-    emot_afk = emot_1 if emot_1 else "5467890025217661107"
-    emot_reason = emot_2 if emot_2 else "5334882760735598374"
+    em = get_emo(client)
     if client.me.is_premium:
         msg_afk = (
             f"<b><emoji id={emot_afk}>‼️</emoji>sᴇᴅᴀɴɢ ᴀғᴋ\n<emoji id={emot_reason}>📝</emoji>ᴀʟᴀsᴀɴ: {reason}</b>"
