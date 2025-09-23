@@ -6,9 +6,9 @@ from pyrogram.raw.functions import Ping
 from pyrogram.types import (InlineKeyboardMarkup, InlineQueryResultArticle,
                             InputTextMessageContent)
 
-from PyroUbot.core import *
-from PyroUbot.core.database import *
-from PyroUbot import *
+from Jamal.core import *
+from Jamal.database import *
+from Jamal import *
 
 
 @PY.UBOT("alive", sudo=True)
