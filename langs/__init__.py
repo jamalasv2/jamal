@@ -115,9 +115,9 @@ def get_bahasa_() -> List[Dict[str, Union[str, List[str]]]]:
 for filename in os.listdir(r"./langs/strings/"):
     if "en" not in bahasa_:
         bahasa_["id"] = yaml.safe_load(
-            open(r"./langs/strings/en.yml", encoding="utf8")
+            open(r"./langs/strings/id.yml", encoding="utf8")
         )
-        bahasa_present["id"] = bahasa_["en"]["name"]
+        bahasa_present["id"] = bahasa_["id"]["name"]
     if filename.endswith(".yml"):
         language_name = filename[:-4]
         if language_name == "id":
