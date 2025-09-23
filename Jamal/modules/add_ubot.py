@@ -228,13 +228,15 @@ async def _(client, callback_query):
         session_string=session_string,
     )
     await set_vars(client.me.id, "UPTIME", time())
+    exp = await get_expired_date(new_client.me.id)
+    xx = (exp - datetime.now()).days
     for mod in loadModule():
         importlib.reload(importlib.import_module(f"Jamal.modules.{mod}"))
     SH = await ubot.get_prefix(new_client.me.id)
     buttons = [
             [InlineKeyboardButton(bhs("text_back"), callback_data=f"home {user_id}")],
         ]
-    text_done = bhs("text_activated").format(f"<a href=tg://user?id={new_client.me.id}>{new_client.me.first_name} {new_client.me.last_name or ''}</a>", new_client.me.id, ''.join(sh)), 
+    text_done = bhs("text_activated").format(f"<a href=tg://user?id={new_client.me.id}>{new_client.me.first_name} {new_client.me.last_name or ''}</a>", new_client.me.id, ''.join(sh), xx), 
     await bot_msg.edit(text_done, disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(buttons))
     await install_my_peer(new_client)
