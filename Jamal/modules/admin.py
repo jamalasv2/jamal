@@ -151,13 +151,11 @@ async def _(client, message):
 @PY.UBOT("zombies")
 @PY.GROUP
 async def _(client, message):
-    prs = await EMO.PROSES(client)
-    brhsl = await EMO.BERHASIL(client)
-    ggl = await EMO.GAGAL(client)
+    em = get_emo(client)
     chat_id = message.chat.id
     deleted_users = []
     banned_users = 0
-    Tm = await message.reply(f"<b>{prs}memproses</b>")
+    Tm = await message.reply(bhs("text_proses").format(em.proses))
     async for i in client.get_chat_members(chat_id):
         if i.user.is_deleted:
             deleted_users.append(i.user.id)
@@ -171,6 +169,6 @@ async def _(client, message):
             except Exception:
                 pass
         await Tm.delete()
-        return await message.reply(f"<b>{brhsl} {banned_users} akun terhapus berhasil di keluarkan</b>")
+        return await message.reply(bhs("admins_zombie").format(em.berhasil, banned_users))
     else:
-        await Tm.edit(f"<b>{ggl}tidak ada akun terhapus di grup ini</b>")
+        await Tm.edit(bhs("admins_zombie2").format(em.gagal))
