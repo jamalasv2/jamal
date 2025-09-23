@@ -6,15 +6,7 @@ from langs import bhs, get_bhs
 
 
 __MODULE__ = "afk"
-__HELP__ = """
-<b>『 ʙᴀɴᴛᴜᴀɴ ᴜɴᴛᴜᴋ ᴀғᴋ 』</b>
-
-<b>❏ ᴘᴇʀɪɴᴛᴀʜ:</b> <code>{0}afk</code> [ᴀʟᴀsᴀɴ]
- <i>ᴜɴᴛᴜᴋ ᴍᴇɴɢᴀᴋᴛɪғᴋᴀɴ ᴀғᴋ</i>
-
-<b>❏ ᴘᴇʀɪɴᴛᴀʜ:</b> <code>{0}unafk</code>
- <i>ᴜɴᴛᴜᴋ ᴍᴇɴᴏɴᴀᴋᴛɪғᴋᴀɴ ᴀғᴋ</i>
-"""
+__HELP__ = get_bhs("filters_cmd")
 
 
 @PY.UBOT("afk")
