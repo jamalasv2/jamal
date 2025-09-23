@@ -2,7 +2,8 @@ import re
 
 from pyrogram.types import *
 
-from PyroUbot import *
+from Jamal import *
+from langs import bhs
 
 
 @PY.UBOT("help", sudo=True)
@@ -20,7 +21,7 @@ user_pages = {}
 async def user_help(client, inline_query):
     SH = await ubot.get_prefix(inline_query.from_user.id)
     user_id = inline_query.from_user.id
-    msg = f"<BLOCKQUOTE>**❏ menu inline\n├ prefix: {' '.join(SH)}\n╰{inline_query.from_user.mention}**</BLOCKQUOTE>"
+    msg = bhs("help_text").format(' '.join(SH))
 
     user_pages[user_id] = 0  # simpan halaman default
 
@@ -42,7 +43,7 @@ async def _(client, callback_query):
     data = callback_query.data
     user_id = callback_query.from_user.id
     SH = await ubot.get_prefix(user_id)
-    top_text = f"<BLOCKQUOTE>**❏ menu inline\n├ prefix: {' '.join(SH)}\n╰{callback_query.from_user.mention}**</BLOCKQUOTE>"
+    top_text = bhs("help_text").format(' '.join(SH))
 
     mod_match = re.match(r"help_module\((\d+),(.+)\)", data)
     prev_match = re.match(r"help_prev\((\d+)\)", data)
@@ -59,9 +60,9 @@ async def _(client, callback_query):
             return await callback_query.answer("Modul tidak ditemukan.", show_alert=True)
 
         text = module.__HELP__.format(next((p for p in SH)))
-        buttons = [[InlineKeyboardButton("⬅️ Kembali", callback_data="help_back")]]
+        buttons = [[InlineKeyboardButton(bhs("text_back"), callback_data="help_back")]]
         return await callback_query.edit_message_text(
-            text=text + "\n<b>© [jamalas](tg://user?id=6425078161)</b>",
+            text=text + "\n<b>© [jamalas](tg://user?id=6625839378)</b>",
             reply_markup=InlineKeyboardMarkup(buttons),
             disable_web_page_preview=True,
         )
