@@ -1,10 +1,9 @@
-"create by: NorSodikin.t.me"
-"request by: RANGGA SAPUTRA"
-
-
 from time import time
 
-from PyroUbot import *
+from Jamal import *
+from Jamal.core.helpers._client import PY
+from langs import bhs, get_bhs
+
 
 __MODULE__ = "afk"
 __HELP__ = """
@@ -19,7 +18,6 @@ __HELP__ = """
 
 
 @PY.UBOT("afk")
-@PY.TOP_CMD
 async def _(client, message):
     reason = get_arg(message)
     db_afk = {"time": time(), "reason": reason}
