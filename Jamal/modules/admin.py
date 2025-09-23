@@ -31,7 +31,7 @@ async def _(client, message):
         await message.reply(error)
     if user_id in (await list_admins(message)):
         return await message.reply_text(
-            bhs("admins_staff").format(em.gagal, mention, 'remove'))
+            bhs("admins_staff").format(em.gagal, mention, 'remove')
         )
     titit = reason if reason else "—"
     msg = bhs("admins_succes").format(em.berhasil, 'removed', em.keterangan, titit)
