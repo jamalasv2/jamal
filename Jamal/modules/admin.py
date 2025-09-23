@@ -5,23 +5,10 @@ from pyrogram.types import ChatPermissions
 from Jamal.config import DEVS
 from Jamal.core.helpers.class_emoji import get_emo
 from .. import *
+from langs import bhs, get_bhs
 
 __MODULE__ = "admin"
-__HELP__ = """
-<BLOCKQUOTE><b>  『 ʙᴀɴᴛᴜᴀɴ ᴜɴᴛᴜᴋ ᴀᴅᴍɪɴ 』</b>
-
-<b>❏ perintah :</b> <code>{0}kick</code> [ id pengguna / balas pesan ]
-— untuk mengeluarkan pengguna dari grup
-
-<b>❏ perintah :</b> <code>{0}ban</code> | <code>{0}unban</code> [ id pengguna / balas pesan ]
-— untuk memblokir / membuka blokir pengguna dari grup
-
-<b>❏ perintah :</b> <code>{0}mute</code> | <code>{0}unmute</code> [ id pengguna / balas pesan]
- ᴜɴᴛᴜᴋ ᴍᴇᴍʙɪsᴜᴋᴀɴ / ᴍᴇʟᴇᴘᴀs ᴘᴇᴍʙɪsᴜᴀɴ ᴀɴɢɢᴏᴛᴀ ᴅᴀʀɪ ɢʀᴜᴘ</BLOCKQUOTE>
- 
-<b>❏ perintah :</b> <code>{0}zombies</code>
-— untuk mengeluarkan akun terhapus</BLOCKQUOTE>
-"""
+__HELP__ = get_bhs("admins_cmd")
 
 
 @PY.UBOT("kick|dkick", sudo=True)
