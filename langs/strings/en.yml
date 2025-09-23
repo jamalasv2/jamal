@@ -3,6 +3,10 @@ name : English
 
 cmds : "**command helps**"
 
+#helpcommands
+help_text : "<blockquote>**🗂️ inline menu**\n<code>🛠️ prefix:</code> {}"
+
+
 #payment
 pay : "💵 make payment"
 pay_bukti : "Please send a screenshot of proof of payment."
