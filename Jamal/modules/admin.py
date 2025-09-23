@@ -20,10 +20,10 @@ async def _(client, message):
         return await message.reply_text(bhs("admins_gagal").format(em.gagal, 'kick'))
     if user_id == (await client.get_me()).id:
         return await message.reply_text(
-            f"<b>{em.gagal}tidak bisa menendang diri sendiri!</b>"
+            bhs("admins_self").format(em.gagal, 'kick'))
         )
     if user_id == DEVS:
-        return await message.reply_text(f"<b>{ggl}tidak bisa menendang developer botmu!</b>")
+        return await message.reply_text(bhs("admins_devs").format(em.gagal, 'kick'))
 
     try:
         mention = (await client.get_users(user_id)).mention
@@ -31,10 +31,10 @@ async def _(client, message):
         await message.reply(error)
     if user_id in (await list_admins(message)):
         return await message.reply_text(
-            f"{ggl} {mention} adalah bagian dari staff group, kamu tidak bisa menendangnya"
+            bhs("admins_staff").format(em.gagal, mention, 'remove'))
         )
     titit = reason if reason else "—"
-    msg = f"<BLOCKQUOTE><b>{brhsl}berhasil dikeluarkan</b>\n<b>{xtion}pengguna : {mention}</b>\n{ktrg}alasan : {titit}</BLOCKQUOTE>"
+    msg = bhs("admins_succes").format(em.berhasil, 'removed', em.keterangan, titit)
     try:
         if message.command[0] == "dkick":
             await message.reply_to_message.delete()
