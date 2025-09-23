@@ -12,10 +12,13 @@ admins_gagal : "{} user not found. type username, account id or reply chat to {}
 admins_self : "{} you can't {} yourself"
 admins_devs : "{} you can't {} developer of your bot!"
 admins_staff : "{} {} is administrator of this group chat. you can't {} it"
-admins_succes : "<blockquote>{} user {}\n{} user: {}\n{} reason: {}</blockquote>"
-admins_un : "<blockquote>{} user un{}:\n{} user: {}</blockquote>"
+admins_succes : "<blockquote>{} {} user\n{} user: {}\n{} reason: {}</blockquote>"
+admins_un : "<blockquote>{} un{} user\n{} user: {}</blockquote>"
 admins_zombie : "{} {} deleted account has been removed from this group chat"
 admins_zombie2 : "{} no deleted accounts found in this group chat"
+mute : "mute"
+ban : "banned"
+kick : "remove"
 
 #payment
 pay : "💵 make payment"
