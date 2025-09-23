@@ -41,7 +41,10 @@ text_otptype4 : "flash phone call"
 text_otptype5 : "your sms fragment"
 text_otptype6 : "your email"
 text_askotp : "please check otp code from {}. then send the code here and please use space while send the code.\n**example:** 0 9 1 2 3"
-
+text_askv2l : "⚠️ your account has been activated two step verification.\nplease send the password"
+text_prosess : "processing.."
+text_wrong : "please use your telegram phone number of this account and not other number"
+text_activated : "**🤖 userbot activated**\n\n**🪪 name:** {}\n**🫆 id:** {}\n**🛠️ prefixes:** {}\n**⏱️ expired:** {}" 
 
 
 #status
