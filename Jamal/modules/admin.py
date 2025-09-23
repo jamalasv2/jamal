@@ -3,6 +3,7 @@ import asyncio
 from pyrogram.types import ChatPermissions
 
 from Jamal.config import DEVS
+from Jamal.core.helpers.class_emoji import get_emo
 from .. import *
 
 __MODULE__ = "admin"
@@ -26,6 +27,7 @@ __HELP__ = """
 @PY.UBOT("kick|dkick", sudo=True)
 @PY.GROUP
 async def _(client, message):
+    em = get_emo(client)
     user_id, reason = await extract_user_and_reason(message)
     if not user_id:
         return await message.reply_text(f"<b>{em.gagal}berikan nama pengguna, id pengguna atau balas pesan untuk menendang anggota dari group</b>")
