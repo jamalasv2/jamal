@@ -211,7 +211,7 @@ async def _(client, callback_query):
     new_client.in_memory = True
     bot_msg = await bot.send_message(
         user_id,
-        bhs("text_proses"),
+        bhs("text_prosess"),
         disable_web_page_preview=True,
     )
     await new_client.start()
