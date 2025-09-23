@@ -44,7 +44,7 @@ text_askotp : "please check otp code from {}. then send the code here and please
 text_askv2l : "⚠️ your account has been activated two step verification.\nplease send the password"
 text_prosess : "processing.."
 text_wrong : "please use your telegram phone number of this account and not other number"
-text_activated : "**🤖 userbot activated**\n\n**🪪 name:** {}\n**🫆 id:** {}\n**🛠️ prefixes:** {}\n**⏱️ expired:** {}" 
+text_activated : "<blockquote>**🤖 userbot activated**\n\n**🪪 name:** {}\n**🫆 id:** {}\n**🛠️ prefixes:** {}\n**⏱️ time:** {} days</blockquote>"
 
 
 #status
