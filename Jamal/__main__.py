@@ -32,7 +32,7 @@ async def main():
     await bot.start()
     for _ubot in await get_userbots():
         ubot_ = Ubot(**_ubot)
-        em = Emojik(int(_ubot["name"])
+        em = Emojik(int(_ubot["name"]))
         try:
             await asyncio.wait_for(ubot_.start(), timeout=10)
             await ubot_.join_chat("newhiganbana")
