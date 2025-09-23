@@ -50,14 +50,10 @@ async def _(client, message):
 @PY.GROUP
 @PY.TOP_CMD
 async def _(client, message):
-    brhsl = await EMO.BERHASIL(client)
-    ggl = await EMO.GAGAL(client)
-    ktrg = await EMO.BL_KETERANGAN(client)
-    xtion = await EMO.MENTION(client)
-    ktrg = await EMO.BL_KETERANGAN(client)
+    em = get_emo(client)
     user_id, reason = await extract_user_and_reason(message)
     if not user_id:
-        return await message.reply_text(f"<b>{ggl}berikan nama pengguna,id pengguna atau balas pesan untuk memblokir pengguna dari group</b>")
+        return await message.reply_text()
     if user_id == (await client.get_me()).id:
         return await message.reply_text(
             f"<b>{ggl}tidak bisa memblokir diri sendiri</b>"
