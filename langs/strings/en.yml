@@ -20,6 +20,12 @@ mute : "mute"
 ban : "banned"
 kick : "remove"
 
+#filters
+filters_cmd : "<blockquote>❏ <code>{0}afk</code>\n— for activate afk filters\n\n❏ <code>{0}unafk</code>\n— for deactivate afk filters\n\n\nℹ️ add text for reason why you're going afk\n**example:**\n<code>{0}afk going to work</code>"
+filters_afk : "{} currently afk\n{} reason: {}"
+filters_afkaktif : "{} currently afk\n{} time: {}\n{} reason: {}"
+filters_unafk : "{} active again\n{} afk for: {}
+
 #payment
 pay : "💵 make payment"
 pay_bukti : "Please send a screenshot of proof of payment."
