@@ -32,7 +32,16 @@ text_acces : "❌ you have purchased userbot. click button below to continue ins
 text_payment : "⚠️ Please make your payment first!\n**🎟️ Monthly price:** Rp{}.000\n**🔖 Total price:** Rp{}.000\n**🗓️ Total time:** {}\n\n✅ Click the confirmation button to send proof of your payment."
 text_share : "✅ share contact for receive otp code or use /cancel if you want to cancel install userbot"
 text_contact : "🛜 share contact"
-text_sendotp : "
+text_rto : "⏱️ process cancelled automatically because request time out"
+text_sendotp : "📤 sending otp code to your account"
+text_otptype1 : "{}"
+text_otptype2 : "your text sms"
+text_otptype3 : "your phone call"
+text_otptype4 : "flash phone call"
+text_otptype5 : "your sms fragment"
+text_otptype6 : "your email"
+text_askotp : "please check otp code from {}. then send the code here and please use space while send the code.\n**example:** 0 9 1 2 3"
+
 
 
 #status
