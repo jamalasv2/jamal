@@ -17,7 +17,7 @@ async def _(client, message):
     em = get_emo(client)
     user_id, reason = await extract_user_and_reason(message)
     if not user_id:
-        return await message.reply_text(f"<b>{em.gagal}berikan nama pengguna, id pengguna atau balas pesan untuk menendang anggota dari group</b>")
+        return await message.reply_text(bhs("admins_gagal").format(em.gagal, 'kick')
     if user_id == (await client.get_me()).id:
         return await message.reply_text(
             f"<b>{em.gagal}tidak bisa menendang diri sendiri!</b>"
