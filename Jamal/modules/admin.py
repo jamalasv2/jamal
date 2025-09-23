@@ -15,15 +15,16 @@ __HELP__ = get_bhs("admins_cmd")
 @PY.GROUP
 async def _(client, message):
     em = get_emo(client)
+    kt = bhs("kick")
     user_id, reason = await extract_user_and_reason(message)
     if not user_id:
-        return await message.reply_text(bhs("admins_gagal").format(em.gagal, 'kick'))
+        return await message.reply_text(bhs("admins_gagal").format(em.gagal, kt))
     if user_id == (await client.get_me()).id:
         return await message.reply_text(
-            bhs("admins_self").format(em.gagal, 'kick')
+            bhs("admins_self").format(em.gagal, kt)
         )
     if user_id == DEVS:
-        return await message.reply_text(bhs("admins_devs").format(em.gagal, 'kick'))
+        return await message.reply_text(bhs("admins_devs").format(em.gagal, kt))
 
     try:
         mention = (await client.get_users(user_id)).mention
@@ -31,10 +32,10 @@ async def _(client, message):
         await message.reply(error)
     if user_id in (await list_admins(message)):
         return await message.reply_text(
-            bhs("admins_staff").format(em.gagal, mention, 'remove')
+            bhs("admins_staff").format(em.gagal, mention, kt)
         )
     titit = reason if reason else "—"
-    msg = bhs("admins_succes").format(em.berhasil, 'removed', em.mention, mention, em.keterangan, titit)
+    msg = bhs("admins_succes").format(em.berhasil, kt, em.mention, mention, em.keterangan, titit)
     try:
         if message.command[0] == "dkick":
             await message.reply_to_message.delete()
@@ -50,16 +51,17 @@ async def _(client, message):
 @PY.GROUP
 async def _(client, message):
     em = get_emo(client)
+    kt = bhs("ban")
     user_id, reason = await extract_user_and_reason(message)
     if not user_id:
-        return await message.reply_text(bhs("admins_gagal").format(em.gagal, 'block'))
+        return await message.reply_text(bhs("admins_gagal").format(em.gagal, kt))
     if user_id == (await client.get_me()).id:
         return await message.reply_text(
-            bhs("admins_self").format(em.gagal, 'block')
+            bhs("admins_self").format(em.gagal, kt)
         )
     if user_id == DEVS:
         return await message.reply_text(
-            bhs("admins_devs").format(em.gagal, 'block')
+            bhs("admins_devs").format(em.gagal, kt)
         )
     try:
         mention = (await client.get_users(user_id)).mention
@@ -67,10 +69,10 @@ async def _(client, message):
         await message.reply(error)
     if user_id in (await list_admins(message)):
         return await message.reply(
-            bhs("admins_staff").format(em.gagal, mention, 'block')
+            bhs("admins_staff").format(em.gagal, mention, kt)
         )
     titit = reason if reason else "—"
-    msg = bhs("admins_succes").format(em.berhasil, 'banned', em.mention, mention, em.keterangan, titit)
+    msg = bhs("admins_succes").format(em.berhasil, kt, em.mention, mention, em.keterangan, titit)
     try:
         if message.command[0] == "dban":
             await message.reply_to_message.delete()
@@ -84,25 +86,26 @@ async def _(client, message):
 @PY.GROUP
 async def _(client, message):
     em = get_emo(client)
+    kt = bhs("mute")
     user_id, reason = await extract_user_and_reason(message)
     if not user_id:
-        return await message.reply_text(bhs("admins_gagal").format(em.gagal, 'mute'))
+        return await message.reply_text(bhs("admins_gagal").format(em.gagal, kt))
     if user_id == (await client.get_me()).id:
         return await message.reply_text(
-            bhs("admins_self").format(em.gagal, 'mute')
+            bhs("admins_self").format(em.gagal, kt)
         )
     if user_id == DEVS:
-        return await message.reply_text(bhs("admins_devs").format(em.gagal, 'mute'))
+        return await message.reply_text(bhs("admins_devs").format(em.gagal, kt))
     try:
         mention = (await client.get_users(user_id)).mention
     except Exception as error:
         await message.reply(error)
     if user_id in (await list_admins(message)):
         return await message.reply_text(
-            bhs("admins_staff").format(em.gagal, mention, 'mute')
+            bhs("admins_staff").format(em.gagal, mention, kt)
         )
     titit = reason if reason else "—"
-    msg = bhs("admins_succes").format(em.berhasil, 'muted', em.mention, mention, em.keterangan, titit)
+    msg = bhs("admins_succes").format(em.berhasil, kt, em.mention, mention, em.keterangan, titit)
     try:
         if message.command[0] == "dmute":
             await message.reply_to_message.delete()
@@ -116,16 +119,17 @@ async def _(client, message):
 @PY.GROUP
 async def _(client, message):
     em = get_emo(client)
+    kt = bhs("unmute")
     user_id = await extract_user(message)
     if not user_id:
-        return await message.reply_text(bhs("admins_gagal").format(em.gagal, 'unmute'))
+        return await message.reply_text(bhs("admins_gagal").format(em.gagal, kt))
     try:
         mention = (await client.get_users(user_id)).mention
     except Exception as error:
         await message.reply(error)
     try:
         await message.chat.unban_member(user_id)
-        await message.reply(bhs("admins_un").format(em.berhasil, 'muted', em.mention, mention))
+        await message.reply(bhs("admins_un").format(em.berhasil, kt, em.mention, mention))
     except Exception as error:
         await message.reply(error)
 
@@ -134,16 +138,17 @@ async def _(client, message):
 @PY.GROUP
 async def _(client, message):
     em = get_emo(client)
+    kt = bhs("unban")
     user_id = await extract_user(message)
     if not user_id:
-        return await message.reply_text(bhs("admins_gagal").format(em.gagal, 'unbanned'))
+        return await message.reply_text(bhs("admins_gagal").format(em.gagal, kt))
     try:
         mention = (await client.get_users(user_id)).mention
     except Exception as error:
         await message.reply(error)
     try:
         await message.chat.unban_member(user_id)
-        await message.reply(bhs("admins_un").format(em.berhasil, 'banned', em.mention, mention))
+        await message.reply(bhs("admins_un").format(em.berhasil, kt, em.mention, mention))
     except Exception as error:
         await message.reply(error)
 
