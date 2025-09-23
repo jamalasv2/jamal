@@ -119,7 +119,7 @@ async def _(client, message):
 @PY.GROUP
 async def _(client, message):
     em = get_emo(client)
-    kt = bhs("unmute")
+    kt = bhs("mute")
     user_id = await extract_user(message)
     if not user_id:
         return await message.reply_text(bhs("admins_gagal").format(em.gagal, kt))
@@ -138,7 +138,7 @@ async def _(client, message):
 @PY.GROUP
 async def _(client, message):
     em = get_emo(client)
-    kt = bhs("unban")
+    kt = bhs("ban")
     user_id = await extract_user(message)
     if not user_id:
         return await message.reply_text(bhs("admins_gagal").format(em.gagal, kt))
