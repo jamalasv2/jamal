@@ -99,10 +99,10 @@ async def _(client, message):
         await message.reply(error)
     if user_id in (await list_admins(message)):
         return await message.reply_text(
-            bhs("admins_staff").format(em.gagal, 
+            bhs("admins_staff").format(em.gagal, mention, 'mute')
         )
     titit = reason if reason else "—"
-    msg = f"<BLOCKQUOTE><b>{brhsl}berhasil dibisukan</b>\n{xtion}pengguna : {mention}<b>\n<b>{ktrg}alasan :</b> {titit}</BLOCKQUOTE>"
+    msg = bhs("admins_succes").format(em.berhasil, 'muted', em.mention, mention, em.keterangan, titit)
     try:
         if message.command[0] == "dmute":
             await message.reply_to_message.delete()
@@ -114,20 +114,17 @@ async def _(client, message):
 
 @PY.UBOT("unmute", sudo=True)
 @PY.GROUP
-@PY.TOP_CMD
 async def _(client, message):
-    brhsl = await EMO.BERHASIL(client)
-    ggl = await EMO.GAGAL(client)
-    user_id = await extract_user(message)
+    em = get_emo(client)
     if not user_id:
-        return await message.reply_text(f"{ggl} berikan nama pengguna, id pengguna atau balas pesan untuk melepas pembisuan pengguna di group")
+        return await message.reply_text(bhs("admins_gagal").format(em.gagal, 'unmute'))
     try:
         mention = (await client.get_users(user_id)).mention
     except Exception as error:
         await message.reply(error)
     try:
         await message.chat.unban_member(user_id)
-        await message.reply(f"<b>{brhsl} {mention} sudah tidak dibisukan</b>")
+        await message.reply(bhs("admins_un").format(em.berhasil, mention, em.mention, mention))
     except Exception as error:
         await message.reply(error)
 
