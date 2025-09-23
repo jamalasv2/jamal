@@ -142,7 +142,7 @@ async def _(client, message):
         await message.reply(error)
     try:
         await message.chat.unban_member(user_id)
-        await message.reply(bhs("admins_un").format(em.berhasil, 'banned', em.mention, mention)
+        await message.reply(bhs("admins_un").format(em.berhasil, 'banned', em.mention, mention))
     except Exception as error:
         await message.reply(error)
 
