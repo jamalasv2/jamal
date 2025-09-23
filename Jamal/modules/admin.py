@@ -92,7 +92,7 @@ async def _(client, message):
             bhs("admins_self").format(em.gagal, 'mute')
         )
     if user_id == DEVS:
-        return await message.reply_text(bhs("admins_devs").format(em.gagal, 'mute')
+        return await message.reply_text(bhs("admins_devs").format(em.gagal, 'mute'))
     try:
         mention = (await client.get_users(user_id)).mention
     except Exception as error:
