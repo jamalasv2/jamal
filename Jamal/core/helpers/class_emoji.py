@@ -1,4 +1,7 @@
 from Jamal.database import get_vars
+from Jamal import *
+
+import asyncio
 
 class Emojik:
     _cache = {}
@@ -46,3 +49,17 @@ class Emojik:
     @classmethod
     def get(cls, client_id: int):
         return cls._cache.get(client_id)
+
+
+def get_emo(client):
+    """
+    Ambil instance Emojik dari cache berdasarkan client.me.id
+    Jika belum ada di cache, buat default instance.
+    """
+    em = Emojik.get(client.me.id)
+    if not em:
+        # fallback: buat instance default tanpa initialize async
+        em = Emojik(client)
+        # optional: bisa dijalankan initialize di background
+        asyncio.create_task(em.initialize())
+    return em
