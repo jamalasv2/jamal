@@ -15,7 +15,7 @@ admins_staff : "{} {} is administrator of this group chat. you can't {} it"
 admins_succes : "<blockquote>{} user {}\n{} user: {}\n{} reason: {}</blockquote>"
 admins_un : "<blockquote>{} user un{}:\n{} user: {}</blockquote>"
 admins_zombie : "{} {} deleted account has been removed from this group chat"
-admins_zombie2 : "{} no deleted accounts in this group chat"
+admins_zombie2 : "{} no deleted accounts found in this group chat"
 
 #payment
 pay : "💵 make payment"
