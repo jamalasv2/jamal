@@ -70,7 +70,7 @@ async def _(client, message):
             bhs("admins_staff").format(em.gagal, mention, 'block')
         )
     titit = reason if reason else "—"
-    msg = f"<BLOCKQUOTE><b>{brhsl}berhasil diblokir</b>\n{xtion}pengguna : {mention}\n<b>{ktrg}alasan :</b> {titit}</BLOCKQUOTE>"
+    msg = bhs("admins_succes").format(em.berhasil, 'banned', em.mention, mention, em.keterangan, titit)
     try:
         if message.command[0] == "dban":
             await message.reply_to_message.delete()
@@ -82,28 +82,24 @@ async def _(client, message):
 
 @PY.UBOT("mute|dmute", sudo=True)
 @PY.GROUP
-@PY.TOP_CMD
 async def _(client, message):
-    brhsl = await EMO.BERHASIL(client)
-    ggl = await EMO.GAGAL(client)
-    xtion = await EMO.MENTION(client)
-    ktrg = await EMO.BL_KETERANGAN(client)
+    em = get_emo(client)
     user_id, reason = await extract_user_and_reason(message)
     if not user_id:
-        return await message.reply_text(f"{ggl}berikan nama pengguna, id pengguna atau balas pesan untuk membisukan pengguna di group ini")
+        return await message.reply_text(bhs("admins_gagal").format(em.gagal, 'mute'))
     if user_id == (await client.get_me()).id:
         return await message.reply_text(
-            f"{ggl}kamu tidak bisa membisukan diri sendiri"
+            bhs("admins_self").format(em.gagal, 'mute')
         )
     if user_id == DEVS:
-        return await message.reply_text(f"{ggl}kamu tidak bisa membisukan developer botmu")
+        return await message.reply_text(bhs("admins_devs").format(em.gagal, 'mute')
     try:
         mention = (await client.get_users(user_id)).mention
     except Exception as error:
         await message.reply(error)
     if user_id in (await list_admins(message)):
         return await message.reply_text(
-            f"{ggl} {mention} adalah bagian dari staff group. kamu tidak bisa membisukannya"
+            bhs("admins_staff").format(em.gagal, 
         )
     titit = reason if reason else "—"
     msg = f"<BLOCKQUOTE><b>{brhsl}berhasil dibisukan</b>\n{xtion}pengguna : {mention}<b>\n<b>{ktrg}alasan :</b> {titit}</BLOCKQUOTE>"
