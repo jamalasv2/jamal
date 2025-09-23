@@ -14,6 +14,8 @@ admins_devs : "{} you can't {} developer of your bot!"
 admins_staff : "{} {} is administrator of this group chat. you can't {} it"
 admins_succes : "<blockquote>{} user {}\n{} user: {}\n{} reason: {}</blockquote>"
 admins_un : "<blockquote>{} user un{}:\n{} user: {}</blockquote>"
+admins_zombie : "{} {} deleted account has been removed from this group chat"
+admins_zombie2 : "{} no deleted accounts in this group chat"
 
 #payment
 pay : "💵 make payment"
@@ -23,10 +25,10 @@ pay_invalid : "❌cannot be processed.\n⚠️ Please send valid proof of paymen
 pay_valid : "✅ Your payment has been confirmed. now you can install the userbot."
 pay_proses : "✅ Payment has been processed.\nPlease wait 1-6 business hours.\n⚠️ do not send spam messages while the process is on-going or your account will be blocked"
 
-#start
-start_1 : "hi {}\n\n{} is a useful userbot that can help you use Telegram or manage your group chats easily. This bot is equipped with features such as automatic broadcasts, AI, note-taking, and more.\nclick the button below for more information "
+#text1
+text_proses : "{} processing..."
 
-#text
+#text2
 text_install : "✅ click button below to install userbot"
 text_start : "🔥 hi {}\n\n🤖 {} is a useful userbot that can help you use Telegram or manage your group chats easily. This bot is equipped with features such as automatic broadcasts, AI, note-taking, and more.\nclick the button below for more information."
 text_attention : "⚠️ Attention!\nwe recommended to install userbot on accounts that have been registered for more than 2 months.\n\nAccount deletion, suspended, limits, and other issues are beyond our control.\n\nBy purchasing, you agree to the terms and conditions and understand the risks."
