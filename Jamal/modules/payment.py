@@ -92,7 +92,7 @@ async def _(client, callback_query):
     get_user = await bot.get_users(query[1])
     if query[0] == "success":
         buttons = [
-            [InlineKeyboardButton(bhs("cb_install"), callback_data="memek")],
+            [InlineKeyboardButton(bhs("text_install"), callback_data="memek")],
         ]
         await bot.send_message(
             get_user.id,
