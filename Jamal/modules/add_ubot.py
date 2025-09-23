@@ -236,9 +236,11 @@ async def _(client, callback_query):
     buttons = [
             [InlineKeyboardButton(bhs("text_back"), callback_data=f"home {user_id}")],
         ]
-    text_done = bhs("text_activated").format(f"<a href=tg://user?id={new_client.me.id}>{new_client.me.first_name} {new_client.me.last_name or ''}</a>", new_client.me.id, ''.join(SH), xx), 
-    await bot_msg.edit(text_done, disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup(buttons))
+    await bot_msg.delete()
+    await bot.send_message(
+        user_id,
+        bhs("text_activated").format(new_client.me.first_name or '', new_client.me.id, ''.join(SH), xx)
+    )
     await install_my_peer(new_client)
     try:
         await new_client.join_chat("newhiganbana")
