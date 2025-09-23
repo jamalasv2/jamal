@@ -6,6 +6,9 @@ cmds : "**command helps**"
 #helpcommands
 help_text : "<blockquote>**🗂️ inline menu**\n<code>🛠️ prefix:</code> {}"
 
+#admins
+admins_cmd : "<blockquote>❏ <code>{}kick</code>\n— to remove a user from group\n\n❏ <code>{}ban</code>\n— to block user from group chat\n\n❏ <code>{}unban</code>\n— to unblock user from group chat\n\n❏ <code>{}zombies</code>\n— to remove deleted accounts from group chat</blockquote>"
+
 
 #payment
 pay : "💵 make payment"
