@@ -1,12 +1,11 @@
-# utils/emoji.py
-
-from Jamal import get_vars
+from Jamal.database import get_vars
 
 class Emojik:
     _cache = {}
 
-    def __init__(self):
-        # default
+    def __init__(self, client):
+        self.client = client
+        # default emoji (kalau tidak premium / tidak ada var di DB)
         self.ping = "🏓"
         self.mention = "👤"
         self.ubot = "🤖"
@@ -19,7 +18,7 @@ class Emojik:
         self.menunggu = "⏰"
 
     async def initialize(self):
-        """Ambil emoji dari DB lalu cache"""
+        """Ambil emoji dari DB lalu simpan ke cache"""
         vars_map = {
             "ping":       ("EMOJI_PING", "5999035921905749785", "🏓"),
             "mention":    ("EMOJI_MENTION", "5998830540864622070", "👤"),
@@ -34,14 +33,14 @@ class Emojik:
         }
 
         for attr, (var_key, fallback_id, fallback_txt) in vars_map.items():
-            val = await get_vars(self.me.id, var_key)
-            if self.me.is_premium and val:
+            val = await get_vars(self.client.me.id, var_key)
+            if self.client.me.is_premium and val:
                 setattr(self, attr, f"<emoji id={val}>{fallback_txt}</emoji>")
             else:
                 setattr(self, attr, fallback_txt)
 
         # cache per client_id
-        Emojik._cache[self.me.id] = self
+        Emojik._cache[self.client.me.id] = self
         return self
 
     @classmethod
