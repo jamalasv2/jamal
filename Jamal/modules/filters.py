@@ -12,7 +12,7 @@ from Jamal.database.filters import (
 )
 
 
-__MODULE__ = "afk"
+__MODULE__ = "filters"
 __HELP__ = get_bhs("filters_cmd")
 
 
