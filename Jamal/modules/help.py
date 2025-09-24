@@ -10,10 +10,13 @@ from langs import bhs
 @PY.UBOT("help", sudo=True)
 async def _(client, message):
     try:
+        print("HELP command triggered")
         x = await client.get_inline_bot_results(bot.me.username, "user_help")
+        print("Inline results:", x.results)
         await message.reply_inline_bot_result(x.query_id, x.results[0].id)
     except Exception as error:
-        await message.reply(error)
+        print("Error in help:", error)
+        await message.reply(str(error))
 
 user_pages = {}
 
