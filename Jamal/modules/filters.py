@@ -151,7 +151,7 @@ async def updatefilter_handler(client, message: Message):
 async def delfilter_handler(client, message: Message):
     em = get_emo(client)
     if len(message.command) < 2:
-        return await message.reply(bhs("filters_delfail").format(em.gagal, 'delfilter')
+        return await message.reply(bhs("filters_delfail").format(em.gagal, 'delfilter'))
 
     keyword = message.command[1].lower()
     await rm_filter(client.me.id, keyword)
