@@ -54,7 +54,7 @@ async def _(client, message):
         return await remove_vars(client.me.id, "AFK")
 
 
-@ubot.on_message(filters.text | filters.caption & filters.group, group=5)
+@ubot.on_message(filters.text | filters.caption & filters.group & filters.incoming, group=5)
 async def filter_trigger(client, message):
     if message.from_user and message.from_user.id == client.me.id:
         return
