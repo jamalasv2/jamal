@@ -225,34 +225,3 @@ async def filterinfo_handler(client, message: Message):
             )
         except Exception as e:
             await message.reply(f"⚠️ Gagal menampilkan preview.\n<code>{e}</code>")
-
-
-# Auto-reply filter
-@ubot.on_message(filters.text & ~filters.via_bot & ~filters.bot)
-async def filter_replier(client, message: Message):
-    keyword = message.text.lower().strip()
-    value = await get_filter(client.me.id, keyword)
-
-    if not value:
-        return
-
-    if value["type"] == "text":
-        await message.reply(value["data"])
-    else:
-        try:
-            await client.copy_message(
-                message.chat.id,
-                client.me.id,
-                value["message_id"],
-                reply_to_message_id=message.id,
-            )
-        except Exception as e:
-            await message.reply(
-                f"⚠️ Gagal memanggil filter `{keyword}`.\n<code>{e}</code>"
-            )
-
-
-
-
-
-
