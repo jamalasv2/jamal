@@ -3,15 +3,24 @@ from Jamal.config import DEVS
 from Jamal.core.helpers import *
 from Jamal.database import *
 from Jamal import bot, ubot
-
+from pyrogram.types import InlineKeyboardMarkup
 
 @PY.BOT("getubot")
 @PY.OWNER
 async def _(client, callback_query):
-    await bot.send_message(
+    if not ubot._ubot:  # list kosong
+        return await bot.send_message(
+            callback_query.from_user.id,
+            "<b>Tidak ada userbot yang aktif sekarang.</b>"
+        )
+
+    # kalau ada isi, aman dipakai
+    return await bot.send_message(
         callback_query.from_user.id,
         await MSG.USERBOT(0),
-        reply_markup=InlineKeyboardMarkup(Button.userbot(ubot._ubot[0].me.id, 0)),
+        reply_markup=InlineKeyboardMarkup(
+            Button.userbot(ubot._ubot[0].me.id, 0)
+        ),
     )
 
 
