@@ -24,10 +24,7 @@ async def save_filter(user_id, keyword, value):
 async def get_filter(user_id, keyword):
     result = await collection.find_one({"_id": user_id})
     if result is not None:
-        try:
-            return result["filters"][keyword]
-        except KeyError:
-            return None
+        return result.get("filters", {}).get(keyword)
     return None
 
 
@@ -39,17 +36,15 @@ async def rm_filter(user_id, keyword):
     )
 
 
-# Ambil semua filter (list keyword)
+# Ambil semua filter user
 async def all_filters(user_id):
-    result = await collection.find_one({"_id": user_id})
-    try:
-        filters_dic = result["filters"]
-        return list(filters_dic.keys())
-    except Exception:
-        return None
+    doc = await collection.find_one({"_id": user_id})
+    if not doc:
+        return {}
+    return doc.get("filters", {})  # <-- dict
 
 
-# Hapus semua filter
+# Hapus semua filter user
 async def rm_all_filters(user_id):
     await collection.update_one(
         {"_id": user_id},
@@ -57,7 +52,7 @@ async def rm_all_filters(user_id):
     )
 
 
-# Cari filter (optional, buat searchfilters)
+# Cari filter (opsional, buat fitur searchfilters)
 async def search_filters(user_id, query):
     """
     Cari filter yang keyword-nya mengandung 'query'.
