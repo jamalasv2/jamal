@@ -3,11 +3,11 @@ import re
 from pyrogram.types import *
 
 from Jamal import *
-from Jamal.core import *
+from Jamal.core_helpers import *
 from langs import bhs, get_bhs
 
 
-@PY.UBOT("help", sudo=True)
+@PY.UBOT("help")
 async def _(client, message):
     try:
         bot_username = (await bot.get_me()).username
