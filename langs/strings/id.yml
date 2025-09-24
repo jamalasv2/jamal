@@ -39,7 +39,7 @@ text_proses : "{} memproses..."
 
 #text2
 text_install : "✅ klik tombol di-bawah untuk lanjut memasang userbot"
-text_start : "🔥 hai {}\n\n🤖 {} ada bot yang akan membantu kamu menggunakan akun telegram. bot ini dilengkapi dengan fitur yang cukup berguna seperti AI, broadcast otomatis, penyimpan catatan, dan lain sebagainya.\nklik tombol di-bawah ini untuk informasi lebih lanjut"
+text_start : "🔥 hai {}\n\n🤖 {} adalah bot yang akan membantu kamu menggunakan akun telegram. bot ini dilengkapi dengan fitur yang cukup berguna seperti AI, broadcast otomatis, penyimpan catatan, dan lain sebagainya.\nklik tombol di-bawah ini untuk informasi lebih lanjut"
 text_attention : "**⚠️ PERHATIAN!**\ndirekomendasikan untuk menggunakan akun telegram yang telah terdaftar lebih dari 2 bulan.\n\nakun dihapus, akun dibekukan, limit dan lain sebagainya diluar tanggung jawab kami.\n\ndengan membeli, anda setuju dan faham akan syarat & ketentuan dan resiko yang berlaku "
 text_back : "◀ kembali"
 text_continue : "▶ lanjutkan"
