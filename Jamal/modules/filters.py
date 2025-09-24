@@ -75,17 +75,14 @@ async def filter_trigger(client, message):
         if keyword in text:
             ftype = value.get("type")
 
-            # kalau disimpan sebagai teks langsung
             if ftype == "text":
                 return await message.reply(value.get("data"))
 
-            # kalau disimpan sebagai media (pakai copy ke bot user sendiri)
             msg_id = value.get("message_id")
             if not msg_id:
                 continue
 
             try:
-                # forward balik dari chat private userbot ke grup
                 return await client.copy_message(
                     chat_id=message.chat.id,
                     from_chat_id=client.me.id,
@@ -108,7 +105,6 @@ async def _(client, message):
 
     command = message.command[1].lower()
 
-    # map perintah ke boolean
     query_map = {"on": True, "off": False}
 
     if command not in query_map:
@@ -117,21 +113,18 @@ async def _(client, message):
     value = query_map[command]
     text = bhs("filters_on") if value else bhs("filters_off")
 
-    # ambil nilai dari DB
     current = await get_vars(client.me.id, "FILTERS")
 
-    # kalau statusnya sama, kasih notif "udah diset"
     if current == value:
         return await msg.edit(bhs("filters_done").format(em.gagal, text))
 
-    # kalau beda, update DB
     await set_vars(client.me.id, "FILTERS", value)
     await msg.delete()
     return await message.reply(
         bhs("filters_stat").format(em.berhasil, text, message.chat.title)
     )
 
-# Tambah filter
+
 @PY.UBOT("addfilter", sudo=True)
 async def _(client, message):
     em = get_emo(client)
@@ -178,7 +171,7 @@ async def _(client, message):
     await message.reply(bhs("filters_succes").format(em.berhasil, keyword))
 
 
-# Update filter
+
 @PY.UBOT("updatefilter", sudo=True)
 async def updatefilter_handler(client, message: Message):
     em = get_emo(client)
@@ -225,7 +218,7 @@ async def updatefilter_handler(client, message: Message):
     await message.reply(bhs("filters_update").format(em.berhasil, keyword))
 
 
-# Hapus filter 1 keyword
+
 @PY.UBOT("delfilter", sudo=True)
 async def delfilter_handler(client, message: Message):
     em = get_emo(client)
@@ -237,7 +230,7 @@ async def delfilter_handler(client, message: Message):
     await message.reply(bhs("filters_delsucces").format(em.berhasil))
 
 
-# Hapus semua filter
+
 @PY.UBOT("clearfilters", sudo=True)
 async def clearfilters_handler(client, message: Message):
     em = get_emo(client)
@@ -249,7 +242,7 @@ async def clearfilters_handler(client, message: Message):
     await message.reply(bhs("filters_clear").format(em.berhasil, len(data)))
 
 
-# Lihat semua filter
+
 @PY.UBOT("listfilters", sudo=True)
 async def listfilters_handler(client, message: Message):
     em = get_emo(client)
@@ -263,7 +256,7 @@ async def listfilters_handler(client, message: Message):
     await message.reply(text)
 
 
-# Lihat isi filter (baru)
+
 @PY.UBOT("infofilter", sudo=True)
 async def filterinfo_handler(client, message: Message):
     em = get_emo(client)
