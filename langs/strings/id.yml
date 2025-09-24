@@ -21,12 +21,25 @@ ban : "blokir"
 mute : "bisu"
 
 #filters
-filters_cmd : "<blockquote>❏ <code>{0}filter</code> on / off\n— untuk mengaktifkan / menonaktifkan modul\n\n❏ <code>{0}addfilter</code> nama filter - pesan teks\n— untuk menambahkan filter dan teks pesan otomatisnya\n\n❏ <code>{0}delfilter</code>\n— untuk menghapus filter\n\n❏ <code>{0}updatefilter</code> nama filter - pesan otomatis\n— untuk mengganti isi pesan otomatis pada filter yang terdaftar\n\n❏ <code>{0}listfilters</code>\n— untuk melihat semua filter yang terdaftar\n\n❏<code>{0}clearfilters</code>\n— untuk menghapus semua filter yang terdaftar\n\n❏ <code>{0}filtersinfo</code> - nama filter\n— untuk melihat detail filter yang terdaftar\n\n❏ <code>{0}afk</code>\n— untuk mengaktifkan filter afk\n\n❏ <code>{0}unafk</code>\n— untuk menonaktifkan filter afk\n\n\nℹ️ tambahkn teks untuk alasan mengapa anda afk\n**contoh:**\n<code>{0}afk sedang bekerja</code></blockquote>"
+filters_cmd : "<blockquote>❏ <code>{0}filter</code> on / off\n— untuk mengaktifkan / menonaktifkan modul\n\n❏ <code>{0}addfilter</code> nama filter - pesan teks\n— untuk menambahkan filter dan teks pesan otomatisnya\n\n❏ <code>{0}delfilter</code>\n— untuk menghapus filter\n\n❏ <code>{0}updatefilter</code> nama filter - pesan otomatis\n— untuk mengganti isi pesan otomatis pada filter yang terdaftar\n\n❏ <code>{0}listfilters</code>\n— untuk melihat semua filter yang terdaftar\n\n❏<code>{0}clearfilters</code>\n— untuk menghapus semua filter yang terdaftar\n\n❏ <code>{0}infofilter</code> - nama filter\n— untuk melihat detail filter yang terdaftar\n\n❏ <code>{0}afk</code>\n— untuk mengaktifkan filter afk\n\n❏ <code>{0}unafk</code>\n— untuk menonaktifkan filter afk\n\n\nℹ️ tambahkn teks untuk alasan mengapa anda afk\n**contoh:**\n<code>{0}afk sedang bekerja</code></blockquote>"
 filters_afk : "{} sedang afk\n{} alasan: {}"
 filters_afkaktif : "{} sedang afk\n{} waktu: {}\n{} alasan: {}"
 filters_unafk : "{} aktif kembali\n{} afk selama: {}"
-
-
+filters_addfail : "{} gunakan format:\n{} - nama filter - ketik teks / balas pesan/media"
+filters_delfail : "{} gunakan format:\n{} - nama filter untuk menghapus filter"
+filters_delsucces : "{} filter {} berhasil dihapus dari database"
+filters_update : "{} filter {} berhasil diperbarui
+filters_exist : "{} filter {} sudah terdaftar di database"
+filters_noexist : "{} filter {} tidak ada di-database"
+filters_nvalue : "{} balas pesan/media atau sertakan teks pesan otomatis"
+filters_succes : "{} filter {} berhasil di-tambahkan ke database"
+filters_zero : "{} daftar filter kosong"
+filters_clear : "{} berhasil menghapus {} filter"
+filters_list : "{} daftar filter\n\n"
+filters_info : "{} gunakan format infofilter untuk melihat detail filter"
+filters_text : "<blockquote>**📖 Info Filter:**\n\n🔑 Keyword: <code>{}</code>\n📝 Pesan:\n{}</blockquote>"
+filters_media : "<blockquote>**📖 Info Filter:**\n\n🔑 Keyword: <code>{}</code>\n🖼 Jenis: <b>{}</b>\n📌 Preview:</blockquote>"
+filters_previewerr : "{} ERROR:\n{}"
 
 #payment
 pay : "💵 lakukan pembayaran"
