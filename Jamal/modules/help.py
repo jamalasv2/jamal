@@ -15,15 +15,16 @@ async def _(client, message):
         if not x.results:
             return await message.reply("❌ Inline help kosong!")
 
-        # pakai bot resmi untuk mengirim hasil inline ke chat
+        # pakai BOT untuk mengirim inline result ke chat
         await bot.send_inline_bot_result(
             chat_id=message.chat.id,
             query_id=x.query_id,
             result_id=x.results[0].id,
             hide_via=True
         )
+
     except Exception as error:
-        await message.reply(f"Error help: {error}")
+        await message.reply(f"⚠️ Help gagal:\n`{error}`")
 
 user_pages = {}
 
