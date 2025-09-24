@@ -21,10 +21,12 @@ ban : "blokir"
 mute : "bisu"
 
 #filters
-filters_cmd : "<blockquote>❏ <code>{0}afk</code>\n— untuk mengaktifkan filter afk\n\n❏ <code>{0}unafk</code>\n— untuk menonaktifkan filter afk\n\n\nℹ️ tambahkn teks untuk alasan mengapa anda afk\n**contoh:**\n<code>{0}afk sedang bekerja</code></blockquote>"
+filters_cmd : "<blockquote>❏ <code>{0}addfilters</code> nama filters teks filter\n— untuk menambahkan filter dan teks pesan otomatisnya\n\n❏ <code>{0}delfilter</code>\n— untuk menghapus filter\n\n❏ <code>{0}updatefilter</code> nama filter - pesan otomatis\n— untuk mengganti isi pesan otomatis pada filter yang terdaftar\n\n❏ <code>{0}filters</code>\n\n— untuk melihat semua filter yang terdaftar\n\n❏<code>{0}clearfilters</code>\n— untuk menghapus semua filter yang terdaftar\n\n❏ <code>{0}filtersinfo</code> - nama filter\n— untuk melihat detail filter yang terdaftar\n\n❏ <code>{0}afk</code>\n— untuk mengaktifkan filter afk\n\n❏ <code>{0}unafk</code>\n— untuk menonaktifkan filter afk\n\n\nℹ️ tambahkn teks untuk alasan mengapa anda afk\n**contoh:**\n<code>{0}afk sedang bekerja</code></blockquote>"
 filters_afk : "{} sedang afk\n{} alasan: {}"
 filters_afkaktif : "{} sedang afk\n{} waktu: {}\n{} alasan: {}"
 filters_unafk : "{} aktif kembali\n{} afk selama: {}"
+
+
 
 #payment
 pay : "💵 lakukan pembayaran"
