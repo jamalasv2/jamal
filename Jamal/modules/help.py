@@ -9,7 +9,11 @@ from langs import *
 
 @PY.UBOT("help", sudo=True)
 async def _(client, message):
-    await message.reply("iya")
+    try:
+        x = await client.get_inline_bot_results(bot.me.username, "user_help")
+        await message.reply_inline_bot_result(x.query_id, x.results[0].id)
+    except Exception as error:
+        await message.reply(error)
 
 user_pages = {}
 
