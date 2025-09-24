@@ -20,6 +20,12 @@ kick : "tendang"
 ban : "blokir"
 mute : "bisu"
 
+#filters
+filters_cmd : "<blockquote>❏ <code>{0}afk</code>\n— untuk mengaktifkan filter afk\n\n❏ <code>{0}unafk</code>\n— untuk menonaktifkan filter afk\n\n\nℹ️ tambahkn teks untuk alasan mengapa anda afk\n**contoh:**\n<code>{0}afk sedang bekerja</code></blockquote>"
+filters_afk : "{} sedang afk\n{} alasan: {}"
+filters_afkaktif : "{} sedang afk\n{} waktu: {}\n{} alasan: {}"
+filters_unafk : "{} aktif kembali\n{} afk selama: {}"
+
 #payment
 pay : "💵 lakukan pembayaran"
 pay_bukti : "mohon kirim foto/tangkapan layar bukti pembayaran anda"
