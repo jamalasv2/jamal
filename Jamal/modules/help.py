@@ -3,6 +3,7 @@ import re
 from pyrogram.types import *
 
 from Jamal import *
+from Jamal.core import *
 from langs import bhs
 
 
