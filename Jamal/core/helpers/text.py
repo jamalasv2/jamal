@@ -32,14 +32,14 @@ class MSG:
         return bhs("pay_text")
 
     async def USERBOT(count):
-    if not ubot._ubot:  # list kosong
-        return "<b>Tidak ada userbot yang aktif.</b>"
+        if not ubot._ubot:  # list kosong
+            return "<b>Tidak ada userbot yang aktif.</b>"
 
-    if int(count) >= len(ubot._ubot):  # index kelewat panjang
-        return f"<b>Index {count} di luar jangkauan. Total userbot: {len(ubot._ubot)}</b>"
+        if int(count) >= len(ubot._ubot):  # index kelewat panjang
+            return f"<b>Index {count} di luar jangkauan. Total userbot: {len(ubot._ubot)}</b>"
 
-    ub = ubot._ubot[int(count)]
-    return f"""
+        ub = ubot._ubot[int(count)]
+        return f"""
 <b>ᴜsᴇʀʙᴏᴛ ᴋᴇ</b> <code>{int(count) + 1}/{len(ubot._ubot)}</code>
 <b>ᴀᴋᴜɴ:</b> <a href=tg://user?id={ub.me.id}>{ub.me.first_name} {ub.me.last_name or ''}</a> 
 <b>ɪᴅ:</b> <code>{ub.me.id}</code>
