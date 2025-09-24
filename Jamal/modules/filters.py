@@ -55,19 +55,14 @@ async def _(client, message):
 # Tambah filter
 @PY.UBOT("addfilter", sudo=True)
 async def _(client, message):
+    em = get_emo(client)
     if len(message.command) < 2 and not message.reply_to_message:
-        return await message.reply(
-            f"Gunakan format:\n"
-            f"- <code>.addfilter [keyword] [balasan]</code>\n"
-            f"- atau reply pesan dengan <code>.addfilter [keyword]</code>"
-        )
+        return await message.reply(bhs("filters_addfail").format(em.gagal, 'addfilter'))
 
     keyword = message.command[1].lower()
     existing = await get_filter(client.me.id, keyword)
     if existing:
-        return await message.reply(
-            f"⚠️ Filter <code>{keyword}</code> sudah ada di database."
-        )
+        return await message.reply(bhs("filters_exist").format(em.gagal, keyword))
 
     reply = message.reply_to_message
     value = None
@@ -98,28 +93,23 @@ async def _(client, message):
             value = {"type": "animation", "message_id": copy.id}
 
     if not value:
-        return await message.reply("❌ Balas teks/media atau sertakan teks balasan.")
+        return await message.reply(bhs("filters_nvalue").format(em.gagal))
 
     await save_filter(client.me.id, keyword, value)
-    await message.reply(f"✅ Filter <code>{keyword}</code> berhasil ditambahkan.")
+    await message.reply(bhs("filters_succes").format(em.berhasil, keyword))
 
 
 # Update filter
 @PY.UBOT("updatefilter", sudo=True)
 async def updatefilter_handler(client, message: Message):
+    em = get_emo(client)
     if len(message.command) < 2 and not message.reply_to_message:
-        return await message.reply(
-            f"Gunakan format:\n"
-            f"- <code>.updatefilter [keyword] [balasan baru]</code>\n"
-            f"- atau reply pesan dengan <code>.updatefilter [keyword]</code>"
-        )
+        return await message.reply(bhs("filters_addfail").format(em.gagal, 'updatefilter'))
 
     keyword = message.command[1].lower()
     existing = await get_filter(client.me.id, keyword)
     if not existing:
-        return await message.reply(
-            f"❌ Filter <code>{keyword}</code> tidak ditemukan di database."
-        )
+        return await message.reply(bhs("filters_noexist").format(em.gagal, keyword))
 
     reply = message.reply_to_message
     value = None
@@ -150,72 +140,67 @@ async def updatefilter_handler(client, message: Message):
             value = {"type": "animation", "message_id": copy.id}
 
     if not value:
-        return await message.reply("❌ Balas teks/media atau sertakan teks balasan.")
+        return await message.reply(bhs("filters_nvalue").format(em.gagal))
 
     await save_filter(client.me.id, keyword, value)
-    await message.reply(f"♻️ Filter <code>{keyword}</code> berhasil diperbarui.")
+    await message.reply(bhs("filters_update").format(em.berhasil, keyword))
 
 
 # Hapus filter 1 keyword
 @PY.UBOT("delfilter", sudo=True)
 async def delfilter_handler(client, message: Message):
+    em = get_emo(client)
     if len(message.command) < 2:
-        return await message.reply("Gunakan format: <code>.delfilter [keyword]</code>")
+        return await message.reply(bhs("filters_delfail").format(em.gagal, 'delfilter')
 
     keyword = message.command[1].lower()
     await rm_filter(client.me.id, keyword)
-    await message.reply(f"🗑 Filter <code>{keyword}</code> berhasil dihapus.")
+    await message.reply(bhs("filters_delsucces").format(em.berhasil))
 
 
 # Hapus semua filter
 @PY.UBOT("clearfilters", sudo=True)
 async def clearfilters_handler(client, message: Message):
+    em = get_emo(client)
     data = await all_filters(client.me.id)
     if not data:
-        return await message.reply("❌ Tidak ada filter untuk dihapus.")
+        return await message.reply(bhs("filters_zero").format(em.gagal))
 
     await rm_all_filters(client.me.id)
-    await message.reply(f"🧹 Semua filter berhasil dihapus ({len(data)} total).")
+    await message.reply(bhs("filters_clear").format(em.berhasil, len(data)))
 
 
 # Lihat semua filter
-@PY.UBOT("filters", sudo=True)
+@PY.UBOT("listfilters", sudo=True)
 async def listfilters_handler(client, message: Message):
+    em = get_emo(client)
     data = await all_filters(client.me.id)
     if not data:
-        return await message.reply("❌ Tidak ada filter yang tersimpan.")
+        return await message.reply(bhs("filters_zero".format(em.gagal))
 
-    text = "**📌 Filters tersedia:**\n"
+    text = bhs("filters_list").format(em.keterangan)
     for key in data:
-        text += f"- `{key}`\n"
+        text += f"— `{key}`\n"
     await message.reply(text)
 
 
 # Lihat isi filter (baru)
-@PY.UBOT("filterinfo", sudo=True)
+@PY.UBOT("infofilter", sudo=True)
 async def filterinfo_handler(client, message: Message):
+    em = get_emo(client)
     if len(message.command) < 2:
-        return await message.reply("Gunakan format: <code>.filterinfo [keyword]</code>")
+        return await message.reply(bhs("filters_info").format(em.gagal))
 
     keyword = message.command[1].lower()
     value = await get_filter(client.me.id, keyword)
 
     if not value:
-        return await message.reply(f"❌ Filter <code>{keyword}</code> tidak ditemukan.")
+        return await message.reply(bhs("filters_noexist").format(em.gagal, keyword))
 
     if value["type"] == "text":
-        return await message.reply(
-            f"**📖 Info Filter:**\n\n"
-            f"🔑 Keyword: <code>{keyword}</code>\n"
-            f"📝 Balasan (teks):\n\n{value['data']}"
-        )
+        return await message.reply(bhs("filters_text").format(keyword, value['data']))
     else:
-        await message.reply(
-            f"**📖 Info Filter:**\n\n"
-            f"🔑 Keyword: <code>{keyword}</code>\n"
-            f"🖼 Jenis: <b>{value['type']}</b>\n"
-            f"📌 Preview di bawah 👇"
-        )
+        await message.reply(bhs("filters_media").format(keyword, value['type']))
         try:
             await client.copy_message(
                 message.chat.id,
@@ -224,4 +209,4 @@ async def filterinfo_handler(client, message: Message):
                 reply_to_message_id=message.id,
             )
         except Exception as e:
-            await message.reply(f"⚠️ Gagal menampilkan preview.\n<code>{e}</code>")
+            await message.reply(bhs("filters_previewerr").format(em.gagal, e))
