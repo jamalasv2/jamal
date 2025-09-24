@@ -176,7 +176,7 @@ async def listfilters_handler(client, message: Message):
     em = get_emo(client)
     data = await all_filters(client.me.id)
     if not data:
-        return await message.reply(bhs("filters_zero".format(em.gagal))
+        return await message.reply(bhs("filters_zero").format(em.gagal))
 
     text = bhs("filters_list").format(em.keterangan)
     for key in data:
