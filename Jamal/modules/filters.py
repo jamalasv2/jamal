@@ -52,6 +52,33 @@ async def _(client, message):
         return await remove_vars(client.me.id, "AFK")
 
 
+@PY.UBOT(filters.text & filters.group, group=5)
+async def filter_trigger(client, message: Message):
+    is_active = await get_vars(client.me.id, "FILTERS")
+    if not is_active:
+        return
+
+    text = message.text.lower()
+
+    for keyword, content in filters_data.items():
+        if keyword in text:
+            ctype = content["type"]
+            data = content["data"]
+
+            if ctype == "text":
+                return await message.reply(data)
+            elif ctype == "sticker":
+                return await message.reply_sticker(data)
+            elif ctype == "photo":
+                return await message.reply_photo(data, caption=content.get("caption", ""))
+            elif ctype == "video":
+                return await message.reply_video(data, caption=content.get("caption", ""))
+            elif ctype == "voice":
+                return await message.reply_voice(data)
+
+            break
+
+
 @PY.UBOT("filter", sudo=True)
 @PY.GROUP
 async def _(client, message):
