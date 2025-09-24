@@ -4,7 +4,7 @@ from pyrogram.types import *
 
 from Jamal import *
 from Jamal.core import *
-from langs import bhs
+from langs import bhs, get_bhs
 
 
 @PY.UBOT("help", sudo=True)
