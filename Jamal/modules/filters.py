@@ -68,7 +68,7 @@ async def _(client, message):
     value = query[command]
     text = bhs("filters_on") if value else bhs("filters_off")
     vars = await get_vars(client.me.id, "FILTERS", value) or {}
-    if value in vars:
+    if query in vars:
         return await msg.edit(bhs("filters_done").format(em.gagal, text))
     else:
         await set_vars(client.me.id, "FILTERS", value)
