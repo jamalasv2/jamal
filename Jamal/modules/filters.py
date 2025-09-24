@@ -52,6 +52,25 @@ async def _(client, message):
         return await remove_vars(client.me.id, "AFK")
 
 
+@PY.UBOT("filter", sudo=True)
+@PY.GROUP
+async def _(client, message):
+    em = get_emo(client)
+    msg = await message.reply(bhs("text_proses").format(em.proses))
+    if len(message.command) <2:
+        return await msg.edit("filters_ops").format(em.gagal)
+    query = {"on": True, "off": False}
+    command = message.command[1].lower()
+
+    if command not in query:
+        return await msg.edit(bhs("filters_ops").format(em.gagal))
+
+    value = query[command]
+    text = bhs("filters_on") if value else bhs("filters_off")
+    await set_vars(client.me.id, f"chat_{message.chat.id}", value)
+    await msg.delete()
+    return await message.reply(bhs("filters_stat").format(em.berhasil, value, message.chat.title)
+
 # Tambah filter
 @PY.UBOT("addfilter", sudo=True)
 async def _(client, message):
