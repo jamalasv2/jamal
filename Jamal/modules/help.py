@@ -10,13 +10,13 @@ from langs import bhs, get_bhs
 @PY.UBOT("help", sudo=True)
 async def _(client, message):
     try:
-        print("HELP command triggered")
-        x = await client.get_inline_bot_results(bot.me.username, "user_help")
-        print("Inline results:", x.results)
+        bot_username = (await bot.get_me()).username
+        x = await client.get_inline_bot_results(bot_username, "user_help")
+        if not x.results:
+            raise ValueError("Hasil inline kosong")
         await message.reply_inline_bot_result(x.query_id, x.results[0].id)
     except Exception as error:
-        print("Error in help:", error)
-        await message.reply(str(error))
+        await message.reply(f"Help gagal: {error}\nCoba ketik `@{bot_username} user_help` manual.")
 
 user_pages = {}
 
