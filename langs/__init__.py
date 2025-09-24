@@ -63,7 +63,7 @@ def load(file):
 
 def bhs(key, lang: str = None, _res: bool = True):
     """ambil string bahasa sesuai user"""
-    lang = lang or cek_bahasa or "en"
+    lang = lang or cek_bahasa or "id"
     try:
         return bahasa_[lang][key]
     except KeyError:
@@ -113,7 +113,7 @@ def get_bahasa_() -> List[Dict[str, Union[str, List[str]]]]:
 
 # init bahasa default (fallback)
 for filename in os.listdir(r"./langs/strings/"):
-    if "en" not in bahasa_:
+    if "id" not in bahasa_:
         bahasa_["id"] = yaml.safe_load(
             open(r"./langs/strings/id.yml", encoding="utf8")
         )
