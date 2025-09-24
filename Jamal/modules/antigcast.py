@@ -1,44 +1,12 @@
 import asyncio 
 from pyrogram import filters
-from PyroUbot import *
+from Jamal import *
+from langs import bhs, get_bhs
 
 from .. import *
 
 __MODULE__ = "antigcast"
-__HELP__ = """
-  <b>『 bantuan untuk antigcast 』</b>
-
-<BLOCKQUOTE>❏ᴘᴇʀɪɴᴛᴀʜ: <code>{0}ankes</code> (on/off)
- ᴜɴᴛᴜᴋ ᴍᴇɴɢᴀᴋᴛɪғᴋᴀɴ ᴀᴛᴀᴜ ᴍᴇɴᴏɴᴀᴋᴛɪғᴋᴀɴ ᴀɴᴋᴇs
- 
-❏ᴘᴇʀɪɴᴛᴀʜ: <code>{0}bl</code> ᴜsᴇʀɴᴀᴍᴇ/ᴜsᴇʀɪᴅ
-ᴜɴᴛᴜᴋ ᴍᴇɴᴀᴍʙᴀʜᴋᴀɴ ᴜsᴇʀ ᴋᴇ ʙʟᴀᴄᴋʟɪsᴛ
- 
-❏ᴘᴇʀɪɴᴛᴀʜ: <code>{0}delbl</code> ᴜsᴇʀɴᴀᴍᴇ/ᴜsᴇʀɪᴅ
-ᴜɴᴛᴜᴋ ᴍᴇɴɢʜᴀᴘᴜs ᴜsᴇʀ ᴅᴀʀɪ ʙʟᴀᴄᴋʟɪsᴛ
-
-❏ᴘᴇʀɪɴᴛᴀʜ: <code>{0}userlist</code>
-ᴜɴᴛᴜᴋ ᴍᴇʟɪʜᴀᴛ ᴜsᴇʀ ʏᴀɴɢ ᴅɪ ʙʟᴀᴄᴋʟɪsᴛ
-
-❏ᴘᴇʀɪɴᴛᴀʜ: <code>{0}ralluser</code>
-ᴜɴᴛᴜᴋ ᴍᴇɴɢʜᴀᴘᴜs sᴇᴍᴜᴀ ᴜsᴇʀ ʏᴀɴɢ ᴅɪ ʙʟᴀᴄᴋʟɪsᴛ
- 
-❏ᴘᴇʀɪɴᴛᴀʜ: <code>{0}protect</code> (on/off)
-ᴜɴᴛᴜᴋ ᴍᴇɴɢᴀᴋᴛɪғᴋᴀɴ ᴘʀᴏᴛᴇᴄᴛ
- 
-❏ᴘᴇʀɪɴᴛᴀʜ: <code>{0}word</code> [ᴛᴇxᴛ/ʀᴇᴘʟʏ]
-ᴜɴᴛᴜᴋ ᴍᴇᴍ ʙʟᴀᴄᴋʟɪsᴛ ᴛᴇxᴛ
- 
-❏ᴘᴇʀɪɴᴛᴀʜ: <code>{0}rmword</code> [ᴛᴇxᴛ/ʀᴇᴘʟʏ]
-ᴜɴᴛᴜᴋ ᴍᴇɴɢʜᴀᴘᴜs ᴛᴇxᴛ ᴅᴀʀɪ ʙʟᴀᴄᴋʟɪsᴛ
-
-❏ᴘᴇʀɪɴᴛᴀʜ: <code>{0}listword</code>
-ᴜɴᴛᴜᴋ ᴍᴇʟɪʜᴀᴛ ʙʟᴀᴄᴋʟɪsᴛ ᴛᴇxᴛ
-
-ɴᴏᴛᴇ: ᴘᴇʀʙᴇᴅᴀᴀɴ ᴘʀᴏᴛᴇᴄᴛ ᴅᴀɴ ʙʟᴀᴄᴋʟɪsᴛ ᴜsᴇʀ ᴀᴅᴀʟᴀʜ:
-ʙʟᴀᴄᴋʟɪsᴛ ᴜsᴇʀ ᴀᴋᴀɴ ᴍᴇɴɢʜᴀᴘᴜs ᴘᴇsᴀɴ ʏᴀɴɢ ᴅɪᴋɪʀɪᴍ ᴏʟᴇʜ ᴜsᴇʀ ʏᴀɴɢ ᴛᴇʟᴀʜ ᴅɪʙʟᴀᴄᴋʟɪsᴛ
-sᴇᴅᴀɴɢᴋᴀɴ ᴘʀᴏᴛᴇᴄᴛ ʜᴀɴʏᴀ ᴍᴇɴɢʜᴀᴘᴜs ᴛᴇxᴛ ʏᴀɴɢ ᴛᴇʟᴀʜ ᴅɪʙʟᴀᴄᴋʟɪsᴛ</BLOCKQUOTE>
-"""
+__HELP__ = get_bhs("ankes_cmd")
 
 
 @ubot.on_message(filters.group & ~filters.bot & ~filters.me, group=1)
