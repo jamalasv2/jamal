@@ -28,7 +28,7 @@ filters_unafk : "{} aktif kembali\n{} afk selama: {}"
 filters_addfail : "{} gunakan format:\n{} - nama filter - ketik teks / balas pesan/media"
 filters_delfail : "{} gunakan format:\n{} - nama filter untuk menghapus filter"
 filters_delsucces : "{} filter {} berhasil dihapus dari database"
-filters_update : "{} filter {} berhasil diperbarui
+filters_update : "{} filter {} berhasil diperbarui"
 filters_exist : "{} filter {} sudah terdaftar di database"
 filters_noexist : "{} filter {} tidak ada di-database"
 filters_nvalue : "{} balas pesan/media atau sertakan teks pesan otomatis"
