@@ -7,6 +7,11 @@ async def add_filter(user_id, filters_name, message):
     doc = {"_id": user_id, "filters": {filters_name: message}}
     result = await collection.find_one({"_id": user_id})
     if result:
+        await collection.update_one(
+            {"_id": user_id}, {"$set": {f"filters.{filters_name}": message}}
+        )
+    else:
+        await collection.insert_one(doc)
 
 async def get_filter(chat_id: int, keyword: str, owner: int):
     doc = await filters_col.find_one(
