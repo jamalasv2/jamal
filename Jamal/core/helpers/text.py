@@ -1,6 +1,6 @@
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
-from Jamal import OWNER_ID, bot, get_expired_date, ubot
+from Jamal import *
 from langs import bhs
 
 class MSG:
