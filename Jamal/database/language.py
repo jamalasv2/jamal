@@ -11,8 +11,8 @@ async def get_lang(user_id: int):
     if not mode:
         lang = await langs.find_one({"_id": user_id})
         if not lang:
-            langm[user_id] = "en"
-            return "en"
+            langm[user_id] = "id"
+            return "id"
         langm[user_id] = lang["lang"]
         return lang["lang"]
     return mode
