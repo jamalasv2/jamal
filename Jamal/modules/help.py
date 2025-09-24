@@ -13,10 +13,17 @@ async def _(client, message):
         bot_username = (await bot.get_me()).username
         x = await client.get_inline_bot_results(bot_username, "user_help")
         if not x.results:
-            raise ValueError("Hasil inline kosong")
-        await message.reply_inline_bot_result(x.query_id, x.results[0].id)
+            return await message.reply("❌ Inline help kosong!")
+
+        # pakai bot resmi untuk mengirim hasil inline ke chat
+        await bot.send_inline_bot_result(
+            chat_id=message.chat.id,
+            query_id=x.query_id,
+            result_id=x.results[0].id,
+            hide_via=True
+        )
     except Exception as error:
-        await message.reply(f"Help gagal: {error}\nCoba ketik `@{bot_username} user_help` manual.")
+        await message.reply(f"Error help: {error}")
 
 user_pages = {}
 
