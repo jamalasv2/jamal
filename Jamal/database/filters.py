@@ -3,30 +3,66 @@ from Jamal.database import mongo_client
 collection = mongo_client["Jamal"]["filters"]
 
 
-async def add_filter(user_id, filters_name, message):
-    doc = {"_id": user_id, "filters": {filters_name: message}}
+# Simpan / update filter
+async def save_filter(user_id, keyword, value):
+    """
+    Simpan filter baru atau update yang lama.
+    value: dict -> { "type": "text", "data": "..." } atau { "type": "photo", "message_id": 123 }
+    """
+    doc = {"_id": user_id, "filters": {keyword: value}}
     result = await collection.find_one({"_id": user_id})
     if result:
         await collection.update_one(
-            {"_id": user_id}, {"$set": {f"filters.{filters_name}": message}}
+            {"_id": user_id},
+            {"$set": {f"filters.{keyword}": value}}
         )
     else:
         await collection.insert_one(doc)
 
-async def get_filter(chat_id: int, keyword: str, owner: int):
-    doc = await filters_col.find_one(
-        {"chat_id": chat_id, "keyword": keyword.lower(), "owner": owner}
+
+# Ambil filter berdasarkan keyword
+async def get_filter(user_id, keyword):
+    result = await collection.find_one({"_id": user_id})
+    if result is not None:
+        try:
+            return result["filters"][keyword]
+        except KeyError:
+            return None
+    return None
+
+
+# Hapus 1 filter
+async def rm_filter(user_id, keyword):
+    await collection.update_one(
+        {"_id": user_id},
+        {"$unset": {f"filters.{keyword}": ""}}
     )
-    return doc["reply_text"] if doc else None
 
-async def delete_filter(chat_id: int, keyword: str, owner: int):
-    await filters_col.delete_one(
-        {"chat_id": chat_id, "keyword": keyword.lower(), "owner": owner}
+
+# Ambil semua filter (list keyword)
+async def all_filters(user_id):
+    result = await collection.find_one({"_id": user_id})
+    try:
+        filters_dic = result["filters"]
+        return list(filters_dic.keys())
+    except Exception:
+        return None
+
+
+# Hapus semua filter
+async def rm_all_filters(user_id):
+    await collection.update_one(
+        {"_id": user_id},
+        {"$unset": {"filters": ""}}
     )
 
-async def get_all_filters(chat_id: int, owner: int):
-    cursor = filters_col.find({"chat_id": chat_id, "owner": owner})
-    return [doc async for doc in cursor]
 
-
-
+# Cari filter (optional, buat searchfilters)
+async def search_filters(user_id, query):
+    """
+    Cari filter yang keyword-nya mengandung 'query'.
+    """
+    result = await collection.find_one({"_id": user_id})
+    if not result or "filters" not in result:
+        return []
+    return [k for k in result["filters"].keys() if query.lower() in k.lower()]
