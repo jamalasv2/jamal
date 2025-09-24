@@ -56,7 +56,6 @@ async def _(client, message):
 @PY.GROUP
 async def _(client, message):
     em = get_emo(client)
-    vars = await get_vars(client.me.id, "FILTERS", value)
     msg = await message.reply(bhs("text_proses").format(em.proses))
     if len(message.command) <2:
         return await msg.edit("filters_ops").format(em.gagal)
@@ -68,6 +67,7 @@ async def _(client, message):
 
     value = query[command]
     text = bhs("filters_on") if value else bhs("filters_off")
+    vars = await get_vars(client.me.id, "FILTERS", value)
     if value in vars:
         return await msg.edit(bhs("filters_done").format(em.gagal, text))
     else:
