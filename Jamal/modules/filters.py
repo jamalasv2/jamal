@@ -57,23 +57,34 @@ async def _(client, message):
 async def _(client, message):
     em = get_emo(client)
     msg = await message.reply(bhs("text_proses").format(em.proses))
-    if len(message.command) <2:
+
+    if len(message.command) < 2:
         return await msg.edit(bhs("filters_ops").format(em.gagal))
-    query = {"on": True, "off": False}
+
     command = message.command[1].lower()
 
-    if command not in query:
+    # map perintah ke boolean
+    query_map = {"on": True, "off": False}
+
+    if command not in query_map:
         return await msg.edit(bhs("filters_ops").format(em.gagal))
 
-    value = query[command]
+    value = query_map[command]
     text = bhs("filters_on") if value else bhs("filters_off")
-    vars = await get_vars(client.me.id, "FILTERS", value) or {}
-    if query in vars:
+
+    # ambil nilai dari DB
+    current = await get_vars(client.me.id, "FILTERS")
+
+    # kalau statusnya sama, kasih notif "udah diset"
+    if current == value:
         return await msg.edit(bhs("filters_done").format(em.gagal, text))
-    else:
-        await set_vars(client.me.id, "FILTERS", value)
-        await msg.delete()
-        return await message.reply(bhs("filters_stat").format(em.berhasil, text, message.chat.title))
+
+    # kalau beda, update DB
+    await set_vars(client.me.id, "FILTERS", value)
+    await msg.delete()
+    return await message.reply(
+        bhs("filters_stat").format(em.berhasil, text, message.chat.title)
+    )
 
 # Tambah filter
 @PY.UBOT("addfilter", sudo=True)
