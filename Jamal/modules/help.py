@@ -3,7 +3,7 @@ import re
 from pyrogram.types import *
 
 from Jamal import *
-from Jamal.core_helpers import *
+from Jamal.core.helpers import *
 from langs import bhs, get_bhs
 
 
