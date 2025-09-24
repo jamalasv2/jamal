@@ -1,5 +1,7 @@
 from time import time
 
+from pyrogram import filters
+
 from Jamal import *
 from Jamal.core.helpers._client import PY
 from langs import bhs, get_bhs
@@ -52,12 +54,13 @@ async def _(client, message):
         return await remove_vars(client.me.id, "AFK")
 
 
-from pyrogram import filters
-from pyrogram.types import Message
-
-
 @ubot.on_message(filters.text & filters.group, group=5)
-async def filter_trigger(client, message: Message):
+async def filter_trigger(client, message):
+    if message.from_user and message.from_user.id == client.me.id:
+        return
+    if message.outgoing:
+        return
+
     is_active = await get_vars(client.me.id, "FILTERS")
     if not is_active:
         return
