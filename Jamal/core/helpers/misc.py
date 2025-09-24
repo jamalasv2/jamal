@@ -105,6 +105,9 @@ class EqInlineKeyboardButton(InlineKeyboardButton):
 
 
 def paginate_modules(page_n, module_dict, prefix):
+    if not module_dict:
+        return [[EqInlineKeyboardButton("❌ No modules", callback_data="noop")]]
+
     modules = [
         EqInlineKeyboardButton(
             Fonts.smallcap(x.__MODULE__.lower()),
@@ -114,24 +117,18 @@ def paginate_modules(page_n, module_dict, prefix):
     ]
 
     line = 4
-    pairs = list(zip(modules[::2], modules[1::2]))
-    i = 0
-    for m in pairs:
-        for _ in m:
-            i += 1
-    if len(modules) - i == 1:
-        pairs.append((modules[-1],))
-    elif len(modules) - i == 2:
-        pairs.append((modules[-2], modules[-1]))
+    pairs = [list(pair) for pair in zip(modules[::2], modules[1::2])]
+    if len(modules) % 2 == 1:
+        pairs.append([modules[-1]])
 
-    max_num_pages = ceil(len(pairs) / line)
+    max_num_pages = ceil(len(pairs) / line) if pairs else 1
     modulo_page = page_n % max_num_pages
 
     if len(pairs) > line:
         pairs = pairs[modulo_page * line : line * (modulo_page + 1)]
-        pairs.append((
+        pairs.append([
             EqInlineKeyboardButton("◄", callback_data=f"{prefix}_prev({modulo_page})"),
             EqInlineKeyboardButton("►", callback_data=f"{prefix}_next({modulo_page})"),
-        ))
+        ])
 
     return pairs
