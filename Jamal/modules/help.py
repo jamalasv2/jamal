@@ -4,7 +4,7 @@ from pyrogram.types import *
 
 from Jamal import *
 from Jamal.core.helpers import *
-from langs import bhs, cek_bhs
+from langs import *
 
 
 @PY.UBOT("help", sudo=True)
