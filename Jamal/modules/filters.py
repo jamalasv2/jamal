@@ -58,7 +58,7 @@ async def _(client, message):
     em = get_emo(client)
     msg = await message.reply(bhs("text_proses").format(em.proses))
     if len(message.command) <2:
-        return await msg.edit("filters_ops").format(em.gagal)
+        return await msg.edit(bhs("filters_ops").format(em.gagal))
     query = {"on": True, "off": False}
     command = message.command[1].lower()
 
