@@ -24,7 +24,7 @@ class ConnectionHandler(logging.Handler):
     def emit(self, record):
         for error_type in ["OSErro", "TimeoutError"]:
             if error_type in record.getMessage():
-                os.execl(sys.executable, sys.executable, "-m", "PyroUbot")
+                os.execl(sys.executable, sys.executable, "-m", "Jamal")
 
 
 logging.basicConfig(
@@ -47,7 +47,7 @@ aiosession = ClientSession()
 
 class Bot(Client):
     def __init__(self, **kwargs):
-        super().__init__(**kwargs, device_model="ʜɪɢᴀɴʙᴀɴᴀ ᴘʀᴇᴍɪᴜᴍ")
+        super().__init__(**kwargs, device_model="higanbana")
 
     def on_message(self, filters=None, group=-1):
         def decorator(func):
@@ -75,7 +75,7 @@ class Ubot(Client):
     _get_my_peer = {}
 
     def __init__(self, **kwargs):
-        super().__init__(**kwargs, device_model="ʜɪɢᴀɴʙᴀɴᴀ ᴘʀᴇᴍɪᴜᴍ")
+        super().__init__(**kwargs, device_model="higanbana")
         self.group_call = GroupCallFactory(self).get_file_group_call()
 
     
