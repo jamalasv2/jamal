@@ -73,7 +73,7 @@ async def _(client, message):
     else:
         await set_vars(client.me.id, "FILTERS", value)
         await msg.delete()
-        return await message.reply(bhs("filters_stat").format(em.berhasil, value, message.chat.title))
+        return await message.reply(bhs("filters_stat").format(em.berhasil, text, message.chat.title))
 
 # Tambah filter
 @PY.UBOT("addfilter", sudo=True)
