@@ -44,7 +44,7 @@ async def _(client, message):
     current = await get_vars(client.me.id, f"chat_{message.chat.id}")
 
     if value == current:
-        return await msg.edit(
+        return await msg.edit(bhs("ankes_current").format(em.gagal, text, message.chat.title))
   
     await set_vars(client.me.id, f"chat_{message.chat.id}", value)
     await msg.delete()
@@ -53,94 +53,75 @@ async def _(client, message):
 
 @PY.UBOT("bl")
 async def _(client, message):
-    prs = await EMO.PROSES(client)
-    brhsl = await EMO.BERHASIL(client)
-    ggl = await EMO.GAGAL(client)
-    msg = await message.reply(f"<b>{prs}memproses</b>")
+    em = get_emo(client)
+    msg = await message.reply(bhs("text_proses").format(em.proses))
     user_id = await extract_user(message)
     if not user_id:
-        return await msg.edit(
-            f"<b>{ggl}ʙᴇʀɪᴋᴀɴ ᴜsᴇʀɴᴀᴍᴇ ᴀᴛᴀᴜ ʀᴇᴘʟʏ ᴄʜᴀᴛ</b>"
-        )
+        return await msg.edit(bhs("ankes_blfail").format(em.gagal))
   
     try:
         user = await client.get_users(user_id)
     except Exception as error:
-        return await msg.edit(f"{ggl}ERROR:\n{error}")
+        return await msg.edit(bhs("ankes_error").format(em.gagal, error))
   
     blacklist_users = await get_list_from_vars(client.me.id, "BL_USERS", "DB_ANKES")
   
     if user.id in blacklist_users:
-        return await msg.edit(
-            f"<b>{ggl}ᴜsᴇʀ sᴜᴅᴀʜ ᴅɪʙʟᴀᴄᴋʟɪsᴛ</b>"
-        )
+        return await msg.edit(bhs("ankes_usrbl").format(em.gagal))
 
     try:
         await add_to_vars(client.me.id, "BL_USERS", user.id, "DB_ANKES")
-        return await msg.edit(
-            f"<b>{brhsl}ᴜsᴇʀ ᴅɪᴛᴀᴍʙᴀʜᴋᴀɴ ᴋᴇ ʙʟᴀᴄᴋʟɪsᴛ</b>"
-        )
+        return await msg.edit(bhs("ankes_addbl").format(em.berhasil, user.id))
     except Exception as error:
-        return await msg.edit(error)
+        return await msg.edit(bhs("ankes_error").format(em.gagal, error))
 
 
 @PY.UBOT("delbl")
 async def _(client, message):
-    prs = await EMO.PROSES(client)
-    brhsl = await EMO.BERHASIL(client)
-    ggl = await EMO.GAGAL(client)
-    msg = await message.reply(f"<b>{prs}ᴍᴇᴍᴘʀᴏsᴇs</b>")
+    em = get_emo(client)
+    msg = await message.reply(bhs("text_proses").format(em.gagal))
     user_id = await extract_user(message)
     if not user_id:
-        return await msg.edit(
-            f"<b>{ggl}ʙᴇʀɪᴋᴀɴ ᴜsᴇʀɴᴀᴍᴇ ᴀᴛᴀᴜ ᴜsᴇʀɪᴅ</b>"
-        )
+        return await msg.edit(bhs("ankes_delfail").format(em.gagal))
 
     try:
         user = await client.get_users(user_id)
     except Exception as error:
-        return await msg.edit(error)
+        return await msg.edit(bhs("ankes_error").format(em.gagal, error))
 
     blacklist_users = await get_list_from_vars(client.me.id, "BL_USERS", "DB_ANKES")
   
     if user.id not in blacklist_users:
-        return await msg.edit(
-            f"<b>{ggl}[{user.first_name} {user.last_name or ''}](tg://user?id={user.id}) ᴛɪᴅᴀᴋ ᴅᴀʟᴀᴍ ʙʟᴀᴄᴋʟɪsᴛ</b>"
-        )
+        return await msg.edit(bhs("ankes_userdbl").format(em.gagal))
 
     try:
         await remove_from_vars(client.me.id, user.id, "BL_USERS", user.id, "DB_ANKES")
-        return await msg.edit(
-            f"<b>{brhsl}[{user.first_name} {user.last_name or ''}](tg://user?id={user.id}) ᴅɪʜᴀᴘᴜs ᴅᴀʀɪ ʙʟᴀᴄᴋʟɪsᴛ</b>"
-        )
+        return await msg.edit(bhs("ankes_usrremove").format(em.berhasil, user.id))
     except Exception as error:
-        return await msg.edit(error)
+        return await msg.edit(bhs("ankes_error").format(em.gagal, error))
 
 
 @PY.UBOT("ralluser")
 async def _(client, message):
-    prs = await EMO.PROSES(client)
-    brhsl = await EMO.BERHASIL(client)
-    ggl = await EMO.GAGAL(client)
-    msg = await message.reply(f"{prs}memproses")
+    em = get_emo(client)
+    msg = await message.reply(bhs("text_proses").format(em.proses))
     get_usr = await get_list_from_vars(client.me.id, "BL_USERS", "DB_ANKES")
     if len(get_usr) == 0:
-        return await msg.edit(f"{ggl}tidak ada pengguna dalam dafyar hitam")
+        return await msg.edit(bhs("ankes_zero").format(em.gagal))
     for X in get_usr:
         await remove_from_vars(client.me.id, "BL_USERS", X, "DB_ANKES")
-    await msg.edit(f"{brhsl}berhasil menghapus semua pengguna dari daftar hitam")
+    await msg.edit(bhs("ankes_rmall").format(em.berhasil))
 
 
-@PY.UBOT("userlist")
+@PY.UBOT("listbl")
 async def _(client, message):
-    prs = await EMO.PROSES(client)
-    ggl = await EMO.GAGAL(client)
-    Sh = await message.reply(f"<b>{prs}memproses</b>")
+    em = get_emo(client)
+    Sh = await message.reply(bhs("text_proses").format(em.proses))
     bl_user = await get_ankes(client.me.id)
-    msg = f"<b>total pengguna dalam daftar hitam: {len(bl_user)}</b>\n\n"
+    msg = bhs("ankes_list").format(em.keterangan))
 
     if not bl_user:
-        return await Sh.edit(f"{ggl}tidak ada pengguna dalam daftar hitam")
+        return await Sh.edit(bhs("ankes_zero").format(em.gagal))
 
     for user_id in bl_user:
         try:
