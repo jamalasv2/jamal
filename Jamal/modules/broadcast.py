@@ -6,10 +6,10 @@ from pyrogram import filters
 from pyrogram.enums import ChatType
 from pyrogram.errors.exceptions import FloodWait, UserDeactivated, UserIsBlocked
 
-from PyroUbot.core import *
-from PyroUbot.core.database import *
-from PyroUbot.config import DEVS, BLACKLIST_CHAT
-from PyroUbot import *
+from Jamal.core import *
+from Jamal.database import *
+from Jamal.config import DEVS, BLACKLIST_CHAT
+from Jamal import *
 
 
 __MODULE__ = "broadcast"
