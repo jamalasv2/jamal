@@ -95,10 +95,11 @@ async def get_global_id(client, query):
     chats = []
     chat_types = {
         "global": [ChatType.CHANNEL, ChatType.GROUP, ChatType.SUPERGROUP],
-        "group": [ChatType.GROUP, ChatType.SUPERGROUP],
-        "users": [ChatType.PRIVATE],
+        "gc": [ChatType.GROUP, ChatType.SUPERGROUP],
+        "pc": [ChatType.PRIVATE],
         "bot": [ChatType.BOT],
         "ch": [ChatType.CHANNEL],
+        "all": [ChatType.CHANNEL, ChatType.BOT, ChatType.PRIVATE, ChatType.GROUP, ChatType.SUPERGROUP]
     }
     async for dialog in client.get_dialogs():
         if dialog.chat.type in chat_types[query]:
