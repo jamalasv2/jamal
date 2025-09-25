@@ -1,7 +1,7 @@
 import requests
 
-from PyroUbot import *
-from PyroUbot.core import *
+from Jamal import *
+from Jamal.core import *
 
 
 __MODULE__ = "catbox"
