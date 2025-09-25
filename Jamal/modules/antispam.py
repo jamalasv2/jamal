@@ -5,7 +5,7 @@ from langs import bhs, get_bhs
 
 from .. import *
 
-__MODULE__ = "antigcast"
+__MODULE__ = "antispam"
 __HELP__ = get_bhs("ankes_cmd")
 
 
@@ -40,6 +40,11 @@ async def _(client, message):
 
     value = query[command]
     text = bhs("ankes_on") if value else bhs("ankes_off")
+
+    current = await get_vars(client.me.id, f"chat_{message.chat.id}")
+
+    if value == current:
+        return await msg.edit(
   
     await set_vars(client.me.id, f"chat_{message.chat.id}", value)
     await msg.delete()
