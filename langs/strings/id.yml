@@ -42,6 +42,7 @@ ankes_list : "{} daftar hitam anti spam\n\n"
 arsip_cmd : "<blockquote>❏ <code>{0}arsip</code> - query\n— untuk memindahkan room chat kedalam folder arsip\n\n❏ <code>{0}unarsip</code> - query\n— untuk mengeluarkan room chat dari folder arsip\n\n**query:**\n— all\n— bot\n— ch\n— gc\n— pc</blockquote>"
 arsip_sukses : "<blockquote>{} pesan diarsipkan\n{} total: {} pesan\n{} type: {}</blockquote>"
 arsip_ggl : "{} ketik queri untuk memasukkan pesan kedalam folder arsip")
+arsip_out : "<blockquote>{} mengeluarkan pesan dari folder arsip\n{} total: {} pesan\n{} type: {}</blockquote>"
 
 #filters
 filters_cmd : "<blockquote>❏ <code>{0}filter</code> on / off\n— untuk mengaktifkan / menonaktifkan modul\n\n❏ <code>{0}addfilter</code> nama filter - pesan teks\n— untuk menambahkan filter dan teks pesan otomatisnya\n\n❏ <code>{0}delfilter</code>\n— untuk menghapus filter\n\n❏ <code>{0}updatefilter</code> nama filter - pesan otomatis\n— untuk mengganti isi pesan otomatis pada filter yang terdaftar\n\n❏ <code>{0}listfilters</code>\n— untuk melihat semua filter yang terdaftar\n\n❏<code>{0}clearfilters</code>\n— untuk menghapus semua filter yang terdaftar\n\n❏ <code>{0}infofilter</code> - nama filter\n— untuk melihat detail filter yang terdaftar\n\n❏ <code>{0}afk</code>\n— untuk mengaktifkan filter afk\n\n❏ <code>{0}unafk</code>\n— untuk menonaktifkan filter afk\n\n\nℹ️ tambahkn teks untuk alasan mengapa anda afk\n**contoh:**\n<code>{0}afk sedang bekerja</code></blockquote>"
