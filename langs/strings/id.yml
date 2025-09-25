@@ -45,7 +45,7 @@ arsip_ggl : "{} ketik queri untuk memasukkan pesan kedalam folder arsip"
 arsip_out : "<blockquote>{} mengeluarkan pesan dari folder arsip\n{} total: {} pesan\n{} type: {}</blockquote>"
 
 #broadcast
-broadcast_cmd : "<blockquote>❏ <code>{0}addbl</code>\n— untuk menambahkan grup ke daftar hitam\n\n❏ <code>{0}unbl</code>\n— untuk menghapus grup dari daftar hitam\n\n❏<code>{0}listbl</code>\n— untuk melihat grup yang terdaftar di daftar hitam\n\n❏ <code>{0}rallbl</code>\n— untuk menghapus semua grup yang terdaftar di daftar hitam\n\n❏ <code>{0}gcast</code>\n— untuk mengirim pesan siaran ke semua grup\n\n❏ <code>{0}ucast</code>\n— untuk mengirim pesan siaran ke semua pengguna</blockquote>"
+broadcast_cmd : "<blockquote>❏ <code>{0}addbl</code>\n— untuk menambahkan grup / pengguna ke daftar hitam broadcast\n\n❏ <code>{0}unbl</code>\n— untuk menghapus grup / pengguna dari daftar hitam broadcast\n\n❏<code>{0}listbl</code>\n— untuk melihat grup yang terdaftar di daftar hitam\n\n❏ <code>{0}rallbl</code>\n— untuk menghapus semua grup yang terdaftar di daftar hitam\n\nx❏ <code>{0}listucast</code>\n— untuk melihat pengguna yang terdaftar di daftar hitam broadcast\n\n❏ <code>{0}rallucast</code>\n— untuk menghapus semua pengguna dari daftar hitam broadcast\n\n❏ <code>{0}gcast</code>\n— untuk mengirim pesan siaran ke semua grup\n\n❏ <code>{0}gucast</code>\n— untuk mengirim pesan siaran ke semua pengguna</blockquote>"
 
 
 #filters
