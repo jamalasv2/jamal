@@ -3,27 +3,11 @@ import asyncio
 from pyrogram.errors.exceptions import FloodWait
 from pyrogram.enums import ChatType
 
-from PyroUbot import *
+from Jamal import *
+from langs import bhs, get_bhs
 
 __MODULE__ = "archive"
-__HELP__ = """
-    <b>『 ʙᴀɴᴛᴜᴀɴ ᴜɴᴛᴜᴋ ᴀʀᴄʜɪᴠᴇ  』</b>
-
-<BLOCKQUOTE><b>❏ ᴘᴇʀɪɴᴛᴀʜ:</b> <code>{0}arsipgc</code>
- ᴜɴᴛᴜᴋ ᴍᴇᴍᴀsᴜᴋᴋᴀɴ sᴇᴍᴜᴀ ɢʀᴏᴜᴘ ᴋᴇ ғᴏʟᴅᴇʀ ᴀʀsɪᴘ
-
-<b>❏ ᴘᴇʀɪɴᴛᴀʜ:</b> <code>{0}unarsipgc</code>
- ᴜɴᴛᴜᴋ ᴍᴇɴɢᴇʟᴜᴀʀᴋᴀɴ sᴇᴍᴜᴀ ɢʀᴏᴜᴘ ᴅᴀʀɪ ғᴏʟᴅᴇʀ ᴀʀsɪᴘ</BLOCKQUOTE>
-
-<BLOCKQUOTE><b>❏ ᴘᴇʀɪɴᴛᴀʜ:</b> <code>{0}arsipchat</code>
- ᴍᴇᴍᴀsᴜᴋᴋᴀɴ sᴇᴍᴜᴀ ᴄʜᴀᴛ ᴋᴇᴅᴀʟᴀᴍ ғᴏʟᴅᴇʀ ᴀʀsɪᴘ
- 
-<b>❏ ᴘᴇʀɪɴᴛᴀʜ:</b> <code>{0}unarsipchat</code>
- ᴍᴇɴɢᴇʟᴜᴀʀᴋᴀɴ sᴡᴍᴜᴀ ᴄʜᴀᴛ ᴅᴀʀɪ ғᴏʟᴅᴇʀ ᴀʀsɪᴘ</BLOCKQUOTE>
- 
-<BLOCKQUOTE><b>❏ ᴘᴇʀɪɴᴛᴀʜ:</b> <code>{0}arsipall</code>
- ᴜɴᴛᴜᴋ ᴍᴇᴍᴀsᴜᴋᴋᴀɴ sᴇᴍᴜᴀ ᴄʜᴀᴛ(ɢʀᴏᴜᴘ, ʙᴏᴛ, ᴄʜᴀɴɴᴇʟ, ᴘᴇʀsᴏɴᴀʟ) ᴋᴇ ғᴏʟᴅᴇʀ ᴀʀsɪᴘ</BLOCKQUOTE>
-"""
+__HELP__ = get_bhs("arsip_cmd")
 
 @PY.UBOT("arsipgc")
 async def _(client, message):
