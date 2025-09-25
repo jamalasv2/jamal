@@ -4,6 +4,7 @@ from pyrogram.errors.exceptions import FloodWait
 from pyrogram.enums import ChatType
 
 from Jamal import *
+from Jamal.core.helpers import PY, get_global_id
 from langs import bhs, get_bhs
 
 __MODULE__ = "archive"
