@@ -118,7 +118,7 @@ async def _(client, message):
     em = get_emo(client)
     Sh = await message.reply(bhs("text_proses").format(em.proses))
     bl_user = await get_ankes(client.me.id)
-    msg = bhs("ankes_list").format(em.keterangan))
+    msg = bhs("ankes_list").format(em.keterangan)
 
     if not bl_user:
         return await Sh.edit(bhs("ankes_zero").format(em.gagal))
