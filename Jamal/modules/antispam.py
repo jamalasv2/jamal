@@ -113,7 +113,7 @@ async def _(client, message):
     await msg.edit(bhs("ankes_rmall").format(em.berhasil))
 
 
-@PY.UBOT("listbl")
+@PY.UBOT("listuser")
 async def _(client, message):
     em = get_emo(client)
     Sh = await message.reply(bhs("text_proses").format(em.proses))
