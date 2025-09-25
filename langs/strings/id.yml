@@ -1,7 +1,7 @@
 name : Indonesia
 
 
-cmds : "<blockquote>**bantuan perintah**</blockquote>"
+cmds : "<blockquote>**bantuan perintah**</blockquote>\n"
 
 #helpcommands
 help_text : "<blockquote>**🗂️ inline menu**\n<code>🛠️ prefix:</code> {}"
