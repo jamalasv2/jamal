@@ -21,7 +21,7 @@ ban : "blokir"
 mute : "bisu"
 
 #antispam
-ankes_cmd : "<blockquote>❏ <code>{0}ankes</code> on / off\n— untuk mengaktifkan/menonaktifkan anti spam\n\n❏ <code>{0}bl</code> id pengguna / balas pesan\n— untuk menambahkan pengguna ke daftar hitam\n\n❏ <code>{0}delbl</code> id pengguna / balas pesan\n— untuk menghapus pengguna dari daftar hitam\n\n❏ <code>{0}listbl</code>\n— untuk menampilkan seluruh pengguna yang terdaftar di daftar hitam\n\n❏<code>{0}ralluser</code>\n— untuk menghapus semua pengguna dari daftar hitam\n\n❏ <code>{0}word</code>\n— untuk menambahkan teks ke daftar hitam\n\n❏ <code>{0}rmword</code>\n— untuk menghapus teks dari daftar hitam\n\n❏ <code>{0}listword</code>\n— untuk menampilkan semua teks yang ada didaftar hitam</blockquote>"
+ankes_cmd : "<blockquote>❏ <code>{0}ankes</code> on / off\n— untuk mengaktifkan/menonaktifkan anti spam\n\n❏ <code>{0}bl</code> id pengguna / balas pesan\n— untuk menambahkan pengguna ke daftar hitam\n\n❏ <code>{0}delbl</code> id pengguna / balas pesan\n— untuk menghapus pengguna dari daftar hitam\n\n❏ <code>{0}listuser</code>\n— untuk menampilkan seluruh pengguna yang terdaftar di daftar hitam\n\n❏<code>{0}ralluser</code>\n— untuk menghapus semua pengguna dari daftar hitam\n\n❏ <code>{0}word</code>\n— untuk menambahkan teks ke daftar hitam\n\n❏ <code>{0}rmword</code>\n— untuk menghapus teks dari daftar hitam\n\n❏ <code>{0}listword</code>\n— untuk menampilkan semua teks yang ada didaftar hitam</blockquote>"
 ankes_onoff : "{} harap gunakan opsi on / off untuk menggunakan modul ini"
 ankes_on : "diaktifkan"
 ankes_off : "dinonaktifkan"
@@ -43,6 +43,10 @@ arsip_cmd : "<blockquote>❏ <code>{0}arsip</code> - query\n— untuk memindahka
 arsip_sukses : "<blockquote>{} pesan diarsipkan\n{} total: {} pesan\n{} type: {}</blockquote>"
 arsip_ggl : "{} ketik queri untuk memasukkan pesan kedalam folder arsip"
 arsip_out : "<blockquote>{} mengeluarkan pesan dari folder arsip\n{} total: {} pesan\n{} type: {}</blockquote>"
+
+#broadcast
+broadcast_cmd : "<blockquote>❏ <code>{0}addbl</code>\n— untuk menambahkan grup ke daftar hitam\n\n❏ <code>{0}unbl</code>\n— untuk menghapus grup dari daftar hitam\n\n❏<code>{0}listbl</code>\n— untuk melihat grup yang terdaftar di daftar hitam\n\n❏ <code>{0}rallbl</code>\n— untuk menghapus semua grup yang terdaftar di daftar hitam
+
 
 #filters
 filters_cmd : "<blockquote>❏ <code>{0}filter</code> on / off\n— untuk mengaktifkan / menonaktifkan modul\n\n❏ <code>{0}addfilter</code> nama filter - pesan teks\n— untuk menambahkan filter dan teks pesan otomatisnya\n\n❏ <code>{0}delfilter</code>\n— untuk menghapus filter\n\n❏ <code>{0}updatefilter</code> nama filter - pesan otomatis\n— untuk mengganti isi pesan otomatis pada filter yang terdaftar\n\n❏ <code>{0}listfilters</code>\n— untuk melihat semua filter yang terdaftar\n\n❏<code>{0}clearfilters</code>\n— untuk menghapus semua filter yang terdaftar\n\n❏ <code>{0}infofilter</code> - nama filter\n— untuk melihat detail filter yang terdaftar\n\n❏ <code>{0}afk</code>\n— untuk mengaktifkan filter afk\n\n❏ <code>{0}unafk</code>\n— untuk menonaktifkan filter afk\n\n\nℹ️ tambahkn teks untuk alasan mengapa anda afk\n**contoh:**\n<code>{0}afk sedang bekerja</code></blockquote>"
