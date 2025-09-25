@@ -48,7 +48,7 @@ async def _(client, message):
   
     await set_vars(client.me.id, f"chat_{message.chat.id}", value)
     await msg.delete()
-    return await message.reply(bhs("ankes_aktif".format(em.berhasil, text, em.group, message.chat.title))
+    return await message.reply(bhs("ankes_aktif").format(em.berhasil, text, em.group, message.chat.title))
 
 
 @PY.UBOT("bl")
