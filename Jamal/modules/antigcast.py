@@ -27,33 +27,23 @@ async def ankes_bl(client, message):
 @PY.UBOT("ankes")
 @PY.GROUP
 async def _(client, message):
-    prs = await EMO.PROSES(client)
-    brhsl = await EMO.BERHASIL(client)
-    ggl = await EMO.GAGAL(client)
-    ktrg = await EMO.BL_KETERANGAN(client)
-    gc = await EMO.BL_GROUP(client)
-    msg = await message.reply(f"<b>{prs}memproses</b>")
+    em = get_emo(client)
+    msg = await message.reply(bhs("text_proses").format(em.proses))
     if len(message.command) <2:
-        return await msg.edit(
-          f"<b>{ggl}ʜᴀʀᴀᴘ ɢᴜɴᴀᴋᴀɴ ᴏᴘsɪ ᴏɴ ᴀᴛᴀᴜ ᴏғғ</b>"
-        )
+        return await msg.edit(bhs("ankes_onoff").format(em.gagal))
 
     query = {"on": True, "off": False}
     command = message.command[1].lower()
   
     if command not in query:
-        return await msg.edit(
-          f"<b>{ggl}ɢᴜɴᴀᴋᴀɴ ᴏᴘsɪ ᴏɴ ᴀᴛᴀᴜ ᴏғғ</b>"
-        )
+        return await msg.edit(bhs("ankes_onoff").format(em.gagal))
 
     value = query[command]
-    text = "ᴅɪᴀᴋᴛɪғᴋᴀɴ" if value else "ᴅɪɴᴏɴᴀᴋᴛɪғᴋᴀɴ"
+    text = bhs("ankes_on") if value else bhs("ankes_off")
   
     await set_vars(client.me.id, f"chat_{message.chat.id}", value)
     await msg.delete()
-    return await message.reply(
-        f"<b>{brhsl}ᴀɴᴛɪɢᴄᴀsᴛ {text}\n{gc}ɢʀᴏᴜᴘ:{message.chat.title}</b>"
-    )
+    return await message.reply(bhs("ankes_aktif".format(em.berhasil, text, em.group, message.chat.title))
 
 
 @PY.UBOT("bl")
