@@ -15,7 +15,7 @@ class Emojik:
         self.proses = "⌛️"
         self.berhasil = "✅"
         self.gagal = "❌"
-        self.broadcast = "📊"
+        self.total = "📊"
         self.group = "🗂"
         self.keterangan = "📝"
         self.menunggu = "⏰"
@@ -30,7 +30,7 @@ class Emojik:
             "proses":     ("EMOJI_PROSES", "5451732530048802485", "⌛️"),
             "berhasil":   ("EMOJI_BERHASIL", "5427009714745517609", "✅"),
             "gagal":      ("EMOJI_GAGAL", "5465665476971471368", "❌"),
-            "broadcast":  ("EMOJI_BROADCAST", "5431577498364158238", "📊"),
+            "total":  ("EMOJI_TOTAL", "5431577498364158238", "📊"),
             "group":      ("EMOJI_GROUP", "5431736674147114227", "🗂"),
             "keterangan": ("EMOJI_KETERANGAN", "5334882760735598374", "📝"),
             "menunggu":   ("EMOJI_MENUNGGU", "5413704112220949842", "⏰"),
