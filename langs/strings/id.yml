@@ -22,7 +22,10 @@ mute : "bisu"
 
 #antispam
 ankes_cmd : "<blockquote>❏ <code>{0}ankes</code> on / off\n— untuk mengaktifkan/menonaktifkan anti spam\n\n❏ <code>{0}bl</code> id pengguna / balas pesan\n— untuk menambahkan pengguna ke daftar hitam\n\n❏ <code>{0}delbl</code> id pengguna / balas pesan\n— untuk menghapus pengguna dari daftar hitam\n\n❏ <code>{0}listbl</code>\n— untuk menampilkan seluruh pengguna yang berada di daftar hitam\n\n❏<code>{0}ralluser</code>\n— untuk menghapus semua pengguna dari daftar hitam\n\n❏ <code>{0}word</code>\n— untuk menambahkan teks ke daftar hitam\n\n❏ <code>{0}rmword</code>\n— untuk menghapus teks dari daftar hitam\n\n❏ <code>{0}listword</code>\n— untuk menampilkan semua teks yang ada didaftar hitam</blockquote>"
-
+ankes_onoff : "{} harap gunakan opsi on / off untuk menggunakan modul ini"
+ankes_on : "diaktifkan"
+ankes_off : "dinonaktifkan"
+ankes_aktif : "<blockquote>{} antispam {}\n{} group: {}</blockquote>"
 
 
 #filters
