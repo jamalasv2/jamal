@@ -1,7 +1,7 @@
 name : Indonesia
 
 
-cmds : "**bantuan perintah**"
+cmds : "<blockquote>**bantuan perintah**</blockquote>"
 
 #helpcommands
 help_text : "<blockquote>**🗂️ inline menu**\n<code>🛠️ prefix:</code> {}"
@@ -37,6 +37,10 @@ ankes_error : "{} ERROR:\n{}"
 ankes_zero : "{} tidak ada satupun pengguna yang terdaftar di daftat hitam"
 ankes_rmall : "{} berhasil menghapus semua pengguna dari daftar hitam"
 ankes_list : "{} daftar hitam anti spam\n\n"
+
+#archive
+arsip_cmd : "<blockquote>❏ <code>{0}arsip</code> - query\n— untuk memindahkan room chat kedalam folder arsip\n\n❏ <code>{0}unarsip</code> - query\n— untuk mengeluarkan room chat dari folder arsip\n\n**query:**\n— all\n— bot\n— ch\n— gc\n— pc</blockquote>"
+
 
 #filters
 filters_cmd : "<blockquote>❏ <code>{0}filter</code> on / off\n— untuk mengaktifkan / menonaktifkan modul\n\n❏ <code>{0}addfilter</code> nama filter - pesan teks\n— untuk menambahkan filter dan teks pesan otomatisnya\n\n❏ <code>{0}delfilter</code>\n— untuk menghapus filter\n\n❏ <code>{0}updatefilter</code> nama filter - pesan otomatis\n— untuk mengganti isi pesan otomatis pada filter yang terdaftar\n\n❏ <code>{0}listfilters</code>\n— untuk melihat semua filter yang terdaftar\n\n❏<code>{0}clearfilters</code>\n— untuk menghapus semua filter yang terdaftar\n\n❏ <code>{0}infofilter</code> - nama filter\n— untuk melihat detail filter yang terdaftar\n\n❏ <code>{0}afk</code>\n— untuk mengaktifkan filter afk\n\n❏ <code>{0}unafk</code>\n— untuk menonaktifkan filter afk\n\n\nℹ️ tambahkn teks untuk alasan mengapa anda afk\n**contoh:**\n<code>{0}afk sedang bekerja</code></blockquote>"
