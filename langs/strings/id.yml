@@ -34,7 +34,7 @@ ankes_blfail : "{} ketik id pengguna / balas pesan untuk menambahkan pengguna ke
 ankes_delfail : "{} ketik id pengguna / balas pesan untuk menghapus pengguna dari daftar hitam"
 ankes_usrremove : "{} <code>{}</code> dihapus dari daftar hitam"
 ankes_error : "{} ERROR:\n{}"
-ankes_zero : "{} tidak ada satupun pengguna yang terdaftar di daftat hitam"
+ankes_zero : "{} tidak ada satupun pengguna yang terdaftar di daftar hitam"
 ankes_rmall : "{} berhasil menghapus semua pengguna dari daftar hitam"
 ankes_list : "{} daftar hitam anti spam\n\n"
 
