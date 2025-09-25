@@ -3,7 +3,7 @@ from time import sleep
 
 from pyrogram.types import Message
 
-from PyroUbot import *
+from Jamal import *
 
 
 @PY.UBOT("sayang")
