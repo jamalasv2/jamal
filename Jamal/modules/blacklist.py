@@ -1,8 +1,8 @@
 from pyrogram import *
 
-from PyroUbot.core.database.saved import *
-from PyroUbot.core.helpers.class_emoji import *
-from PyroUbot import *
+from Jamal.database.saved import *
+from Jamal.core.helpers.class_emoji import *
+from Jamal import *
 
 __MODULE__ = ""
 __HELP__ = """
