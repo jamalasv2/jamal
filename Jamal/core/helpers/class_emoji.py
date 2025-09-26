@@ -4,54 +4,117 @@ from Jamal import *
 import asyncio
 
 
-class emoji:
-    def __init__(self):
-        # fallback default (emoji biasa, tanpa premium)
-        self.ping = "🏓"
-        self.mention = "👤"
-        self.ubot = "🤖"
-        self.proses = "⌛️"
-        self.berhasil = "✅"
-        self.gagal = "❌"
-        self.broadcast = "📊"
-        self.bl_group = "🗂"
-        self.bl_keterangan = "📝"
-        self.menunggu = "⏰"
-
-    def initialize(self, client):
-        try:
-            loop = asyncio.get_running_loop()
-            future = asyncio.run_coroutine_threadsafe(
-                self._initialize_async(client), loop
-            )
-            future.result()
-        except RuntimeError:
-            asyncio.run(self._initialize_async(client))
-
-    async def _initialize_async(self, client):
-        # Ambil dari DB (kalau ada), fallback ke ID default
-        ping_id   = await get_vars(client.me.id, "EMOJI_PING")        or "5999035921905749785"
-        mention_id= await get_vars(client.me.id, "EMOJI_MENTION")     or "5998830540864622070"
-        ubot_id   = await get_vars(client.me.id, "EMOJI_USERBOT")     or "6001409398142930455"
-        proses_id = await get_vars(client.me.id, "EMOJI_PROSES")      or "5451732530048802485"
-        berhasil_id=await get_vars(client.me.id, "EMOJI_BERHASIL")    or "5427009714745517609"
-        gagal_id  = await get_vars(client.me.id, "EMOJI_GAGAL")       or "5465665476971471368"
-        bc_id     = await get_vars(client.me.id, "EMOJI_BROADCAST")   or "5431577498364158238"
-        bl_group_id=await get_vars(client.me.id, "EMOJI_GROUP")       or "5431736674147114227"
-        bl_ket_id = await get_vars(client.me.id, "EMOJI_KETERANGAN")  or "5334882760735598374"
-        menunggu_id=await get_vars(client.me.id, "EMOJI_MENUNGGU")    or "5413704112220949842"
-
+class EMO:
+    async def PING(client):
+        emot_1 = await get_vars(client.me.id, "EMOJI_PING")
+        emot_ping = emot_1 if emot_1 else "5999035921905749785"
         if client.me.is_premium:
-            self.ping           = f"<emoji id={ping_id}>🏓</emoji>"
-            self.mention        = f"<emoji id={mention_id}>👤</emoji>"
-            self.ubot           = f"<emoji id={ubot_id}>🤖</emoji>"
-            self.proses         = f"<emoji id={proses_id}>⌛️</emoji>"
-            self.berhasil       = f"<emoji id={berhasil_id}>✅</emoji>"
-            self.gagal          = f"<emoji id={gagal_id}>❌</emoji>"
-            self.broadcast      = f"<emoji id={bc_id}>📊</emoji>"
-            self.bl_group       = f"<emoji id={bl_group_id}>🗂</emoji>"
-            self.bl_keterangan  = f"<emoji id={bl_ket_id}>📝</emoji>"
-            self.menunggu       = f"<emoji id={menunggu_id}>⏰</emoji>"
+            _pong = f"<emoji id={emot_ping}>🏓</emoji>"
         else:
-            # fallback: sudah diisi default di __init__
-            pass
+            _pong = "🏓"
+        return _pong
+
+
+    async def MENTION(client):
+        emot_2 = await get_vars(client.me.id, "EMOJI_MENTION")
+        emot_tion = emot_2 if emot_2 else "5998830540864622070"
+        if client.me.is_premium:
+            _men = f"<emoji id={emot_tion}>👤</emoji>"
+        else:
+            _men = "👤"
+        return _men
+
+
+    async def UBOT(client):
+        emot_3 = await get_vars(client.me.id, "EMOJI_USERBOT")
+        emot_xbot = emot_3 if emot_3 else "6001409398142930455"
+        if client.me.is_premium:
+            _ubt = f"<emoji id={emot_xbot}>🤖</emoji>"
+        else:
+            _ubt = "🤖"
+        return _ubt
+
+    
+    async def PROSES(client):
+        emot_4 = await get_vars(client.me.id, "EMOJI_PROSES")
+        emot_prs = emot_4 if emot_4 else "5451732530048802485"
+        if client.me.is_premium:
+            _prses = f"<emoji id={emot_prs}>⌛️</emoji>"
+        else:
+            _prses = "⌛️"
+        return _prses
+
+    
+    async def BERHASIL(client):
+        emot_5 = await get_vars(client.me.id, "EMOJI_BERHASIL")
+        emot_brhsl = emot_5 if emot_5 else "5427009714745517609"
+        if client.me.is_premium:
+            _berhasil = f"<emoji id={emot_brhsl}>✅</emoji>"
+        else:
+            _berhasil = "✅"
+        return _berhasil
+
+
+    async def GAGAL(client):
+        emot_6 = await get_vars(client.me.id, "EMOJI_GAGAL")
+        emot_ggl = emot_6 if emot_6 else "5465665476971471368"
+        if client.me.is_premium:
+            _gagal = f"<emoji id={emot_ggl}>❌</emoji>"
+        else:
+            _gagal = "❌"
+        return _gagal
+
+
+    async def BROADCAST(client):
+        emot_7 = await get_vars(client.me.id, "EMOJI_BROADCAST")
+        emot_gcs = emot_7 if emot_7 else "5431577498364158238"
+        if client.me.is_premium:
+            _bc = f"<emoji id={emot_gcs}>📊</emoji>"
+        else:
+            _bc = "📊"
+        return _bc
+
+
+    async def BL_GROUP(client):
+        emot_8 = await get_vars(client.me.id, "EMOJI_GROUP")
+        emot_gc = emot_8 if emot_8 else "5431736674147114227"
+        if client.me.is_premium:
+            _grp = f"<emoji id={emot_gc}>🗂</emoji>"
+        else:
+            _grp = "🗂"
+        return _grp
+
+
+    async def BL_KETERANGAN(client):
+        emot_9 = await get_vars(client.me.id, "EMOJI_KETERANGAN")
+        emot_ktrng = emot_9 if emot_9 else "5334882760735598374"
+        if client.me.is_premium:
+            _ktrn = f"<emoji id={emot_ktrng}>📝</emoji>"
+        else:
+            _ktrn = "📝"
+        return _ktrn
+     
+
+    async def MENUNGGU(client):
+        emot_10 = await get_vars(client.me.id, " EMOJI_MENUNGGU")
+        emot_mng = emot_10 if emot_10 else "5413704112220949842"
+        if client.me.is_premium:
+            _ktr = f"<emoji id={emot_mng}>⏰</emoji>"
+        else:
+            _ktr = "⏰"
+        return _ktr
+
+
+async def get_emo(client):
+    return {
+        "proses": await EMO.PROSES(client),
+        "berhasil": await EMO.BERHASIL(client),
+        "gagal": await EMO.GAGAL(client),
+        "keterangan": await EMO.BL_KETERANGAN(client),
+        "group": await EMO.BL_GROUP(client),
+        "ping": await EMO.PING(client),
+        "mention": await EMO.MENTION(client),
+        "ubot": await EMO.UBOT(client),
+        "bc": await EMO.BROADCAST(client),
+        "menunggu": await EMO.MENUNGGU(client),
+    }
