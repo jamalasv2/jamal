@@ -3,7 +3,7 @@ import asyncio
 from pyrogram.types import ChatPermissions
 
 from Jamal.config import DEVS
-from Jamal.core.helpers.class_emoji import get_emo
+from Jamal.core.helpers.class_emoji import *
 from .. import *
 from langs import bhs, get_bhs
 
