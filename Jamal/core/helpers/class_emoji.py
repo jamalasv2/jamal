@@ -115,6 +115,9 @@ class EMO:
         return _total
 
 
+    async def PERINGATAN
+
+
 async def get_emo(client):
     return {
         "proses": await EMO.PROSES(client),
