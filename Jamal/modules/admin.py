@@ -3,7 +3,7 @@ import asyncio
 from pyrogram.types import ChatPermissions
 
 from Jamal.config import DEVS
-from Jamal.core.helpers.class_emoji import *
+from Jamal.core.helpers.class_emoji import get_emo
 from .. import *
 from langs import bhs, get_bhs
 
@@ -14,8 +14,7 @@ __HELP__ = get_bhs("admins_cmd")
 @PY.UBOT("kick|dkick", sudo=True)
 @PY.GROUP
 async def _(client, message):
-    em = emoji()
-    em.initialize(client)
+    em = get_emo(client)
     kt = bhs("kick")
     user_id, reason = await extract_user_and_reason(message)
     if not user_id:
