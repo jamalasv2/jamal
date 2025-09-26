@@ -14,7 +14,8 @@ __HELP__ = get_bhs("admins_cmd")
 @PY.UBOT("kick|dkick", sudo=True)
 @PY.GROUP
 async def _(client, message):
-    em = get_emo(client)
+    em = emoji()
+    em.initialize(client)
     kt = bhs("kick")
     user_id, reason = await extract_user_and_reason(message)
     if not user_id:
