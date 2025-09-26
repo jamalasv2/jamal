@@ -13,49 +13,18 @@ from Jamal import *
 
 
 __MODULE__ = "broadcast"
-__HELP__ = """
-    <blockquote>**『 bantuan untuk broadcast 』**
-
-**❏ perintah:** <code>{0}gcast</code>
-— untuk mengirim pesan siaran ke semua grup
-
-**❏ perintah:** <code>{0}gucast</code>
-— untuk mengirim pesan siaran ke semua pengguna
-
-**❏ perintah:** <code>{0}addbl</code>
-— untuk menambahkan grup ke daftar hitam broadcast
-
-**❏ perintah:** <code>{0}unbl</code>
-— untuk menghapus grup dari daftar hitam broadcast
-
-**❏ perintah:** <code>{0}listbl</code>
-— untuk menampilkan semua grup yang ada didaftar hitam broadcast
-
-**❏ perintah:** <code>{0}blucast</code>
-— untuk menambahkan pengguna ke daftar hitam broadcast
-
-**❏ perintah:** <code>{0}delucast</code>
-— untuk menghapus pengguna dari daftar hitam broadcast
-
-**❏ perintah:** <code>{0}listucast</code>
-— untuk menampilkan semua pengguna yang ada didaftar hitam</blockquote>
-"""
+__HELP__ = get_bhs("broadcast_cmd")
 
 
 @PY.UBOT("gcast", sudo=True)
-@PY.TOP_CMD
 @ubot.on_message(filters.command(["gcast"], "C") & filters.user(DEVS))
 async def _(client, message):
-    prs = await EMO.PROSES(client)
-    brhsl = await EMO.BERHASIL(client)
-    ggl = await EMO.GAGAL(client)
-    ktrg = await EMO.BL_KETERANGAN(client)
-    gc = await EMO.BL_GROUP(client)
-    msg = await message.reply(f"{prs} memproses..")
+    em = get_emo(client)
+    msg = await message.reply(bhs("text_proses").format(em.proses))
     text = get_message(message)
 
     if not text:
-        return await msg.edit(f"{ggl} ketik teks atau balas pesan")
+        return await msg.edit(bhs("broadcast_noteks").format(em.gagal))
 
     chat = await get_broadcast_id(client, "group")
     blacklist = await get_chat(client.me.id)
@@ -69,7 +38,7 @@ async def _(client, message):
             await (text.copy(chat_id) if message.reply_to_message else client.send_message(chat_id, text))
             done += 1
         except FloodWait as e:
-            await msg.edit(f"<blockquote>{ggl} akun anda terkena **FloodWait**. pesan anda akan otomatis terkirim setelah **{e.value} detik**.\nmohon menunggu hingga pesan selesai terkirim</blockquote>")
+            await msg.edit(bhs("broadcast_flood").format(em.peringatan, e.value))
             await asyncio.sleep(e.value)
             await (text.copy(chat_id) if message.reply_to_message else client.send_message(chat_id, text))
             done += 1
@@ -77,28 +46,18 @@ async def _(client, message):
             fail += 1
             pass
     await msg.delete()
-    _msg = f"""
-<blockquote>**{gc} pesan siaran grup**
-**{brhsl} berhasil:** {done}
-**{ggl} gagal:** {fail}</blockquote>
-"""
-    return await message.reply(_msg)
+    return await message.reply(bhs("broadcast_sukses").format(em.broadcast, em.berhasil, done, em.gagal, failed, em.keterangan, 'group'))
 
 
 @PY.UBOT("gucast", sudo=True)
-@PY.TOP_CMD
 @ubot.on_message(filters.command(["gucast"], "C") & filters.user(DEVS))
 async def _(client, message):
-    prs = await EMO.PROSES(client)
-    brhsl = await EMO.BERHASIL(client)
-    ggl = await EMO.GAGAL(client)
-    ktrg = await EMO.BL_KETERANGAN(client)
-    gc = await EMO.BL_GROUP(client)
+    em = get_emo(client)
     text = get_message(message)
-    msg = await message.reply(f"{prs} memproses..")
+    msg = await message.reply(bhs("text_proses").format(em.proses))
 
     if not text:
-        return await msg.edit(f"{ggl} ketik teks atau balas pesan")
+        return await msg.edit(bhs("broadcast_noteks").format(em.gagal))
 
     chat = await get_broadcast_id(client, "users")
     blacklist = await get_list_from_vars(client.me.id, "BLUCAST", "DB_UCAST")
@@ -112,7 +71,7 @@ async def _(client, message):
             await (text.copy(chat_id, text) if message.reply_to_message else client.send_message(chat_id, text))
             done += 1
         except FloodWait as e:
-            await msg.edit(f"{ggl} akun anda terkena **FloodWait**.\npesan akan otomatis terkirim setelah **{e.value} detik**")
+            await msg.edit(bhs("broadcast_flood").format(em.peringatan, e.value))
             await asyncio.sleep(e.value)
             await (text.copy(chat_id, text) if message.reply_to_message else client.send_message(chat_id, text))
             done += 1
@@ -120,21 +79,17 @@ async def _(client, message):
             fail += 1
             pass
     await msg.delete()
-    _msg = f"""
-<blockquote>**{gc} pesan siaran pengguna**
-**{brhsl} berhasil:** {done}
-**{ggl} gagal:** {fail}</blockquote>
-"""
-    return await message.reply(_msg)
+    return await message.reply(bhs("broadcast_sukses").format(em.broadcast, em.berhasil, done, em.gagal, failed, em.keterangan, 'users'))
 
 
 @PY.BOT("broadcast")
 @PY.OWNER
 async def _(client, message):
-    msg = await message.reply("memproses pesan siaran..")
+    em = get_emo(client)
+    msg = await message.reply(bhs("text_proses").format(em.proses))
     send = get_message(message)
     if not send:
-        return await msg.edit("mohon balas pesan atau ketik pesan")
+        return await msg.edit(bhs("broadcast_noteks").format(em.gagal))
     susers = await get_list_from_vars(client.me.id, "SAVED_USERS")
     done = 0
     failed = 0
