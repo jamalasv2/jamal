@@ -27,7 +27,7 @@ async def ankes_bl(client, message):
 @PY.UBOT("ankes")
 @PY.GROUP
 async def _(client, message):
-    em = get_emo(client)
+    em = Emojik()
     await em.initialize(client)
     msg = await message.reply(bhs("text_proses").format(em.proses))
     if len(message.command) <2:
