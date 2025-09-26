@@ -95,14 +95,24 @@ class EMO:
         return _ktrn
      
 
-    async def MENUNGGU(client):
-        emot_10 = await get_vars(client.me.id, " EMOJI_MENUNGGU")
+    async def WAKTU(client):
+        emot_10 = await get_vars(client.me.id, "EMOJI_WAKTU")
         emot_mng = emot_10 if emot_10 else "5413704112220949842"
         if client.me.is_premium:
             _ktr = f"<emoji id={emot_mng}>⏰</emoji>"
         else:
             _ktr = "⏰"
         return _ktr
+
+
+    async def TOTAL(client):
+        emot_11 = await get_vars(client.me.id, "EMOJI_TOTAL")
+        emot_ttl = emot_11 if emot_11 else "5472404950673791399"
+        if client.me.is_premium:
+            _total = f"<emoji_id={emot_ttl}>🧮</emoji>"
+        else:
+            _total = "🧮"
+        return _total
 
 
 async def get_emo(client):
@@ -115,6 +125,7 @@ async def get_emo(client):
         "ping": await EMO.PING(client),
         "mention": await EMO.MENTION(client),
         "ubot": await EMO.UBOT(client),
-        "bc": await EMO.BROADCAST(client),
-        "menunggu": await EMO.MENUNGGU(client),
+        "broadcast": await EMO.BROADCAST(client),
+        "waktu": await EMO.WAKTU(client),
+        "total": await EMO.TOTAL(client),
     }
