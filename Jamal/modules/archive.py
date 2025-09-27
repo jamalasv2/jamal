@@ -13,7 +13,7 @@ __HELP__ = get_bhs("arsip_cmd")
 
 @PY.UBOT("arsip")
 async def _(client, message):
-    em = get_emo(client)
+    em = await get_emo(client)
     msg = await message.reply(bhs("text_proses").format(em.proses))
 
     if len(message.command) < 2:
@@ -92,7 +92,7 @@ async def _(client, message):
 
 @PY.UBOT("unarsip")
 async def _(client, message):
-    em = get_emo(client)
+    em = await get_emo(client)
     msg = await message.reply(bhs("text_proses").format(em.proses))
 
     if len(message.command) < 2:
