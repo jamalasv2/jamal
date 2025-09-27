@@ -1,7 +1,7 @@
 import os
 
 DEVS = list(map(int, os.getenv("DEVS", "6625839378").split()))
-
+SUDO = list(map(int, os.getenv("SUDO", "6625839378").split()))
 
 API_ID = int(os.getenv("API_ID", "26394847"))
 API_HASH = os.getenv("API_HASH", "cd52ac30233feb251a5c7fbdbdacb414")
