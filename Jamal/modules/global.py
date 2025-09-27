@@ -5,7 +5,7 @@ from pyrogram.enums import *
 from pyrogram.errors import *
 from pyrogram.types import *
 
-from PyroUbot import *
+from Jamal import *
 
 
 __MODULE__ = "global"
