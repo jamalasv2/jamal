@@ -1,4 +1,4 @@
-from PyroUbot import *
+from Jamal import *
 
 
 __MODULE__ = "game"
