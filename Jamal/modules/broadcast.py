@@ -11,6 +11,8 @@ from Jamal.database import *
 from Jamal.config import DEVS, BLACKLIST_CHAT
 from Jamal import *
 
+from langs import bhs, get_bhs
+
 
 __MODULE__ = "broadcast"
 __HELP__ = get_bhs("broadcast_cmd")
