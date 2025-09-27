@@ -211,15 +211,15 @@ async def _(client, message):
 
 @PY.UBOT("listbl", sudo=True)
 async def _(client, message):
-    prs = await EMO.PROSES(client)
-    Tm = await message.reply(f"<b>ᴍᴇᴍᴘʀᴏsᴇs..</b>")
+    em = await get_emo(client)
+    Tm = await message.reply(bhs("text_proses").format(em.proses))
     msg = f"<b>❏ total grup yang berada didaftar hitam: {len(await get_chat(client.me.id))}</b>\n\n"
     for X in await get_chat(client.me.id):
         try:
             get = await client.get_chat(X)
-            msg += f"<b>├ {get.title}</b> | <code>{get.id}</code>\n"
+            msg += f"<b>— {get.title}</b> | <code>{get.id}</code>\n"
         except:
-            msg += f"├<code> {X}</code>\n"
+            msg += f"— <code>{X}</code>\n"
     await Tm.delete()
     await message.reply(f"<BLOCKQUOTE>{msg}</BLOCKQUOTE>")
 
@@ -235,9 +235,9 @@ async def _(client, message):
     for user_id in ucast:
         try:
             get = await client.get_users(user_id)
-            Tm += f"├ {get.first_name} {get.last_name or ''} | <code>{get.id}</code>\n"
+            Tm += f"— {get.first_name} {get.last_name or ''} | <code>{get.id}</code>\n"
         except:
-            Tm += f"├ <code>{user_id}</code>\n"
+            Tm += f"— <code>{user_id}</code>\n"
     await msg.delete()
     return await message.reply(f"<BLOCKQUOTE>{Tm}</BLOCKQUOTE>")
 
