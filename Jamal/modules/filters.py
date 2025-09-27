@@ -97,7 +97,7 @@ async def filter_trigger(client, message):
 @PY.UBOT("filter", sudo=True)
 @PY.GROUP
 async def _(client, message):
-    em = get_emo(client)
+    em = await get_emo(client)
     msg = await message.reply(bhs("text_proses").format(em.proses))
 
     if len(message.command) < 2:
@@ -127,7 +127,7 @@ async def _(client, message):
 
 @PY.UBOT("addfilter", sudo=True)
 async def _(client, message):
-    em = get_emo(client)
+    em = await get_emo(client)
     if len(message.command) < 2 and not message.reply_to_message:
         return await message.reply(bhs("filters_addfail").format(em.gagal, 'addfilter'))
 
@@ -174,7 +174,7 @@ async def _(client, message):
 
 @PY.UBOT("updatefilter", sudo=True)
 async def updatefilter_handler(client, message: Message):
-    em = get_emo(client)
+    em = await get_emo(client)
     if len(message.command) < 2 and not message.reply_to_message:
         return await message.reply(bhs("filters_addfail").format(em.gagal, 'updatefilter'))
 
@@ -221,7 +221,7 @@ async def updatefilter_handler(client, message: Message):
 
 @PY.UBOT("delfilter", sudo=True)
 async def delfilter_handler(client, message: Message):
-    em = get_emo(client)
+    em = await get_emo(client)
     if len(message.command) < 2:
         return await message.reply(bhs("filters_delfail").format(em.gagal, 'delfilter'))
 
@@ -233,7 +233,7 @@ async def delfilter_handler(client, message: Message):
 
 @PY.UBOT("clearfilters", sudo=True)
 async def clearfilters_handler(client, message: Message):
-    em = get_emo(client)
+    em = await get_emo(client)
     data = await all_filters(client.me.id)
     if not data:
         return await message.reply(bhs("filters_zero").format(em.gagal))
@@ -245,7 +245,7 @@ async def clearfilters_handler(client, message: Message):
 
 @PY.UBOT("listfilters", sudo=True)
 async def listfilters_handler(client, message: Message):
-    em = get_emo(client)
+    em = await get_emo(client)
     data = await all_filters(client.me.id)
     if not data:
         return await message.reply(bhs("filters_zero").format(em.gagal))
@@ -259,7 +259,7 @@ async def listfilters_handler(client, message: Message):
 
 @PY.UBOT("infofilter", sudo=True)
 async def filterinfo_handler(client, message: Message):
-    em = get_emo(client)
+    em = await get_emo(client)
     if len(message.command) < 2:
         return await message.reply(bhs("filters_info").format(em.gagal))
 
