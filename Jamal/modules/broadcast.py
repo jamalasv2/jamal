@@ -194,26 +194,60 @@ async def _(client, message):
         except Exception as error:
             return await tm.edit(bhs("blacklist_failed").format(em.gagal, error))
 
+    if message.chat.type in (ChatType.GROUP, ChatType.SUPERGROUP):
+        blacklist = await get_list_from_vars(client.me.id, "BL_UCAST", "DB_UCAST")
+        try:
+            user = await client.get_users(per)
+        except Exception as error:
+            return await tm.edit(bhs("text_error").format(em.gagal, error))
+
+        if user.id not in blacklist:
+            return await tm.edit(bhs("blacklist_unfail").format(em.gagal, user.id))
+
+        try:
+            await remove_from_vars(client.me.id, "BL_UCAST", user.id, "DB_UCAST")
+            await tm.edit(bhs("blacklist_remove").format(em.berhasil, user.id))
+            await asyncio.sleep(8)
+            return await tm.delete()
+
+        except Exception as error:
+            return await tm.edit(bhs("blacklist_failed").format(em.gagal, error))
+
 
 @PY.UBOT("rallbl", sudo=True)
 async def _(client, message):
-    prs = await EMO.PROSES(client)
-    brhsl = await EMO.BERHASIL(client)
-    ggl = await EMO.GAGAL(client)
-    msg = await message.reply(f"{prs}<b>ᴍᴇᴍᴘʀᴏsᴇs..</b>")
+    em = await get_emo(client)
+    msg = await message.reply(bhs("text_proses").format(em.proses))
     get_bls = await get_chat(client.me.id)
     if len(get_bls) == 0:
-        return await msg.edit(f"{ggl} daftar hitam broadcast anda kosong")
+        return await msg.edit(bhs("blacklist_gczero").format(em.gagal))
     for X in get_bls:
         await remove_chat(client.me.id, X)
-    await msg.edit(f"<BLOCKQUOTE>{brhsl} daftar hitam broadcast berhasil dihapus</BLOCKQUOTE>")
+        return await msg.edit(bhs("blacklist_clear").format(em.berhasil, 'groups'))
+
+
+@PY.UBOT("rallucast", sudo=True)
+async def _(client, message):
+    em = await get_emo(client)
+    msg = await message.reply(bhs("text_proses").format(em.proses))
+    get_bls = await get_list_from_vars(client.me.id, "BL_UCAST", "DB_UCAST")
+    if len(get_bls) == 0:
+        return await msg.edit(bhs("blacklist_pczero").format(em.gagal))
+
+    for X in get_bls:
+        await remove_from_vars(client.me.id, "BL_UCAST", X, "DB_UCAST")
+        await msg.delete()
+        return await message.reply(bhs("blacklist_clear").format(em.berhasil, 'users'))
 
 
 @PY.UBOT("listbl", sudo=True)
 async def _(client, message):
     em = await get_emo(client)
     Tm = await message.reply(bhs("text_proses").format(em.proses))
-    msg = f"<b>❏ total grup yang berada didaftar hitam: {len(await get_chat(client.me.id))}</b>\n\n"
+    msg = bhs("blacklist_pc").format(em.keterangan, 'groups')
+    if len(await get_chat(client.me.id) == 0:
+           return await Tm.edit(bhs("blacklist_gczero").format(em.gagal))
+
     for X in await get_chat(client.me.id):
         try:
             get = await client.get_chat(X)
@@ -226,11 +260,12 @@ async def _(client, message):
 
 @PY.UBOT("listucast")
 async def _(client, message):
-    msg = await message.reply("memproses")
-    ucast = await get_list_from_vars(client.me.id, "BLUCAST", "DB_UCAST")
-    Tm = f"<b>❏ daftar hitam ucast</b>\n\n"
+    em = await get_emo(client)
+    msg = await message.reply(bhs("text_proses").format(em.proses))
+    ucast = await get_list_from_vars(client.me.id, "BL_UCAST", "DB_UCAST")
+    Tm = bhs("blacklist_pc").format(em.keterangan, 'users')
     if not ucast:
-        return await msg.edit(f"daftar hitam kosong")
+        return await msg.edit(bhs("blacklist_pczero").format(em.gagal))
 
     for user_id in ucast:
         try:
