@@ -227,7 +227,7 @@ async def delfilter_handler(client, message: Message):
 
     keyword = message.command[1].lower()
     await rm_filter(client.me.id, keyword)
-    await message.reply(bhs("filters_delsucces").format(em.berhasil))
+    await message.reply(bhs("filters_delsucces").format(em.berhasil, keyword))
 
 
 
