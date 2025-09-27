@@ -21,7 +21,7 @@ __HELP__ = get_bhs("broadcast_cmd")
 @PY.UBOT("gcast", sudo=True)
 @ubot.on_message(filters.command(["gcast"], "C") & filters.user(DEVS))
 async def _(client, message):
-    em = get_emo(client)
+    em = await get_emo(client)
     msg = await message.reply(bhs("text_proses").format(em.proses))
     text = get_message(message)
 
@@ -54,7 +54,7 @@ async def _(client, message):
 @PY.UBOT("gucast", sudo=True)
 @ubot.on_message(filters.command(["gucast"], "C") & filters.user(DEVS))
 async def _(client, message):
-    em = get_emo(client)
+    em = await get_emo(client)
     text = get_message(message)
     msg = await message.reply(bhs("text_proses").format(em.proses))
 
@@ -87,7 +87,7 @@ async def _(client, message):
 @PY.BOT("broadcast")
 @PY.OWNER
 async def _(client, message):
-    em = get_emo(client)
+    em = await get_emo(client)
     msg = await message.reply(bhs("text_proses").format(em.proses))
     send = get_message(message)
     if not send:
@@ -130,7 +130,7 @@ async def _(client, message):
 @PY.UBOT("addbl", sudo=True)
 @ubot.on_message(filters.command(["addbl"], "C") & filters.user(DEVS))
 async def _(client, message):
-    em = get_emo(client)
+    em = await get_emo(client)
     per = message.command[1] if len(message.command) > 1 else message.chat.id
     tm = await message.reply(bhs("text_proses").format(em.proses))
     if message.chat.type == (ChatType.GROUP, ChatType.SUPERGROUP):
@@ -177,7 +177,7 @@ async def _(client, message):
 @PY.UBOT("unbl", sudo=True)
 @ubot.on_message(filters.command(["unbl"], "C") & filters.user(DEVS))
 async def _(client, message):
-    em = get_emo(client)
+    em = await get_emo(client)
     per = message.command[1] if len(message.command) > 1 else message.chat.id
     tm = await message.reply(bhs("text_proses").format(em.proses))
     if message.chat.type == (ChatType.GROUP, ChatType.SUPERGROUP):
