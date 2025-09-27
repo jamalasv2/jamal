@@ -22,7 +22,7 @@ __HELP__ = get_bhs("filters_cmd")
 async def _(client, message):
     reason = get_arg(message)
     db_afk = {"time": time(), "reason": reason}
-    em = get_emo(client)
+    em = await get_emo(client)
     tks = reason if reason else "—"
     teks = bhs("filters_afk").format(em.peringatan, em.keterangan, tks)
     await set_vars(client.me.id, "AFK", db_afk)
@@ -32,7 +32,7 @@ async def _(client, message):
 
 @PY.AFK()
 async def _(client, message):
-    em = get_emo(client)
+    em = await get_emo(client)
     vars = await get_vars(client.me.id, "AFK")
     if vars:
         afk_time = vars.get("time")
@@ -44,7 +44,7 @@ async def _(client, message):
 
 @PY.UBOT("unafk")
 async def _(client, message):
-    em = get_emo(client)
+    em = await get_emo(client)
     vars = await get_vars(client.me.id, "AFK")
     if vars:
         afk_time = vars.get("time")
