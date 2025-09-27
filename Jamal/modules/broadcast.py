@@ -45,7 +45,7 @@ async def _(client, message):
             await (text.copy(chat_id) if message.reply_to_message else client.send_message(chat_id, text))
             done += 1
         except Exception as e:
-            fail += 1
+            failed += 1
             pass
     await msg.delete()
     return await message.reply(bhs("broadcast_sukses").format(em.broadcast, em.berhasil, done, em.gagal, failed, em.keterangan, 'group'))
@@ -78,7 +78,7 @@ async def _(client, message):
             await (text.copy(chat_id, text) if message.reply_to_message else client.send_message(chat_id, text))
             done += 1
         except Exception:
-            fail += 1
+            failed += 1
             pass
     await msg.delete()
     return await message.reply(bhs("broadcast_sukses").format(em.broadcast, em.berhasil, done, em.gagal, failed, em.keterangan, 'users'))
@@ -145,7 +145,7 @@ async def _(client, message):
 
         try:
             await add_chat(client.me.id, chat.id)
-            await tm.edit(bhs("blacklist_group").format(em.berhasil, titit.title))
+            await tm.edit(bhs("blacklist_group").format(em.berhasil, chat.title))
             await asyncio.sleep(8)
             await message.delete()
             return await tm.delete()
