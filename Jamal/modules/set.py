@@ -7,7 +7,7 @@ __HELP__ = get_bhs("set_cmd")
 
 @PY.UBOT("setprefix", sudo=True)
 async def _(client, message):
-    em = get_emo(client)
+    em = await get_emo(client)
     Tm = await message.reply(bhs("text_proses").format(em.proses))
     if len(message.command) < 2:
         return await Tm.edit(bhs("set_nop").format(em.gagal, message.text))
@@ -29,7 +29,7 @@ async def _(client, message):
 
 @PY.UBOT("setemoji", sudo=True)
 async def _(client, message):
-    em = get_emo(client)
+    em = await get_emo(client)
     try:
         msg = await message.reply(bhs("text_proses").format(em.proses))
 
