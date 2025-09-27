@@ -186,7 +186,7 @@ async def _(client, message):
             return await tm.edit(bhs("text_error").format(em.gagal, error))
 
         if chat.id not in blacklist:
-            return await tm.edit("bhs("blacklist_unfail").format(em.gagal, chat.title))
+            return await tm.edit(bhs("blacklist_unfail").format(em.gagal, chat.title))
 
         try:
             await remove_chat(client.me.id, chat.id)
