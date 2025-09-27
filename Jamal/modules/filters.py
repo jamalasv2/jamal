@@ -24,7 +24,7 @@ async def _(client, message):
     db_afk = {"time": time(), "reason": reason}
     em = get_emo(client)
     tks = reason if reason else "—"
-    teks = bhs("filters_afk").format(em.afk, em.keterangan, tks)
+    teks = bhs("filters_afk").format(em.peringatan, em.keterangan, tks)
     await set_vars(client.me.id, "AFK", db_afk)
     return await message.reply(teks)
 
@@ -38,7 +38,7 @@ async def _(client, message):
         afk_time = vars.get("time")
         afk_reason = vars.get("reason")
         afk_runtime = await get_time(time() - afk_time)
-        text = bhs("filters_afkaktif").format(em.afk, em.menunggu, afk_runtime, em.keterangan, afk_reason)
+        text = bhs("filters_afkaktif").format(em.peringatan, em.waktu, afk_runtime, em.keterangan, afk_reason)
         return await message.reply(text)
 
 
@@ -49,7 +49,7 @@ async def _(client, message):
     if vars:
         afk_time = vars.get("time")
         afk_runtime = await get_time(time() - afk_time)
-        teks = bhs("filters_unafk").format(em.afk, em.waktu, afk_runtime)
+        teks = bhs("filters_unafk").format(em.peringatan, em.waktu, afk_runtime)
         await message.reply(teks)
         return await remove_vars(client.me.id, "AFK")
 
