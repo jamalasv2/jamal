@@ -135,10 +135,7 @@ async def _(client, message):
     tm = await message.reply(bhs("text_proses").format(em.proses))
     if message.chat.type == (ChatType.GROUP, ChatType.SUPERGROUP):
         blacklist = await get_chat(client.me.id)
-        try:
-            chat = await client.get_chat(per)
-        except Exception as error:
-            return await tm.edit(bhs("text_error").format(em.gagal, error))
+        chat = await client.get_chat(per)
 
         if chat.id in blacklist:
             return await tm.edit(bhs("blacklist_exist").format(em.gagal, 'group'))
@@ -182,10 +179,7 @@ async def _(client, message):
     tm = await message.reply(bhs("text_proses").format(em.proses))
     if message.chat.type == (ChatType.GROUP, ChatType.SUPERGROUP):
         blacklist = await get_chat(client.me.id)
-        try:
-            chat = await client.get_chat(per)
-        except Exception as error:
-            return await tm.edit(bhs("text_error").format(em.gagal, error))
+        chat = await client.get_chat(per)
 
         if chat.id not in blacklist:
             return await tm.edit(bhs("blacklist_unfail").format(em.gagal, chat.title))
@@ -228,31 +222,6 @@ async def _(client, message):
             msg += f"├<code> {X}</code>\n"
     await Tm.delete()
     await message.reply(f"<BLOCKQUOTE>{msg}</BLOCKQUOTE>")
-
-
-@PY.UBOT("delucast")
-@PY.PRIVATE
-async def _(client, message):
-    brhsl = EMO.BERHASIL(client)
-    ggl = EMO.GAGAL(client)
-    tion = EMO.MENTION(client)
-    try:
-        if not get_arg(message):
-            chat_id = message.chat.id
-        else:
-            chat_id = int(message.command[1])
-    except Exception as e:
-        return await message.reply(f"{e}")
-    blacklist = await get_list_from_vars(client.me.id, "BLUCAST", "DB_UCAST")
-    if chat_id not in blacklist:
-        return await message.reply(
-            f"{ggl} pengguna tidak berada dalam daftar hitam"
-        )
-    else:
-        await remove_from_vars(client.me.id, "BLUCAST", chat_id, "DB_UCAST")
-        return await message.reply(
-            f"{brhsl}pengguna berhasil dihapus dari daftar hitam ucast"
-        )
 
 
 @PY.UBOT("listucast")
