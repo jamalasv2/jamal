@@ -33,23 +33,18 @@ async def _(client, message):
     try:
         msg = await message.reply(bhs("text_proses").format(em.proses))
 
-        if not client.me.is_premium:
-            return await msg.edit(
-                "<b>ᴜɴᴛᴜᴋ ᴍᴇɴɢɢᴜɴᴀᴋᴀɴ ᴘᴇʀɪɴᴛᴀʜ ɪɴɪ ᴀᴋᴜɴ ᴀɴᴅᴀ ʜᴀʀᴜ ᴘʀᴇᴍɪᴜᴍ ᴛᴇʀʟᴇʙɪʜ</b>"
-            )
-
         if len(message.command) < 3:
-            return await msg.edit(f"{ggl}<b> ᴛᴏʟᴏɴɢ ᴍᴀsᴜᴋᴋᴀɴ ǫᴜᴇʀʏ ᴅᴀɴ ᴇᴍᴏᴊɪ ɴʏᴀ</b>")
+            return await msg.edit(bhs("set_que").format(em.gagal))
 
         query_mapping = {
-            "pong": "EMOJI_PING",
-            "user": "EMOJI_MENTION",
+            "ping": "EMOJI_PING",
+            "mention": "EMOJI_MENTION",
             "ubot": "EMOJI_USERBOT",
             "proses": "EMOJI_PROSES", 
             "berhasil":"EMOJI_BERHASIL",
             "gagal":"EMOJI_GAGAL",
             "keterangan": "EMOJI_BL_KETERANGAN",
-            "menunggu": "EMOJI_MENUNGGU",
+            "waktu": "EMOJI_MENUNGGU",
             "group":"EMOJI_BL_GROUP",
             "broadcast":"EMOJI_BROADCAST",
         }
@@ -66,14 +61,13 @@ async def _(client, message):
 
             if emoji_id:
                 await set_vars(client.me.id, query_var, emoji_id)
-                await msg.edit(
-                    f"<b> <code>{query_var}</code>{brhsl} ʙᴇʀʜᴀsɪʟ ᴅɪ sᴇᴛᴛɪɴɢ ᴋᴇ:</b> <emoji id={emoji_id}>{value}</emoji>"
-                )
+                await msg.edit(bhs("set_sukses").format(em.berhasil, query_var, <emoji id=emoji_id>value</emoji>))
+    
             else:
-                await msg.edit(f"{ggl}<b>ᴛɪᴅᴀᴋ ᴅᴀᴘᴀᴛ ᴍᴇɴᴇᴍᴜᴋᴀɴ ᴇᴍᴏᴊɪ ᴘʀᴇᴍɪᴜᴍ</b>")
+                await msg.edit(bhs("set_fail").format(em.gagal))
         else:
-            await msg.edit(f"{ggl}<b> ᴍᴀᴘᴘɪɴɢ ᴛɪᴅᴀᴋ ᴅɪᴛᴇᴍᴜᴋᴀɴ</b>")
+            await msg.edit(bhs("set_qfail").format(em.gagal))
 
     except Exception as error:
-        await msg.edit(str(error))
+        await msg.edit(bhs("text_error").format(em.gagal, error))
 
