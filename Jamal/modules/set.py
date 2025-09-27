@@ -1,35 +1,16 @@
-from PyroUbot import *
+from Jamal import *
+from jamal.core import get_emo
+from langs import bhs, get_bhs
 
-__MODULE__ = "control"
-__HELP__ = """
-<blockquote><b>『 bantuan untuk control 』</b>
-
-**❏ perintah:** <code>{0}setprefix</code>
-— untuk merubah prefix atau handler perintah
-
-**❏ perintah:** <code>{0}setemoji</code> query - emoji
-— untuk mengubah emoji 
-
-queri :
-— <code>pong</code>  — <code>proses</code>
-— <code>user</code>  — <code>berhasil</code>
-— <code>ubot</code>  — <code>gagal</code>
-
-— <code>keterangan</code>
-— <code>waktu</code>
-— <code>group</code>
-
-**contoh:**
-{0}setemoji pong 🗿</blockquote>
- """
+__MODULE__ = "set"
+__HELP__ = get_bhs("set_cmd")
 
 @PY.UBOT("setprefix", sudo=True)
 async def _(client, message):
-    prs = await EMO.PROSES(client)
-    brhsl = await EMO.BERHASIL(client)
-    Tm = await message.reply(f"{prs} ᴍᴇᴍᴘʀᴏsᴇs", quote=True)
+    em = get_emo(client)
+    Tm = await message.reply(bhs("text_proses").format(em.proses))
     if len(message.command) < 2:
-        return await Tm.edit(f"<code>{message.text}</code> sɪᴍʙᴏʟ ᴘʀᴇғɪx")
+        return await Tm.edit(bhs("set_nop").format(em.gagal, message.text))
     else:
         ub_prefix = []
         for prefix in message.command[1:]:
@@ -41,18 +22,16 @@ async def _(client, message):
             client.set_prefix(message.from_user.id, ub_prefix)
             await set_pref(message.from_user.id, ub_prefix)
             parsed_prefix = " ".join(f"<code>{prefix}</code>" for prefix in ub_prefix)
-            return await Tm.edit(f"{brhsl}<b> ᴘʀᴇғɪx ᴛᴇʟᴀʜ ᴅɪᴜʙᴀʜ ᴋᴇ: {parsed_prefix}</b>")
+            return await Tm.edit(bhs("set_pre").format(em.berhasil, parsed_prefix))
         except Exception as error:
-            return await Tm.edit(str(error))
+            return await Tm.edit(bhs("text_error").format(em.gagal, error))
 
 
 @PY.UBOT("setemoji", sudo=True)
 async def _(client, message):
-    prs = await EMO.PROSES(client)
-    brhsl = await EMO.BERHASIL(client)
-    ggl = await EMO.GAGAL(client)
+    em = get_emo(client)
     try:
-        msg = await message.reply(f"{prs} ᴍᴇᴍᴘʀᴏsᴇs...", quote=True)
+        msg = await message.reply(bhs("text_proses").format(em.proses))
 
         if not client.me.is_premium:
             return await msg.edit(
