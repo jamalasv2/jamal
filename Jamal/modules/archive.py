@@ -26,65 +26,55 @@ async def _(client, message):
     if query.lower() == "all":
         try:
             await client.archive_chats(chat)
-            done += 1
             await msg.delete()
-            return await message.reply(bhs("arsip_sukses").format(em.berhasil, em.total, done, em.keterangan, 'all'))
+            return await message.reply(bhs("arsip_sukses").format(em.berhasil, em.total, len(chat), em.keterangan, 'all'))
         except FloodWait as e:
             await asyncio.sleep(e.value)
             await client.archive_chats(chat)
-            done += 1
-            return await message.reply(bhs("arsip_sukses").format(em.berhasil, em.total, done, em.keterangan, 'all'))
+            return await message.reply(bhs("arsip_sukses").format(em.berhasil, em.total, len(chat), em.keterangan, 'all'))
         except Exception as e:
             return await msg.edit(bhs("text_error").format(em.gagal, e))
     elif query.lower() == "gc":
         try:
             await client.archive_chats(chat)
-            done += 1
             await msg.delete()
-            return await message.reply(bhs("arsip_sukses").format(em.berhasil, em.total, done, em.keterangan, 'group'))
+            return await message.reply(bhs("arsip_sukses").format(em.berhasil, em.total, len(chat), em.keterangan, 'group'))
         except FloodWait as e:
             await asyncio.sleep(e.value)
             await client.archive_chats(chat)
-            done += 1
-            return await message.reply(bhs("arsip_sukses").format(em.berhasil, em.total, done, em.keterangan, 'group'))
+            return await message.reply(bhs("arsip_sukses").format(em.berhasil, em.total, len(chat), em.keterangan, 'group'))
         except Exception as e:
             return await msg.edit(bhs("text_error").format(em.gagal, e))
     elif query.lower() == "pc":
         try:
             await client.archive_chats(chat)
-            done += 1
             await msg.delete()
-            return await message.reply(bhs("arsip_sukses").format(em.berhasil, em.total, done, em.keterangan, 'personal'))
+            return await message.reply(bhs("arsip_sukses").format(em.berhasil, em.total, len(chat), em.keterangan, 'personal'))
         except FloodWait as e:
             await asyncio.sleep(e.value)
             await client.archive_chats(chat)
-            done += 1
             return await message.reply(bhs("arsip_sukses").format(em.berhasil, em.total, done, em.keterangan, 'personal'))
         except Exception as e:
             return await msg.edit(bhs("text_error").format(em.gagal, e))
     elif query.lower() == "bot":
         try:
             await client.archive_chats(chat)
-            done += 1
             await msg.delete()
-            return await message.reply(bhs("arsip_sukses").format(em.berhasil, em.total, done, em.keterangan, 'bot'))
+            return await message.reply(bhs("arsip_sukses").format(em.berhasil, em.total, len(chat), em.keterangan, 'bot'))
         except FloodWait as e:
             await asyncio.sleep(e.value)
             await client.archive_chats(chat)
-            done += 1
-            return await message.reply(bhs("arsip_sukses").format(em.berhasil, em.total, done, em.keterangan, 'bot'))
+            return await message.reply(bhs("arsip_sukses").format(em.berhasil, em.total, len(chat), em.keterangan, 'bot'))
         except Exception as e:
             return await msg.edit(bhs("text_error").format(em.gagal, e))
     elif query.lower() == "ch":
         try:
             await client.archive_chats(chat)
-            done += 1
             await msg.delete()
-            return await message.reply(bhs("arsip_sukses").format(em.berhasil, em.total, done, em.keterangan, 'channel'))
+            return await message.reply(bhs("arsip_sukses").format(em.berhasil, em.total, len(chat), em.keterangan, 'channel'))
         except FloodWait as e:
             await asyncio.sleep(e.value)
             await client.archive_chats(chat)
-            done += 1
             return await message.reply(bhs("arsip_sukses").format(em.berhasil, em.total, done, em.keterangan, 'channel'))
         except Exception as e:
             return await msg.edit(bhs("text_error").format(em.gagal, e))
@@ -105,27 +95,23 @@ async def _(client, message):
     if query.lower() == "all":
         try:
             await client.unarchive_chats(chat)
-            done += 1
             await msg.delete()
-            return await message.reply(bhs("arsip_out").format(em.berhasil, em.total, done, em.keterangan, 'all'))
+            return await message.reply(bhs("arsip_out").format(em.berhasil, em.total, len(chat), em.keterangan, 'all'))
         except FloodWait as e:
             await asyncio.sleep(e.value)
             await client.unarchive_chats(chat)
-            done += 1
-            return await message.reply(bhs("arsip_out").format(em.berhasil, em.total, done, em.keterangan, 'all'))
+            return await message.reply(bhs("arsip_out").format(em.berhasil, em.total, len(chat), em.keterangan, 'all'))
         except Exception as e:
             return await msg.edit(bhs("text_error").format(em.gagal, e))
     elif query.lower() == "gc":
         try:
             await client.unarchive_chats(chat)
-            done += 1
             await msg.delete()
-            return await message.reply(bhs("arsip_out").format(em.berhasil, em.total, done, em.keterangan, 'group'))
+            return await message.reply(bhs("arsip_out").format(em.berhasil, em.total, len(chat), em.keterangan, 'group'))
         except FloodWait as e:
             await asyncio.sleep(e.value)
             await client.unarchive_chats(chat)
-            done += 1
-            return await message.reply(bhs("arsip_out").format(em.berhasil, em.total, done, em.keterangan, 'group'))
+            return await message.reply(bhs("arsip_out").format(em.berhasil, em.total, len(chat), em.keterangan, 'group'))
         except Exception as e:
             return await msg.edit(bhs("text_error").format(em.gagal, e))
     elif query.lower() == "pc":
@@ -133,25 +119,23 @@ async def _(client, message):
             await client.umarchive_chats(chat)
             done += 1
             await msg.delete()
-            return await message.reply(bhs("arsip_out").format(em.berhasil, em.total, done, em.keterangan, 'personal'))
+            return await message.reply(bhs("arsip_out").format(em.berhasil, em.total, len(chat), em.keterangan, 'personal'))
         except FloodWait as e:
             await asyncio.sleep(e.value)
             await client.unarchive_chats(chat)
-            done += 1
-            return await message.reply(bhs("arsip_out").format(em.berhasil, em.total, done, em.keterangan, 'personal'))
+            return await message.reply(bhs("arsip_out").format(em.berhasil, em.total, len(chat), em.keterangan, 'personal'))
         except Exception as e:
             return await msg.edit(bhs("text_error").format(em.gagal, e))
     elif query.lower() == "bot":
         try:
             await client.unarchive_chats(chat)
-            done += 1
             await msg.delete()
-            return await message.reply(bhs("arsip_out").format(em.berhasil, em.total, done, em.keterangan, 'bot'))
+            return await message.reply(bhs("arsip_out").format(em.berhasil, em.total, len(chat), em.keterangan, 'bot'))
         except FloodWait as e:
             await asyncio.sleep(e.value)
             await client.unarchive_chats(chat)
             done += 1
-            return await message.reply(bhs("arsip_out").format(em.berhasil, em.total, done, em.keterangan, 'bot'))
+            return await message.reply(bhs("arsip_out").format(em.berhasil, em.total, len(chat), em.keterangan, 'bot'))
         except Exception as e:
             return await msg.edit(bhs("text_error").format(em.gagal, e))
     elif query.lower() == "ch":
@@ -159,11 +143,10 @@ async def _(client, message):
             await client.unarchive_chats(chat)
             done += 1
             await msg.delete()
-            return await message.reply(bhs("arsip_out").format(em.berhasil, em.total, done, em.keterangan, 'channel'))
+            return await message.reply(bhs("arsip_out").format(em.berhasil, em.total, len(chat), em.keterangan, 'channel'))
         except FloodWait as e:
             await asyncio.sleep(e.value)
             await client.unarchive_chats(chat)
-            done += 1
-            return await message.reply(bhs("arsip_out").format(em.berhasil, em.total, done, em.keterangan, 'channel'))
+            return await message.reply(bhs("arsip_out").format(em.berhasil, em.total, len(chat), em.keterangan, 'channel'))
         except Exception as e:
             return await msg.edit(bhs("text_error").format(em.gagal, e))
