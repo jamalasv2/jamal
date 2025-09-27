@@ -64,13 +64,13 @@ async def _(client, message):
     except Exception as error:
         return await msg.edit(bhs("ankes_error").format(em.gagal, error))
   
-    blacklist_users = await get_list_from_vars(client.me.id, "BL_USERS", "DB_ANKES")
+    blacklist_users = await get_list_from_vars(client.me.id, "BL_ANKES", "DB_ANKES")
   
     if user.id in blacklist_users:
         return await msg.edit(bhs("ankes_usrbl").format(em.gagal))
 
     try:
-        await add_to_vars(client.me.id, "BL_USERS", user.id, "DB_ANKES")
+        await add_to_vars(client.me.id, "BL_ANKES", user.id, "DB_ANKES")
         return await msg.edit(bhs("ankes_addbl").format(em.berhasil, user.id))
     except Exception as error:
         return await msg.edit(bhs("ankes_error").format(em.gagal, error))
@@ -89,13 +89,13 @@ async def _(client, message):
     except Exception as error:
         return await msg.edit(bhs("ankes_error").format(em.gagal, error))
 
-    blacklist_users = await get_list_from_vars(client.me.id, "BL_USERS", "DB_ANKES")
+    blacklist_users = await get_list_from_vars(client.me.id, "BL_ANKES", "DB_ANKES")
   
     if user.id not in blacklist_users:
         return await msg.edit(bhs("ankes_userdbl").format(em.gagal))
 
     try:
-        await remove_from_vars(client.me.id, user.id, "BL_USERS", user.id, "DB_ANKES")
+        await remove_from_vars(client.me.id, "BL_ANKES", user.id, "DB_ANKES")
         return await msg.edit(bhs("ankes_usrremove").format(em.berhasil, user.id))
     except Exception as error:
         return await msg.edit(bhs("ankes_error").format(em.gagal, error))
@@ -105,11 +105,11 @@ async def _(client, message):
 async def _(client, message):
     em = await get_emo(client)
     msg = await message.reply(bhs("text_proses").format(em.proses))
-    get_usr = await get_list_from_vars(client.me.id, "BL_USERS", "DB_ANKES")
+    get_usr = await get_list_from_vars(client.me.id, "BL_ANKES", "DB_ANKES")
     if len(get_usr) == 0:
         return await msg.edit(bhs("ankes_zero").format(em.gagal))
     for X in get_usr:
-        await remove_from_vars(client.me.id, "BL_USERS", X, "DB_ANKES")
+        await remove_from_vars(client.me.id, "BL_ANKES", X, "DB_ANKES")
     await msg.edit(bhs("ankes_rmall").format(em.berhasil))
 
 
@@ -117,7 +117,7 @@ async def _(client, message):
 async def _(client, message):
     em = await get_emo(client)
     Sh = await message.reply(bhs("text_proses").format(em.proses))
-    bl_user = await get_ankes(client.me.id)
+    bl_user = await get_list_from_vars(client.me.id, "BL_ANKES", "DB_ANKES")
     msg = bhs("ankes_list").format(em.keterangan)
 
     if not bl_user:
