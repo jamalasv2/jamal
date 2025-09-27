@@ -125,18 +125,20 @@ class EMO:
         return _warn
 
 
+class EmoObject:
+    def __init__(self, **entries):
+        self.__dict__.update(entries)
+
 async def get_emo(client):
-    return EMO(
-        proses = await EMO.PROSES(client),
-        berhasil = await EMO.BERHASIL(client),
-        gagal = await EMO.GAGAL(client),
-        keterangan = await EMO.BL_KETERANGAN(client),
-        group = await EMO.BL_GROUP(client),
-        ping = await EMO.PING(client),
-        mention = await EMO.MENTION(client),
-        ubot = await EMO.UBOT(client),
+    return EmoObject(
+        ping      = await EMO.PING(client),
+        mention   = await EMO.MENTION(client),
+        ubot      = await EMO.UBOT(client),
+        proses    = await EMO.PROSES(client),
+        berhasil  = await EMO.BERHASIL(client),
+        gagal     = await EMO.GAGAL(client),
         broadcast = await EMO.BROADCAST(client),
-        waktu = await EMO.WAKTU(client),
-        total = await EMO.TOTAL(client),
-        peringatan = await EMO.PERINGATAN(client),
+        bl_group  = await EMO.BL_GROUP(client),
+        bl_ket    = await EMO.BL_KETERANGAN(client),
+        menunggu  = await EMO.MENUNGGU(client),
     )
