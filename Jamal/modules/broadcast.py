@@ -133,7 +133,7 @@ async def _(client, message):
     em = await get_emo(client)
     per = message.command[1] if len(message.command) > 1 else message.chat.id
     tm = await message.reply(bhs("text_proses").format(em.proses))
-    if message.chat.type == (ChatType.GROUP, ChatType.SUPERGROUP):
+    if message.chat.type == ChatType.GROUP, ChatType.SUPERGROUP:
         blacklist = await get_chat(client.me.id)
         chat = await client.get_chat(per)
 
@@ -177,7 +177,7 @@ async def _(client, message):
     em = await get_emo(client)
     per = message.command[1] if len(message.command) > 1 else message.chat.id
     tm = await message.reply(bhs("text_proses").format(em.proses))
-    if message.chat.type == (ChatType.GROUP, ChatType.SUPERGROUP):
+    if message.chat.type == ChatType.GROUP, ChatType.SUPERGROUP:
         blacklist = await get_chat(client.me.id)
         chat = await client.get_chat(per)
 
