@@ -14,7 +14,7 @@ __HELP__ = get_bhs("admins_cmd")
 @PY.UBOT("kick|dkick", sudo=True)
 @PY.GROUP
 async def _(client, message):
-    em = get_emo(client)
+    em = await get_emo(client)
     kt = bhs("kick")
     user_id, reason = await extract_user_and_reason(message)
     if not user_id:
@@ -50,7 +50,7 @@ async def _(client, message):
 @PY.UBOT("ban|dban", sudo=True)
 @PY.GROUP
 async def _(client, message):
-    em = get_emo(client)
+    em = await get_emo(client)
     kt = bhs("ban")
     user_id, reason = await extract_user_and_reason(message)
     if not user_id:
@@ -85,7 +85,7 @@ async def _(client, message):
 @PY.UBOT("mute|dmute", sudo=True)
 @PY.GROUP
 async def _(client, message):
-    em = get_emo(client)
+    em = await get_emo(client)
     kt = bhs("mute")
     user_id, reason = await extract_user_and_reason(message)
     if not user_id:
@@ -118,7 +118,7 @@ async def _(client, message):
 @PY.UBOT("unmute", sudo=True)
 @PY.GROUP
 async def _(client, message):
-    em = get_emo(client)
+    em = await get_emo(client)
     kt = bhs("mute")
     user_id = await extract_user(message)
     if not user_id:
@@ -137,7 +137,7 @@ async def _(client, message):
 @PY.UBOT("unban", sudo=True)
 @PY.GROUP
 async def _(client, message):
-    em = get_emo(client)
+    em = await get_emo(client)
     kt = bhs("ban")
     user_id = await extract_user(message)
     if not user_id:
@@ -156,7 +156,7 @@ async def _(client, message):
 @PY.UBOT("zombies")
 @PY.GROUP
 async def _(client, message):
-    em = get_emo(client)
+    em = await get_emo(client)
     chat_id = message.chat.id
     deleted_users = []
     banned_users = 0
