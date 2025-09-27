@@ -138,7 +138,7 @@ async def get_emo(client):
         berhasil  = await EMO.BERHASIL(client),
         gagal     = await EMO.GAGAL(client),
         broadcast = await EMO.BROADCAST(client),
-        bl_group  = await EMO.BL_GROUP(client),
+        group  = await EMO.BL_GROUP(client),
         keterangan    = await EMO.BL_KETERANGAN(client),
         waktu  = await EMO.WAKTU(client),
         total = await EMO.TOTAL(client),
