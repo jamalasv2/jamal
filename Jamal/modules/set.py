@@ -61,7 +61,7 @@ async def _(client, message):
 
             if emoji_id:
                 await set_vars(client.me.id, query_var, emoji_id)
-                await msg.edit(bhs("set_sukses").format(em.berhasil, query_var, <emoji id=emoji_id>value</emoji>))
+                await msg.edit(bhs("set_sukses").format(em.berhasil, query_var, value))
     
             else:
                 await msg.edit(bhs("set_fail").format(em.gagal))
