@@ -13,7 +13,7 @@ CATBOX_URL = "https://catbox.moe/user/api.php"
 
 @PY.UBOT("catbox", sudo=True)
 async def _(client, message):
-    em = get_emo(client)
+    em = await get_emo(client)
     if not message.reply_to_message or not message.reply_to_message.media:
         return await message.reply(bhs("catbox_nomsg").format(em.gagal))
 
