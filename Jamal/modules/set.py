@@ -1,5 +1,5 @@
 from Jamal import *
-from Jamal.core import get_emo
+from Jamal.core.helpers import get_emo
 from langs import bhs, get_bhs
 
 __MODULE__ = "set"
