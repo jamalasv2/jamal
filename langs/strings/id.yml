@@ -94,6 +94,12 @@ filters_text : "<blockquote>**📖 Info Filter:**\n\n🔑 Keyword: <code>{}</cod
 filters_media : "<blockquote>**📖 Info Filter:**\n\n🔑 Keyword: <code>{}</code>\n🖼 Jenis: <b>{}</b>\n📌 Preview:</blockquote>"
 filters_previewerr : "{} ERROR:\n{}"
 
+#global
+global_cmd : "."
+
+#joinvc
+joinvc_cmd : "<blockquote>❏ <code>{0}</code>
+
 #payment
 pay : "💵 lakukan pembayaran"
 pay_bukti : "mohon kirim foto/tangkapan layar bukti pembayaran anda"
