@@ -115,7 +115,14 @@ class EMO:
         return _total
 
 
-    async def PERINGATAN
+    async def PERINGATAN(client):
+        emot_12 = await get_vars(client.me.id, "EMOJI_PERINGATAN")
+        emot_wr = emot_12 if emot_12 else "5447644880824181073"
+        if client.me.is_premium:
+            _warn = f"<emoji_id={emot_wr}>⚠️</emoji>"
+        else:
+            _warn = "⚠️"
+        return _warn
 
 
 async def get_emo(client):
@@ -131,4 +138,5 @@ async def get_emo(client):
         "broadcast": await EMO.BROADCAST(client),
         "waktu": await EMO.WAKTU(client),
         "total": await EMO.TOTAL(client),
+        "peringatan": await EMO.PERINGATAN(client),
     }
