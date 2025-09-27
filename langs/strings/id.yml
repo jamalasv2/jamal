@@ -53,6 +53,7 @@ blacklist_unfail : "{} {} tidak terdaftar di daftar hitam broadcast"
 blacklist_remove : "{} {} dihapus dari daftar hitam blacklist"
 blacklist_pc : "{} daftar hitam broadcast {}"
 blacklist_pczero : "{} tidak ada pengguna terdaftar di daftar hitam broadcast"
+blacklist_gczero : "{} tidak ada grup yang terdaftar di daftar hitam broadcast"
 blacklist_clear : "{} menghapus semua {} yang terdaftar di daftar hitam broadcast"
 
 #broadcast
