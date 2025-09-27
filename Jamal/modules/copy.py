@@ -8,7 +8,8 @@ from time import time
 from pyrogram.types import *
 from pyrogram.raw.functions.messages import DeleteHistory
 
-from PyroUbot import *
+from Jamal import *
+from lang import bhs, get_bhs
 
 __MODULE__ = "copy"
 __HELP__ = """
