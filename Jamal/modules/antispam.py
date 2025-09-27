@@ -27,7 +27,7 @@ async def ankes_bl(client, message):
 @PY.UBOT("ankes")
 @PY.GROUP
 async def _(client, message):
-    em = get_emo(client)
+    em = await get_emo(client)
     msg = await message.reply(bhs("text_proses").format(em.proses))
     if len(message.command) <2:
         return await msg.edit(bhs("ankes_onoff").format(em.gagal))
@@ -53,7 +53,7 @@ async def _(client, message):
 
 @PY.UBOT("bl")
 async def _(client, message):
-    em = get_emo(client)
+    em = await get_emo(client)
     msg = await message.reply(bhs("text_proses").format(em.proses))
     user_id = await extract_user(message)
     if not user_id:
@@ -78,7 +78,7 @@ async def _(client, message):
 
 @PY.UBOT("delbl")
 async def _(client, message):
-    em = get_emo(client)
+    em = await get_emo(client)
     msg = await message.reply(bhs("text_proses").format(em.gagal))
     user_id = await extract_user(message)
     if not user_id:
@@ -103,7 +103,7 @@ async def _(client, message):
 
 @PY.UBOT("ralluser")
 async def _(client, message):
-    em = get_emo(client)
+    em = await get_emo(client)
     msg = await message.reply(bhs("text_proses").format(em.proses))
     get_usr = await get_list_from_vars(client.me.id, "BL_USERS", "DB_ANKES")
     if len(get_usr) == 0:
@@ -115,7 +115,7 @@ async def _(client, message):
 
 @PY.UBOT("listuser")
 async def _(client, message):
-    em = get_emo(client)
+    em = await get_emo(client)
     Sh = await message.reply(bhs("text_proses").format(em.proses))
     bl_user = await get_ankes(client.me.id)
     msg = bhs("ankes_list").format(em.keterangan)
