@@ -126,17 +126,17 @@ class EMO:
 
 
 async def get_emo(client):
-    return {
-        "proses": await EMO.PROSES(client),
-        "berhasil": await EMO.BERHASIL(client),
-        "gagal": await EMO.GAGAL(client),
-        "keterangan": await EMO.BL_KETERANGAN(client),
-        "group": await EMO.BL_GROUP(client),
-        "ping": await EMO.PING(client),
-        "mention": await EMO.MENTION(client),
-        "ubot": await EMO.UBOT(client),
-        "broadcast": await EMO.BROADCAST(client),
-        "waktu": await EMO.WAKTU(client),
-        "total": await EMO.TOTAL(client),
-        "peringatan": await EMO.PERINGATAN(client),
-    }
+    return EMO(
+        proses = await EMO.PROSES(client),
+        berhasil = await EMO.BERHASIL(client),
+        gagal = await EMO.GAGAL(client),
+        keterangan = await EMO.BL_KETERANGAN(client),
+        group = await EMO.BL_GROUP(client),
+        ping = await EMO.PING(client),
+        mention = await EMO.MENTION(client),
+        ubot = await EMO.UBOT(client),
+        broadcast = await EMO.BROADCAST(client),
+        waktu = await EMO.WAKTU(client),
+        total = await EMO.TOTAL(client),
+        peringatan = await EMO.PERINGATAN(client),
+    )
