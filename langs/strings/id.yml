@@ -112,7 +112,7 @@ set_qfail : "{} tidak dapat menemukan queri"
 
 #text1
 text_proses : "{} memproses..."
-text_error : "**ERROR:**\n<code>{}</code>"
+text_error : "{} **ERROR:**\n<code>{}</code>"
 
 #text2
 text_install : "✅ klik tombol di-bawah untuk lanjut memasang userbot"
