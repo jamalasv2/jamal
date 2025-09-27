@@ -245,7 +245,7 @@ async def _(client, message):
     em = await get_emo(client)
     Tm = await message.reply(bhs("text_proses").format(em.proses))
     msg = bhs("blacklist_pc").format(em.keterangan, 'groups')
-    if len(await get_chat(client.me.id) == 0:
+    if len(await get_chat(client.me.id)) == 0:
            return await Tm.edit(bhs("blacklist_gczero").format(em.gagal))
 
     for X in await get_chat(client.me.id):
