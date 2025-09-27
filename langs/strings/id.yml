@@ -102,6 +102,9 @@ pay_proses : "✅ pembayaran telah di-proses\n mohon tunggu 1 - 6 jam kerja admi
 set_cmd : "<blockquote>❏ <code>{0}setprefix</code>\n— untuk mengubah handler perintah modul\n\n❏ <code>{0}setemoji</code> value - queri\n— untuk mengubah emoji pada pesan teks\n\n**value:**\n— <code>berhasil</code>    — <code>broadcast</code>\n— <code>gagal</code>    — <code>ping</code>\n— <code>mention</code>    — <code>keterangan</code>\n— <code>waktu</code>    — <code>proses</code></blockquote>"
 set_nop : "{} {} simbol prefix"
 set_pre : "{} handler modul ubot telah diubah menjadi: {}"
+set_sukses : "{} queri emoji {} diubah menjadi: {}"
+set_fail : "{} emoji premium tidak ditemukan"
+set_qfail : "{} tidak dapat menemukan queri"
 
 #text1
 text_proses : "{} memproses..."
