@@ -31,7 +31,7 @@ async def _(client, message):
     chat = await get_broadcast_id(client, "group")
     blacklist = await get_chat(client.me.id)
     done = 0
-    fail = 0
+    failed = 0
 
     for chat_id in chat:
         if chat_id in blacklist or chat_id in BLACKLIST_CHAT:
@@ -64,7 +64,7 @@ async def _(client, message):
     chat = await get_broadcast_id(client, "users")
     blacklist = await get_list_from_vars(client.me.id, "BLUCAST", "DB_UCAST")
     done = 0
-    fail = 0
+    failed = 0
 
     for chat_id in chat:
         if chat_id in blacklist or chat_id == DEVS or chat_id == client.me.id:
@@ -145,7 +145,7 @@ async def _(client, message):
 
         try:
             await add_chat(client.me.id, chat.id)
-            await tm.edit(bhs("blacklist_sukses").format(em.berhasil, titit.title))
+            await tm.edit(bhs("blacklist_group").format(em.berhasil, titit.title))
             await asyncio.sleep(8)
             await message.delete()
             return await tm.delete()
@@ -165,7 +165,7 @@ async def _(client, message):
 
         try:
             await add_to_vars(client.me.id, "BL_UCAST", user.id, "DB_UCAST")
-            await tm.edit(bhs("blacklist_sukses").format(em.berhasil, user.id))
+            await tm.edit(bhs("blacklist_group").format(em.berhasil, user.id))
             await asyncio.sleep(8)
             await message.delete()
             return await tm.delete()
