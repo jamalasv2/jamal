@@ -186,24 +186,17 @@ async def _(client, message):
             return await tm.edit(bhs("text_error").format(em.gagal, error))
 
         if chat.id not in blacklist:
-            return await tm.edit("
-        
-    if per not in blacklist:
-        return await Tm.edit(
-            f"<BLOCKQUOTE>{ggl} grup {titit.title} tidak ada di daftar hitam broadcast</BLOCKQUOTE>"
-        )
-    try:
-        await remove_chat(client.me.id, titit.id)
-        return await Tm.edit(
-            f"<BLOCKQUOTE><b>{brhsl} dihapus dari daftar hitam broadcast\n{gc} grup: {titit.title}</b></BLOCKQUOTE>"
-        )
-    except Exception:
-        await remove_chat(client.me.id, titit.id)
-        return await Tm.edit(
-            f"<BLOCKQUOTE><b>{brhsl} dihapus dari daftar hitam broadcast</b></BLOCKQUOTE>"
-        )
-    except Exception as error:
-        return await Tm.edit(f"<blockquote>{ggl} ERROR\n{error}</blockquote>")
+            return await tm.edit("bhs("blacklist_unfail").format(em.gagal, chat.title))
+
+        try:
+            await remove_chat(client.me.id, chat.id)
+            await tm.edit(bhs("blacklist_remove").format(em.berhasil, chat.title))
+            await asyncio.sleep(7)
+            await message.delete()
+            return await tm.delete()
+
+        except Exception as error:
+            return await tm.edit(bhs("blacklist_failed").format(em.gagal, error))
 
 
 @PY.UBOT("rallbl", sudo=True)
