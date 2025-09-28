@@ -46,12 +46,6 @@ logging.getLogger("").addHandler(console)
 aiosession = ClientSession()
 
 
-class StderrFilter(StringIO):
-    def write(self, msg):
-        if "OpenH264" not in msg:
-            sys.__stderr__.write(msg)
-
-
 class Bot(Client):
     def __init__(self, **kwargs):
         super().__init__(**kwargs, device_model="higanbana-userbot")
