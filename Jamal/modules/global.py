@@ -19,6 +19,7 @@ async def _(client, message):
     em = await get_emo(client)
     user_id = await extract_user(message)
     Tm = await message.reply(bhs("text_proses").format(em.proses))
+
     if not user_id:
         return await Tm.edit(bhs("global_nfound").format(em.gagal, 'banned'))
 
@@ -78,15 +79,17 @@ async def _(client, message):
 @PY.UBOT("gmute", sudo=True)
 @ubot.on_message(filters.command(["gmute"], "C") & filters.user(SUDO))
 async def _(client, message):
-	em = await get_emo(client)
-	user_id = await extract_user(message)
-	Tm = await message.reply(bhs("text_proses").format(em.proses))
-	if not user_id:
+    em = await get_emo(client)
+    user_id = await extract_user(message)
+    Tm = await message.reply(bhs("text_proses").format(em.proses))
+
+    if not user_id:
         return await Tm.edit(bhs("global_nfound").format(em.gagal, 'mute'))
 
     try:
-		user = await client.get_users(user_id)
-	except Exception as error:
+        user = await client.get_users(user_id)
+
+    except Exception as error:
 		return await Tm.edit(error)
 
     done = 0
@@ -112,21 +115,21 @@ async def _(client, message):
 @PY.UBOT("ungmute", sudo=True)
 @ubot.on_message(filters.command(["ungmute"], "C") & filters.user(SUDO))
 async def _(client, message):
-	em = await get_emo(client)
-	user_id = await extract_user(message)
-	Tm = await message.reply(bhs("text_proses").format(em.proses))
+    em = await get_emo(client)
+    user_id = await extract_user(message)
+    Tm = await message.reply(bhs("text_proses").format(em.proses))
 
     if not user_id:
-		return await Tm.edit(bhs("global_nfound").format(em.gagal, 'unmute'))
+        return await Tm.edit(bhs("global_nfound").format(em.gagal, 'unmute'))
 
     try:
-		user = await client.get_users(user_id)
-	except Exception as error:
-		return await Tm.edit(error)
+        user = await client.get_users(user_id)
+    except Exception as error:
+        return await Tm.edit(error)
 
     done = 0
-	failed = 0
-	global_id = await get_global_id(client, "group")
+    failed = 0
+    global_id = await get_global_id(client, "group")
 
     for dialog in global_id:
         try:
