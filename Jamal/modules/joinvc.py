@@ -143,22 +143,21 @@ async def _(client, message):
 
 
 @PY.UBOT("leavevc", sudo=True)
-@PY.TOP_CMD
 @ubot.on_message(filters.command(["leavevc"], "C") & filters.user(SUDO))
 async def _(client, message):
     em = await get_emo(client)
     per = message.command[1] if len(message.command) > 1 else message.chat.id
     titit = await client.get_chat(per)
 
-    if client.me.id not in JOINED_VC or titit.id not in JOINED_VC[client.me.id]:
-        return await message.reply("❌ Belum join VC di chat ini")
+    # ambil dan hapus dari dict
+    group_call = JOINED_VC.get(client.me.id, {}).pop(titit.id, None)
+    if not group_call:
+        return await message.reply("❌ Belum join VC di sini")
 
-    group_call = JOINED_VC[client.me.id].pop(titit.id)
     try:
-        await group_call.stop()  # lebih aman dibanding leave_current_group_call
+        await group_call.stop()
         remove_list(client.me.id)
-        JOINED_VC[client.me.id].remove(titit.id)
-        return await message.reply(f"✅ Keluar VC dari <b>{titit.title}</b>")
+        return await message.reply(f"✅ {em.berhasil} keluar dari VC <b>{titit.title}</b>")
     except Exception as e:
         return await message.reply(f"❌ ERROR: {e}")
 
