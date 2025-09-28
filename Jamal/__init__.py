@@ -68,6 +68,12 @@ class Bot(Client):
 
 
 class Ubot(Client):
+    _ubot = []
+    _prefix = {}
+    _get_my_id = []
+    _translate = {}
+    _get_my_peer = {}
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs, device_model="higanbana")
         self._group_calls = {}  # {chat_id: group_call}
@@ -83,7 +89,6 @@ class Ubot(Client):
             vc = self._group_calls[chat_id]
             await vc.leave()
             del self._group_calls[chat_id]
-
     
     def on_message(self, filters=None, group=-1):
         def decorator(func):
