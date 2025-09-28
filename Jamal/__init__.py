@@ -19,6 +19,8 @@ from rich.logging import RichHandler
 from Jamal.config import *
 from pytgcalls import GroupCallFactory
 
+from io import StringIO
+
 
 class ConnectionHandler(logging.Handler):
     def emit(self, record):
@@ -41,9 +43,13 @@ console.setFormatter(
 )
 logging.getLogger("").addHandler(console)
 
-os.environ["AV_LOG_LEVEL"] = "error"
-
 aiosession = ClientSession()
+
+
+class StderrFilter(StringIO):
+    def write(self, msg):
+        if "OpenH264" not in msg:
+            sys.__stderr__.write(msg)
 
 
 class Bot(Client):
