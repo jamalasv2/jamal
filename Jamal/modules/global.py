@@ -8,6 +8,7 @@ from pyrogram.types import *
 from Jamal import *
 from langs import bhs, get_bhs
 
+from Jamal.config import DEVS, SUDO
 
 __MODULE__ = "global"
 __HELP__ = get_bhs("global_cmd")
@@ -18,15 +19,20 @@ __HELP__ = get_bhs("global_cmd")
 async def _(client, message):
     em = await get_emo(client)
     user_id = await extract_user(message)
-    Tm = await message.reply(bhs("text_proses").format(em.proses))
+    tm = await message.reply(bhs("text_proses").format(em.proses))
 
     if not user_id:
-        return await Tm.edit(bhs("global_nfound").format(em.gagal, 'banned'))
+        return await tm.edit(bhs("global_nfound").format(em.gagal, 'banned'))
 
     try:
         user = await client.get_users(user_id)
     except Exception as error:
-        return await Tm.edit(error)
+        return await tm.edit(bhs("text_error").format(em.gagal, error))
+
+    done = 0
+    failed = 0
+
+
 
     done = 0
     failed = 0
