@@ -35,11 +35,10 @@ async def _(client, message):
             await client.ban_chat_member(dialog, user.id)
             done += 1
             await asyncio.sleep(0.1)
+			await Tm.delete()
+			return await message.reply(bhs("global_sukses").format(em.berhasil, 'banned', em.mention, user.mention, em.total, done))
         except Exception:
             failed += 1
-            await asyncio.sleep(0.1)
-	await Tm.delete()
-    return await message.reply(bhs("global_sukses").format(em.berhasil, 'banned', em.mention, user.mention, em.total, done))
 
 
 @PY.UBOT("ungban", sudo=True)
@@ -62,11 +61,11 @@ async def _(client, message):
             await client.unban_chat_member(dialog, user.id)
             done += 1
             await asyncio.sleep(0.1)
+			await Tm.delete()
+			return await message.reply(bhs("global_sukses").format(em.berhasil, 'unbanned', em.mention, user.mention, em.total, done))
         except Exception:
             failed += 1
             await asyncio.sleep(0.1)
-	await Tm.delete()
-    return await message.reply(bhs("global_sukses").format(em.berhasil, 'unbanned', em.mention, user.mention, em.total, done))
 
 
 @PY.UBOT("gmute", sudo=True)
@@ -91,11 +90,11 @@ async def _(client, message):
 			await client.restrict_chat_member(dialog, user.id, ChatPermissions())
 			done += 1
 			await asyncio.sleep(0.1)
+			await Tm.delete()
+			return await message.reply(bhs("global_sukses").format(em.berhasil, 'mute', em.mention, user.mention, em.total, done))
 		except Exception:
 			failed += 1
 			await asyncio.sleep(0.1)
-	await Tm.delete()
-	return await message.reply(bhs("global_sukses").format(em.berhasil, 'mute', em.mention, user.mention, em.total, done))
 
 
 @PY.UBOT("ungmute", sudo=True)
@@ -118,10 +117,9 @@ async def _(client, message):
 			await client.unban_chat_member(dialog, user.id)
 			done += 1
 			await asyncio.sleep(0.1)
+			await Tm.delete()
+			return await message.reply(bhs("global_sukses").format(em.berhasil, 'unmute', em.mention, user.mention, em.total, done))
 		except Exception:
 			failed += 1
 			await asyncio.sleep(0.1)
-	await Tm.delete()
-	return await message.reply(bhs("global_sukses").format(em.berhasil, 'unmute', em.mention, user.mention, em.total, done))
-		
 
