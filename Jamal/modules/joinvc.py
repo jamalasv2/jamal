@@ -32,6 +32,7 @@ __HELP__ = get_bhs("joinvc_cmd")
 
 
 list_data = []
+JOINED_VC = {}
 
 
 def remove_list(user_id):
@@ -111,7 +112,6 @@ async def _(client, message):
     await client.invoke(DiscardGroupCall(call=group_call))
     await msg.edit(bhs("joinvc_stopped").format(em.berhasil))
 
-JOINED_VC = {}
 
 @PY.UBOT("joinvc", sudo=True)
 @PY.TOP_CMD
