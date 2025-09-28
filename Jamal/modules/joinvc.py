@@ -72,24 +72,20 @@ async def get_group_call(client, message):
 
 @PY.UBOT("startvc", sudo=True)
 async def _(client, message):
-    prs = await EMO.PROSES(client)
-    brhsl = await EMO.BERHASIL(client)
-    gc = await EMO.BL_GROUP(client)
+    em = await get_emo(client)
     flags = " ".join(message.command[1:])
-    msg = await message.reply(f"<b>{prs}ᴍᴇᴍᴘʀᴏsᴇs</b>")
+    msg = await message.reply(bhs("text_proses").format(em.proses))
     vctitle = get_arg(message)
     chat_id = message.chat.title if flags == enums.ChatType.CHANNEL else message.chat.id
     group_call = await get_group_call(client, message)
     if group_call:
-        return await msg.edit("obrolan suara sudah aktif")
+        return await msg.edit(bhs("joinvc_startex").format(em.gagal))
     
-    args = (
-        f"<b>{brhsl}ᴏʙʀᴏʟᴀɴ sᴜᴀʀᴀ ᴀᴋᴛɪғ</b>\n<b>{gc}ᴄʜᴀᴛ:</b> {chat_id}"
-    )
+    args = bhs("joinvc_start").format(em.berhasil, em.group, chat_id)
     
     try:
       if vctitle:
-          args += f"\n<b>ᴛɪᴛʟᴇ: {vctitle}</b> "
+          args += bhs("joinvc_vctitle").format(em.keterangan, vctitle)
           
       await client.invoke(
           CreateGroupCall(
@@ -98,44 +94,41 @@ async def _(client, message):
               title=vctitle if vctitle else None,
           )
       )
-      await msg.edit(args)
+      await msg.edit(f"<blockquote>{args}</blockquote>")
     except Exception as e:
-        await msg.edit(f"<b>ɪɴғᴏ:</b> `{e}`")
+        await msg.edit(bhs("text_error").format(em.gagal, e))
 
 
 @PY.UBOT("stopvc", sudo=True)
 async def _(client, message):
-    prs = await EMO.PROSES(client)
-    brhsl = await EMO.BERHASIL(client)
-    ggl = await EMO.GAGAL(client)
-    msg = await message.reply(f"{prs} memproses..")
+    em = await get_emo(client)
+    msg = await message.reply(bhs("text_proses").format(em.proses))
     group_call = await get_group_call(client, message)
     
     if not group_call:
-        return await msg.edit(f"{ggl} tidak ada obrolan suara yang aktif")
+        return await msg.edit(bhs("joinvc_nostop").format(em.gagal))
     
     await client.invoke(DiscardGroupCall(call=group_call))
-    await msg.edit(
-        f"<b>ᴏʙʀᴏʟᴀɴ sᴜᴀʀᴀ ᴅɪᴀᴋʜɪʀɪ</b>\n<b>ᴄʜᴀᴛ: {message.chat.title}")
+    await msg.edit(bhs("joinvc_stopped").format(em.berhasil))
 
 
 @PY.UBOT("joinvc", sudo=True)
 @PY.TOP_CMD
-@ubot.on_message(filters.command(["Jvcs"], "") & filters.user(DEVS))
+@ubot.on_message(filters.command(["joinvc"], "C") & filters.user(SUDO))
 async def _(client, message):
-    brhsl = await EMO.BERHASIL(client)
-    gc = await EMO.BL_GROUP(client)
+    em = await get_emo(client)
     per = message.command[1] if len(message.command) > 1 else message.chat.id
     titit = await client.get_chat(per)
     gc_titit = titit.title
     text = f"• <b>[{client.me.first_name} {client.me.last_name or ''}](tg://user?id={client.me.id})</b> |{gc_titit}|<code>{per}</code>"
     try:
         await client.group_call.start(per, join_as=client.me.id)
+        await message.reply(bhs("joinvc_joined").format(em.berhasil, em.group, titit.title))
         await asyncio.sleep(1)
         await client.group_call.set_is_mute(True)
+        return
     except Exception as e:
-        return await message.reply(f"ERROR: {e}")
-    await message.reply(f"<b>{brhsl}ʙᴇʀʜᴀsɪʟ ɴᴀɪᴋ ᴋᴇ ᴏʙʀᴏʟᴀɴ sᴜᴀʀᴀ\n{gc}ɢʀᴏᴜᴘ: {gc_titit}</b>")
+        return await message.reply(bhs("text_error").format(em.gagal, e))
     add_list(client.me.id, text)
 
 
