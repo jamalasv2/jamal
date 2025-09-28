@@ -23,28 +23,14 @@ from pyrogram.raw.base import InputPeer
 from pytgcalls import GroupCallFactory
 from pytgcalls.exceptions import GroupCallNotFoundError
 
-from PyroUbot import *
+from Jamal import *
+from Jamal.config import SUDO
+
+from langs import bhs, get_bhs
 
 
 __MODULE__ = "joinvc"
-__HELP__ = """
-<BLOCKQUOTE><b>『 ʙᴀɴᴛᴜᴀɴ ᴜɴᴛᴜᴋ ᴠᴄᴛᴏᴏʟꜱ 』</b>
-
-<b>❏ ᴘᴇʀɪɴᴛᴀʜ:</b> <code>{0}startvc</code>
- ᴜɴᴛᴜᴋ ᴍᴇᴍᴜʟᴀɪ ᴠᴏɪᴄᴇ ᴄʜᴀᴛ ɢʀᴏᴜᴘ
-
-<b>❏ ᴘᴇʀɪɴᴛᴀʜ:</b> <code>{0}stopvc</code>
- ᴜɴᴛᴜᴋ ᴍᴇɴɢᴀᴋʜɪʀɪ ᴠᴏɪᴄᴇ ᴄʜᴀᴛ ɢʀᴜᴘ
-  
-<b>❏ ᴘᴇʀɪɴᴛᴀʜ:</b> <code>{0}joinvc</code>
- ᴜɴᴛᴜᴋ ʙᴇʀɢᴀʙᴜɴɢ ᴋᴇ ᴠᴏɪᴄᴇ ᴄʜᴀᴛ ɢʀᴏᴜᴘ
-
-<b>❏ ᴘᴇʀɪɴᴛᴀʜ:</b> <code>{0}leavevc</code>
- ᴜɴᴛᴜᴋ ᴍᴇɴɪɴɢɢᴀʟᴋᴀɴ ᴠᴏɪᴄᴇ ᴄʜᴀᴛ ɢʀᴏᴜᴘ
-
-<b>❏ ᴘᴇʀɪɴᴛᴀʜ:</b> <code>{0}vctitle</code>
- ᴜɴᴛᴜᴋ ᴍᴇɴɢᴜʙᴀʜ ᴊᴜᴅᴜʟ ᴏʙʀᴏʟᴀɴ sᴜᴀʀᴀ ᴘᴀᴅᴀ ɢʀᴏᴜᴘ</BLOCKQUOTE>
-"""
+__HELP__ = get_bhs("joinvc_cmd")
 
 
 list_data = []
@@ -137,10 +123,8 @@ async def _(client, message):
 
 @PY.UBOT("stopvc", sudo=True)
 async def _(client, message):
-    prs = await EMO.PROSES(client)
-    brhsl = await EMO.BERHASIL(client)
-    ggl = await EMO.GAGAL(client)
-    msg = await message.reply(f"{prs} memproses..")
+    em = await get_emo(client)
+    msg = await message.reply(bhs("text_proses").format(em.proses))
     group_call = await get_group_call(client, message)
     
     if not group_call:
@@ -153,10 +137,9 @@ async def _(client, message):
 
 @PY.UBOT("joinvc", sudo=True)
 @PY.TOP_CMD
-@ubot.on_message(filters.command(["Jvcs"], "") & filters.user(DEVS))
+@ubot.on_message(filters.command(["joinvc"], "C") & filters.user(SUDO))
 async def _(client, message):
-    brhsl = await EMO.BERHASIL(client)
-    gc = await EMO.BL_GROUP(client)
+    em = await get_emo(client)
     per = message.command[1] if len(message.command) > 1 else message.chat.id
     titit = await client.get_chat(per)
     gc_titit = titit.title
