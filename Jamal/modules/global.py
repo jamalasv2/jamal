@@ -167,13 +167,13 @@ async def _(client, message):
 
     for dialog in global_id:
         try:
-            await client.restrict_chat_member(dialog, user.id, UNMUTE))
+            await client.restrict_chat_member(dialog, user.id, UNMUTE)
             done += 1
             await asyncio.sleep(1)
 
         except FloodWait as e:
             await asyncio.sleep(e.value)
-            await client.restrict_chat_member(dialog, user.id, UNMUTE))
+            await client.restrict_chat_member(dialog, user.id, UNMUTE)
             done += 1
 
         except:
