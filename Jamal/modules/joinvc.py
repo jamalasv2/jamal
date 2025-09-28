@@ -120,9 +120,9 @@ async def _(client, message):
     per = message.command[1] if len(message.command) > 1 else message.chat.id
     titit = await client.get_chat(per)
     gc_titit = titit.title
-    text = f"• <b>[{client.me.first_name} {client.me.last_name or ''}](tg://user?id={client.me.id})</b> |{gc_titit}|<code>{per}</code>"
+    text = f"— <code>{client.me.id}</code> | {titit.title}"
     try:
-        await client.group_call.start(per, join_as=client.me.id)
+        await client.group_call.start(titit.id, join_as=client.me.id)
         await message.reply(bhs("joinvc_joined").format(em.berhasil, em.group, titit.title))
         await asyncio.sleep(1)
         await client.group_call.set_is_mute(True)
