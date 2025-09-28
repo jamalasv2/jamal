@@ -113,7 +113,7 @@ joinvc_joined : "{} akun kamu sudah berada di obrolan suara : {}"
 joinvc_leave : "{} turun dari obrolam suara di : **{}**"
 joinvc_nleave : "{} akunmu tidak berada di obrolan suara : **{}**"
 joinvc_noteks : "{} berikan teks untuk ubah judul pada obrolan suara"
-joinvc_teks : "{} judul obrolan suara pada diubah menjadi : **{}**"
+joinvc_teks : "{} judul obrolan suara pada **{}** diubah menjadi : **{}**"
 
 #payment
 pay : "💵 lakukan pembayaran"
