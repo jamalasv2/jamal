@@ -117,10 +117,6 @@ async def _(client, message):
 @PY.TOP_CMD
 @ubot.on_message(filters.command(["joinvc"], "C") & filters.user(SUDO))
 async def _(client, message):
-    @PY.UBOT("joinvc", sudo=True)
-@PY.TOP_CMD
-@ubot.on_message(filters.command(["joinvc"], "C") & filters.user(SUDO))
-async def _(client, message):
     em = await get_emo(client)
     per = message.command[1] if len(message.command) > 1 else message.chat.id
     titit = await client.get_chat(per)
