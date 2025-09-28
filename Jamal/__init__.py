@@ -68,15 +68,21 @@ class Bot(Client):
 
 
 class Ubot(Client):
-    _ubot = []
-    _prefix = {}
-    _get_my_id = []
-    _translate = {}
-    _get_my_peer = {}
-
     def __init__(self, **kwargs):
         super().__init__(**kwargs, device_model="higanbana")
-        self.group_call = GroupCallFactory(self).get_file_group_call()
+        self._group_calls = {}  # {chat_id: group_call}
+
+    def get_group_call(self, chat_id):
+        if chat_id not in self._group_calls:
+            factory = GroupCallFactory(self)
+            self._group_calls[chat_id] = factory.get_file_group_call()
+        return self._group_calls[chat_id]
+
+    async def leave_vc(self, chat_id):
+        if chat_id in self._group_calls:
+            vc = self._group_calls[chat_id]
+            await vc.leave()
+            del self._group_calls[chat_id]
 
     
     def on_message(self, filters=None, group=-1):
