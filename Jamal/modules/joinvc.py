@@ -131,8 +131,9 @@ async def _(client, message):
 
     try:
         group_call = client.group_call
-        await group_call.start(titit.id, join_as=client.me.id, set_is_mute=True)
+        await group_call.start(titit.id, join_as=client.me.id)
         await asyncio.sleep(1)
+        group_call.set_is_mute(True)
         JOINED_VC[client.me.id][titit.id] = group_call
         await message.reply(bhs("joinvc_join").format(em.berhasil, em.group, titit.title))
         add_list(client.me.id, text)
