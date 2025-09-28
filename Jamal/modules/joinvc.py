@@ -152,14 +152,14 @@ async def _(client, message):
     # ambil dan hapus dari dict
     group_call = JOINED_VC.get(client.me.id, {}).pop(titit.id, None)
     if not group_call:
-        return await message.reply("❌ Belum join VC di sini")
+        return await message.reply(bhs("joinvc_nleave").format(em.gagal, titit.title))
 
     try:
         await group_call.stop()
         remove_list(client.me.id)
-        return await message.reply(f"✅ {em.berhasil} keluar dari VC <b>{titit.title}</b>")
+        return await message.reply(bhs("joinvc_leave").format(em.berhasil, titit.title))
     except Exception as e:
-        return await message.reply(f"❌ ERROR: {e}")
+        return await message.reply(bhs("text_error").format(em.gagal, e))
 
 
 @PY.UBOT("listos")
@@ -171,18 +171,18 @@ async def _(client, message):
 @PY.UBOT("vctitle", sudo=True)
 @PY.GROUP
 async def _(client, message):
-    prs = await EMO.PROSES(client)
-    brhsl = await EMO.BERHASIL(client)
-    ggl = await EMO.GAGAL(client)
+    em = await get_emo(client)
     titit = get_arg(message)
-    msg = await message.reply(f"{prs} memprosess")
+    per = message.command[1] if len(message.command) > 1 else message.chat.id
+    msg = await message.reply(bhs("text_proses").format(em.proses))
     group_call = await get_group_call(client, message)
+    tit = await client.get_chat(per)
 
     if len(message.command) < 2:
-        return await msg.edit(f"{ggl} ketik teks untuk mengganti judul pada obrolan suara!")
+        return await msg.edit(bhs("joinvc_noteks").format(em.gagal))
 
     if not group_call:
-        return await msg.edit(f"<blockquote>{ggl} tidak bisa mengubah judul pada obrolan suara, mohon aktifkan obrolam suara terlebih dahulu!</blockquote>")
+        return await msg.edit(bhs("joinvc_nostop").format(em.gagal))
     else:
         try:
             await client.invoke(
@@ -190,7 +190,7 @@ async def _(client, message):
         except Exception as error:
             return await msg.edit(f"ERROR:\n{error}")
         await msg.delete()
-        return await message.reply(f"{brhsl} judul obrolan suara diubah menjadi: <code>{titit}</code>")
+        return await message.reply(bhs("joinvc_teks").format(em.berhasil, tit.title, titit))
 
 
 @PY.UBOT("listener")
