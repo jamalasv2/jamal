@@ -185,12 +185,11 @@ async def _(client, message):
         return await msg.edit(bhs("joinvc_nostop").format(em.gagal))
     else:
         try:
-            await client.invoke(
-                EditGroupCallTitle(call=group_call, title=f"{titit}"))
+            await client.invoke(EditGroupCallTitle(call=group_call, title=f"{titit}"))
+            await msg.delete()
+            return await message.reply(bhs("joinvc_teks").format(em.berhasil, tit.title, titit))
         except Exception as error:
             return await msg.edit(f"ERROR:\n{error}")
-        await msg.delete()
-        return await message.reply(bhs("joinvc_teks").format(em.berhasil, tit.title, titit))
 
 
 @PY.UBOT("listener")
