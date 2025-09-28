@@ -104,7 +104,9 @@ joinvc_start : "{} obrolan suara diaktifkan\n{} chat: {}"
 joinvc_vctitle : "\n{} judul: {}"
 joinvc_nostop : "{} tidak ada obrolan suara yang aktif"
 joinvc_stopped : "{} obrolan suara diakhiri"
-joinvc_joined : "{} naik ke obrolan suara\n{} chat: {}"
+joinvc_join : "{} naik ke obrolan suara\n{} chat: {}"
+joinvc_joined : "{} akun kamu sudah berada di obrolan suara : {}"
+
 
 #payment
 pay : "💵 lakukan pembayaran"
