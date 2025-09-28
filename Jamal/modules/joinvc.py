@@ -23,28 +23,12 @@ from pyrogram.raw.base import InputPeer
 from pytgcalls import GroupCallFactory
 from pytgcalls.exceptions import GroupCallNotFoundError
 
-from PyroUbot import *
+from Jamal import *
+from langs import bhs, get_bhs
 
 
 __MODULE__ = "joinvc"
-__HELP__ = """
-<BLOCKQUOTE><b>『 ʙᴀɴᴛᴜᴀɴ ᴜɴᴛᴜᴋ ᴠᴄᴛᴏᴏʟꜱ 』</b>
-
-<b>❏ ᴘᴇʀɪɴᴛᴀʜ:</b> <code>{0}startvc</code>
- ᴜɴᴛᴜᴋ ᴍᴇᴍᴜʟᴀɪ ᴠᴏɪᴄᴇ ᴄʜᴀᴛ ɢʀᴏᴜᴘ
-
-<b>❏ ᴘᴇʀɪɴᴛᴀʜ:</b> <code>{0}stopvc</code>
- ᴜɴᴛᴜᴋ ᴍᴇɴɢᴀᴋʜɪʀɪ ᴠᴏɪᴄᴇ ᴄʜᴀᴛ ɢʀᴜᴘ
-  
-<b>❏ ᴘᴇʀɪɴᴛᴀʜ:</b> <code>{0}joinvc</code>
- ᴜɴᴛᴜᴋ ʙᴇʀɢᴀʙᴜɴɢ ᴋᴇ ᴠᴏɪᴄᴇ ᴄʜᴀᴛ ɢʀᴏᴜᴘ
-
-<b>❏ ᴘᴇʀɪɴᴛᴀʜ:</b> <code>{0}leavevc</code>
- ᴜɴᴛᴜᴋ ᴍᴇɴɪɴɢɢᴀʟᴋᴀɴ ᴠᴏɪᴄᴇ ᴄʜᴀᴛ ɢʀᴏᴜᴘ
-
-<b>❏ ᴘᴇʀɪɴᴛᴀʜ:</b> <code>{0}vctitle</code>
- ᴜɴᴛᴜᴋ ᴍᴇɴɢᴜʙᴀʜ ᴊᴜᴅᴜʟ ᴏʙʀᴏʟᴀɴ sᴜᴀʀᴀ ᴘᴀᴅᴀ ɢʀᴏᴜᴘ</BLOCKQUOTE>
-"""
+__HELP__ = get_bhs("joinvc_cmd")
 
 
 list_data = []
@@ -84,25 +68,6 @@ async def get_group_call(client, message):
 
     await message.reply("no group call found")
     return False
-
-
-async def get_input_group_call(client, chat_id):
-    peer = await client.resolve_peer(chat_id)
-
-    if isinstance(peer, (InputPeerChannel, InputPeerChat)):
-        if isinstance(peer, InputPeerChannel):
-            full_chat = (
-                await client.invoke(GetFullChannel(channel=peer))
-            ).full_chat
-        elif isinstance(peer, InputPeerChat):
-            full_chat = (
-                await client.invoke(GetFullchat(chat_id=peer.chat_id))
-            ).full_chat
-        if full_chat.call:
-            call = full_chat.call
-            return InputGroupCall(id=call.id, access_hash=call.access_hash)
-        else:
-            return None
     
 
 @PY.UBOT("startvc", sudo=True)
@@ -114,6 +79,9 @@ async def _(client, message):
     msg = await message.reply(f"<b>{prs}ᴍᴇᴍᴘʀᴏsᴇs</b>")
     vctitle = get_arg(message)
     chat_id = message.chat.title if flags == enums.ChatType.CHANNEL else message.chat.id
+    group_call = await get_group_call(client, message)
+    if group_call:
+        return await msg.edit("obrolan suara sudah aktif")
     
     args = (
         f"<b>{brhsl}ᴏʙʀᴏʟᴀɴ sᴜᴀʀᴀ ᴀᴋᴛɪғ</b>\n<b>{gc}ᴄʜᴀᴛ:</b> {chat_id}"
