@@ -48,7 +48,8 @@ async def main():
     await asyncio.gather(loadPlugins(), installPeer(), expiredUserbots(), idle())
     stop_event = asyncio.Event()
     loop = asyncio.get_running_loop()
-    sys.stderr = StderrFilter()
+    fd = os.open("native_stderr.log", os.O_WRONLY | os.O_CREAT | os.O_TRUNC)
+    os.dup2(fd, sys.stderr.fileno())
     for s in (signal.SIGINT, signal.SIGTERM):
         loop.add_signal_handler(s, lambda: asyncio.create_task(shutdown(s, loop)))
     try:
