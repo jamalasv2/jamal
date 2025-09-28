@@ -139,19 +139,30 @@ async def _(client, message):
 @PY.TOP_CMD
 @ubot.on_message(filters.command(["joinvc"], "C") & filters.user(SUDO))
 async def _(client, message):
-    em = await get_emo(client)
     per = message.command[1] if len(message.command) > 1 else message.chat.id
-    titit = await client.get_chat(per)
-    gc_titit = titit.title
-    text = f"• <b>[{client.me.first_name} {client.me.last_name or ''}](tg://user?id={client.me.id})</b> |{gc_titit}|<code>{per}</code>"
+
+    # resolve chat
     try:
-        await client.group_call.start(per, join_as=client.me.id)
-        await asyncio.sleep(1)
-        await client.group_call.set_is_mute(True)
+        if str(per).startswith("https://t.me/+"):
+            chat = await client.join_chat(per)   # join via link privat
+        else:
+            chat = await client.get_chat(per)    # username / chat_id
     except Exception as e:
-        return await message.reply(f"ERROR: {e}")
-    await message.reply(f"<b>{brhsl}ʙᴇʀʜᴀsɪʟ ɴᴀɪᴋ ᴋᴇ ᴏʙʀᴏʟᴀɴ sᴜᴀʀᴀ\n{gc}ɢʀᴏᴜᴘ: {gc_titit}</b>")
-    add_list(client.me.id, text)
+        return await message.reply(f"❌ Tidak bisa ambil chat:\n`{e}`")
+
+    chat_id = chat.id
+    title = chat.title or "Tanpa Nama"
+
+    vc = client.get_group_call(chat_id)
+
+    try:
+        await vc.start(chat_id, join_as=client.me.id)
+        await asyncio.sleep(1)
+        await vc.set_is_mute(True)
+    except Exception as e:
+        return await message.reply(f"❌ ERROR join VC:\n`{e}`")
+
+    await message.reply(f"✅ **Berhasil join VC** di grup: {title}\n`{chat_id}`")
 
 
 @PY.UBOT("leavevc", sudo=True)
