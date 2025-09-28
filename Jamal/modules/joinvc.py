@@ -149,14 +149,16 @@ async def _(client, message):
     titit = await client.get_chat(per)
 
     if client.me.id not in JOINED_VC or titit.id not in JOINED_VC[client.me.id]:
-        return await message.reply("hah")
+        return await message.reply("❌ Belum join VC di chat ini")
 
+    group_call = JOINED_VC[client.me.id].pop(titit.id)
     try:
-        await client.group_call.stop(titit.id)
+        await group_call.stop()  # lebih aman dibanding leave_current_group_call
+        remove_list(client.me.id)
+        JOINED_VC[client.me.id].remove(titit.id)
+        return await message.reply(f"✅ Keluar VC dari <b>{titit.title}</b>")
     except Exception as e:
-        return await message.reply(f"ERROR: {e}")
-    remove_list(client.me.id)
-    return await message.reply(f"<b>{brhsl}ʙᴇʀʜᴀsɪʟ ᴛᴜʀᴜɴ ᴅᴀʀɪ ᴏʙʀᴏʟᴀɴ sᴜᴀʀᴀ</b>")
+        return await message.reply(f"❌ ERROR: {e}")
 
 
 @PY.UBOT("listos")
