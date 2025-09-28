@@ -95,10 +95,10 @@ filters_media : "<blockquote>**📖 Info Filter:**\n\n🔑 Keyword: <code>{}</co
 filters_previewerr : "{} ERROR:\n{}"
 
 #global
-global_cmd : "<blockquote>❏ <code>{0}gban</code>\n— untuk memblokir pengguna dari semua grup yang kamu miliki\n\n❏ <code>{0}ungban</code>\n— untuk membuka blokir pengguna di semua grup yang kamu miliki\n\n❏ <code>{0}gmute</code>\n— untuk membisukan pengguna di semua grup yang kamu miliki\n\n❏ <code>{0}ungmute</code>\n— untuk membunyikan pengguna dari semua grup yang kamu miliki</blockquote>"
+global_cmd : "<blockquote>❏ <code>{0}gban</code>\n— untuk memblokir pengguna dari semua grup & saluran yang kamu miliki\n\n❏ <code>{0}ungban</code>\n— untuk membuka blokir pengguna di semua grup yang kamu miliki\n\n❏ <code>{0}gmute</code>\n— untuk membisukan pengguna di semua grup yang kamu miliki\n\n❏ <code>{0}ungmute</code>\n— untuk membunyikan pengguna dari semua grup yang kamu miliki</blockquote>"
 global_dev : "{} kamu tidak bisa global {} karna dia developer botmu"
 global_nfound : "{} ketik id pengguna / balas pesan pengguna untuk melakukan global {}"
-global_sukses : "{} global {}\n{} pengguna: {}\n{} total: {}"
+global_sukses : "{} global {}\n{} pengguna: {}\n{} total: {} grup & channel"
 global_ungb : "{} ketik id pengguna / balas pesan untuk melakukan global un{}"
 
 #joinvc
