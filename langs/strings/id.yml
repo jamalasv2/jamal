@@ -99,6 +99,7 @@ global_cmd : "<blockquote>❏ <code>{0}gban</code>\n— untuk memblokir pengguna
 global_dev : "{} kamu tidak bisa global {} karna dia developer botmu"
 global_nfound : "{} ketik id pengguna / balas pesan pengguna untuk melakukan global {}"
 global_sukses : "{} global {}\n{} pengguna: {}\n{} total: {}"
+global_ungb : "{} ketik id pengguna / balas pesan untuk melakukan global un{}"
 
 #joinvc
 joinvc_cmd : "<blockquote>❏ <code>{0}startvc</code>\n— untuk memulai obrolan suara\n\n❏ <code>{0}stopvc</code>\n— untuk mengakhiri obrolan suara\n\n❏ <code>{0}vctitle</code>\n— untuk mengubah judul pada obrolan suara\n\n❏ <code>{0}joinvc</code>\n— untuk menaikkan akun ke obrolan suara\n\n❏ <code>{0}leavevc</code>\n— untuk menurunkan akun dari obrolan suara</blockquote>"
