@@ -173,7 +173,7 @@ async def _(client, message):
 async def _(client, message):
     em = await get_emo(client)
     titit = get_arg(message)
-    per = message.command[1] if len(message.command) > 1 else message.chat.id
+    per = message.command[2] if len(message.command) > 2 else message.chat.id
     msg = await message.reply(bhs("text_proses").format(em.proses))
     group_call = await get_group_call(client, message)
     tit = await client.get_chat(per)
@@ -187,7 +187,7 @@ async def _(client, message):
         try:
             await client.invoke(EditGroupCallTitle(call=group_call, title=f"{titit}"))
             await msg.delete()
-            return await message.reply(bhs("joinvc_teks").format(em.berhasil, titit))
+            return await message.reply(bhs("joinvc_teks").format(em.berhasil, tit.title, titit))
         except Exception as error:
             return await msg.edit(f"ERROR:\n{error}")
 
