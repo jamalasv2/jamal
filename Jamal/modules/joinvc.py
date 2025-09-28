@@ -187,7 +187,7 @@ async def _(client, message):
         try:
             await client.invoke(EditGroupCallTitle(call=group_call, title=f"{titit}"))
             await msg.delete()
-            return await message.reply(bhs("joinvc_teks").format(em.berhasil, tit.title, titit))
+            return await message.reply(bhs("joinvc_teks").format(em.berhasil, titit))
         except Exception as error:
             return await msg.edit(f"ERROR:\n{error}")
 
