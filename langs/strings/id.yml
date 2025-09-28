@@ -99,7 +99,12 @@ global_cmd : "."
 
 #joinvc
 joinvc_cmd : "<blockquote>❏ <code>{0}startvc</code>\n— untuk memulai obrolan suara\n\n❏ <code>{0}stopvc</code>\n— untuk mengakhiri obrolan suara\n\n❏ <code>{0}vctitle</code>\n— untuk mengubah judul pada obrolan suara\n\n❏ <code>{0}joinvc</code>\n— untuk menaikkan akun ke obrolan suara\n\n❏ <code>{0}leavevc</code>\n— untuk menurunkan akun dari obrolan suara</blockquote>"
-
+joinvc_startex : "{} obrolan suara sudah aktif"
+joinvc_start : "{} obrolan suara diaktifkan\n{} chat: {}"
+joinvc_vctitle : "\n{} judul: {}"
+joinvc_nostop : "{} tidak ada obrolan suara yang aktif"
+joinvc_stopped : "{} obrolan suara diakhiri"
+joinvc_joined : "{} naik ke obrolan suara\n{} chat: {}"
 
 #payment
 pay : "💵 lakukan pembayaran"
