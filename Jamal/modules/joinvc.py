@@ -129,7 +129,7 @@ async def _(client, message):
 
     text = f"— <code>{client.me.id}</code> | {titit.title}"
     try:
-        await client.group_call.join(titit.id)
+        await client.group_call.start(titit.id, join_as=client.me.id)
         await message.reply(bhs("joinvc_join").format(em.berhasil, em.group, titit.title))
         await asyncio.sleep(1)
         await client.group_call.set_is_mute(True)
