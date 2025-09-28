@@ -41,6 +41,7 @@ console.setFormatter(
 )
 logging.getLogger("").addHandler(console)
 
+os.environ["AV_LOG_LEVEL"] = "error"
 
 aiosession = ClientSession()
 
