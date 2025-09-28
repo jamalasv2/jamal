@@ -117,27 +117,33 @@ async def _(client, message):
 @PY.TOP_CMD
 @ubot.on_message(filters.command(["joinvc"], "C") & filters.user(SUDO))
 async def _(client, message):
+    @PY.UBOT("joinvc", sudo=True)
+@PY.TOP_CMD
+@ubot.on_message(filters.command(["joinvc"], "C") & filters.user(SUDO))
+async def _(client, message):
     em = await get_emo(client)
     per = message.command[1] if len(message.command) > 1 else message.chat.id
     titit = await client.get_chat(per)
 
     if client.me.id not in JOINED_VC:
-        JOINED_VC[client.me.id] = set()
+        JOINED_VC[client.me.id] = {}
 
     if titit.id in JOINED_VC[client.me.id]:
         return await message.reply(bhs("joinvc_joined").format(em.gagal, titit.title))
 
     text = f"— <code>{client.me.id}</code> | {titit.title}"
+
     try:
-        await client.group_call.start(titit.id, join_as=client.me.id)
-        await message.reply(bhs("joinvc_join").format(em.berhasil, em.group, titit.title))
+        group_call = client.group_call()
+        await group_call.start(titit.id, join_as=client.me.id)
         await asyncio.sleep(1)
-        await client.group_call.set_is_mute(True)
-        JOINED_VC[client.me.id].add(titit.id)
+        await group_call.set_is_mute(True)
+        JOINED_VC[client.me.id][titit.id] = group_call
+        await message.reply(bhs("joinvc_join").format(em.berhasil, em.group, titit.title))
+        add_list(client.me.id, text)
         return
     except Exception as e:
         return await message.reply(bhs("text_error").format(em.gagal, e))
-    add_list(client.me.id, text)
 
 
 @PY.UBOT("leavevc", sudo=True)
