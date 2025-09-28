@@ -111,6 +111,7 @@ async def _(client, message):
     await client.invoke(DiscardGroupCall(call=group_call))
     await msg.edit(bhs("joinvc_stopped").format(em.berhasil))
 
+JOINED_VC = {}
 
 @PY.UBOT("joinvc", sudo=True)
 @PY.TOP_CMD
@@ -119,13 +120,20 @@ async def _(client, message):
     em = await get_emo(client)
     per = message.command[1] if len(message.command) > 1 else message.chat.id
     titit = await client.get_chat(per)
-    gc_titit = titit.title
+
+    if client.me.id not in JOINED_VC:
+        JOINED_VC[client.me.id] = set()
+
+    if titit.id in JOINED_VC[client.me.id]:
+        return await message.reply(bhs("joinvc_joined").format(em.gagal, titit.title))
+
     text = f"— <code>{client.me.id}</code> | {titit.title}"
     try:
         await client.group_call.start(titit.id, join_as=client.me.id)
-        await message.reply(bhs("joinvc_joined").format(em.berhasil, em.group, titit.title))
+        await message.reply(bhs("joinvc_join").format(em.berhasil, em.group, titit.title))
         await asyncio.sleep(1)
         await client.group_call.set_is_mute(True)
+        JOINED_VC[client.me.id].add(titit.id)
         return
     except Exception as e:
         return await message.reply(bhs("text_error").format(em.gagal, e))
