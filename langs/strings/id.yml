@@ -131,6 +131,9 @@ set_sukses : "{} queri emoji {} diubah menjadi: {}"
 set_fail : "{} emoji premium tidak ditemukan"
 set_qfail : "{} tidak dapat menemukan queri"
 
+#scrapper
+scrapper_cmd : "<blockquote>❏ <code>{0}copy</code> — tautan telegram\n— untuk mengambil media\n\n❏ <code>{0}curi</code> balas ke pesan\n— untuk mengambil media sekali lihat / timer</blockquote>"
+
 #text1
 text_proses : "{} memproses..."
 text_error : "{} **ERROR:**\n<code>{}</code>"
