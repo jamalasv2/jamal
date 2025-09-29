@@ -11,17 +11,8 @@ from pyrogram.raw.functions.messages import DeleteHistory
 from Jamal import *
 from langs import bhs, get_bhs
 
-__MODULE__ = "copy"
-__HELP__ = """
-<b>『 ʙᴀɴᴛᴜᴀɴ ᴜɴᴛᴜᴋ ᴄᴏᴘʏ 』</b>
-
-<BLOCKQUOTE>❏ ᴘᴇʀɪɴᴛᴀʜ: <code>{0}copy</code> [ʟɪɴᴋ_ᴋᴏɴᴛᴇɴ_ᴛᴇʟᴇɢʀᴀᴍ]</BLOCKQUOTE>
-<BLOCKQUOTE>ᴜɴᴛᴜᴋ ᴍᴇɴɢᴀᴍʙɪʟ ᴘᴇsᴀɴ ᴛᴇʟᴇɢʀᴀᴍ ᴍᴇʟᴀʟᴜɪ ʟɪɴᴋ ᴍᴇʀᴇᴋᴀ</BLOCKQUOTE>
-
-<BLOCKQUOTE>❏ ᴘᴇʀɪɴᴛᴀʜ: <code>{0}curi</code></BLOCKQUOTE>
-<BLOCKQUOTE>ᴜɴᴛᴜᴋ ᴍᴇɴɢᴀᴍʙɪʟ ᴍᴇᴅɪᴀ sᴇᴋᴀʟɪ ʟɪʜᴀᴛ ᴀᴛᴀᴜ ᴛɪᴍᴇʀ ᴅᴀɴ ᴍᴇɴʏɪᴍᴘᴀɴɴʏᴀ ᴅɪ ᴘᴇsᴀɴ ᴛᴇʀsɪᴍᴘᴀɴ</BLOCKQUOTE>
-
-  """
+__MODULE__ = "scrapper"
+__HELP__ = get_bhs("scrapper_cmd")
 
 
 def humanbytes(size):
