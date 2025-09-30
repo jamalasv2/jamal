@@ -116,7 +116,7 @@ async def _(client, message):
             return await msg.edit(bhs("text_error").format(em.gagal, e))
     elif query.lower() == "pc":
         try:
-            await client.umarchive_chats(chat)
+            await client.unarchive_chats(chat)
             done += 1
             await msg.delete()
             return await message.reply(bhs("arsip_out").format(em.berhasil, em.total, len(chat), em.keterangan, 'personal'))
