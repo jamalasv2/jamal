@@ -134,6 +134,9 @@ set_qfail : "{} tidak dapat menemukan queri"
 #scrapper
 scrapper_cmd : "<blockquote>❏ <code>{0}copy</code> — tautan telegram\n— untuk mengambil media\n\n❏ <code>{0}curi</code> balas ke pesan\n— untuk mengambil media sekali lihat / timer</blockquote>"
 
+#spy
+spy_cmd : "<blockquote>❏ <code>{0}info</code> — id pengguna / balas pesan\n— untuk mendapatkan info lengkap pengguna telegram\n\n❏ <code>{0}cinfo</code> – tautan publik telegram\n— untuk mendapatkan info lengkap grup / saluran telegram\n\n❏ <code>{0}id</code> – nama pengguna / balas pesan\n— untuk mendapatkan informasi nomor id pengguna telegram\n(bisa digunakan untuk cek id grup & saluran)\n\n❏ <code>{0}sg</code> — id pengguna / balas pesan\n— untuk melihat riwayat lengkap profil akun pengguna telegram\n(akun baru mungkin tidak bisa terdeteksi)</blockquote>"
+
 #text1
 text_proses : "{} memproses..."
 text_error : "{} **ERROR:**\n<code>{}</code>"
