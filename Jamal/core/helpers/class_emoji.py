@@ -125,6 +125,16 @@ class EMO:
         return _warn
 
 
+    async def ACCOUNT(client):
+        emot_13 = await get_vars(client.me.id, "EMOJI_ACCOUNT")
+        emot_acc = emot_13 if emo_13 else "5422683699130933153"
+        if client.me.is_premium:
+            _acc = f"<emoji_id{emot_acc}>🪪</emoji>"
+        else:
+            _acc = "🪪"
+        return _acc
+
+
 class EmoObject:
     def __init__(self, **entries):
         self.__dict__.update(entries)
@@ -143,4 +153,5 @@ async def get_emo(client):
         waktu  = await EMO.WAKTU(client),
         total = await EMO.TOTAL(client),
         peringatan = await EMO.PERINGATAN(client),
+        akun = await EMO.ACCOUNT(client),
     )
