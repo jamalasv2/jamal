@@ -3,31 +3,18 @@ from os import remove
 
 from pyrogram.enums import ChatType
 
-from PyroUbot import *
+from Jamal import *
+from langs import bhs, get_bhs
 
 __MODULE__ = "info"
-__HELP__ = """
-<b>『 ʙᴀɴᴛᴜᴀɴ ᴜɴᴛᴜᴋ ɪɴꜰᴏ 』</b>
-
-<b>❏ ᴘᴇʀɪɴᴛᴀʜ:</b> <code>{0}info</code> [ᴜsᴇʀ_ɪᴅ/ᴜsᴇʀɴᴀᴍᴇ/ʀᴇᴘʟʏ ᴛᴏ ᴜsᴇʀs]
-<i> ᴜɴᴛᴜᴋ ᴍᴇɴᴅᴀᴘᴀᴛᴋᴀɴ ɪɴꜰᴏ ᴘᴇɴɢɢᴜɴᴀ ᴛᴇʟᴇɢʀᴀᴍ ᴅᴇɴɢᴀɴ ᴅᴇsᴋʀɪᴘsɪ ʟᴇɴɢᴋᴀᴘ</i>
-
-<b>❏ ᴘᴇʀɪɴᴛᴀʜ:</b> <code>{0}cinfo</code> [ᴄʜᴀᴛ_ɪᴅ/ᴜsᴇʀɴᴀᴍᴇ/ʀᴇᴘʟʏ ᴛᴏ ᴄʜᴀᴛ]
-<i> ᴜɴᴛᴜᴋ ᴍᴇɴᴅᴀᴘᴀᴛᴋᴀɴ ɪɴꜰᴏ ɢʀᴏᴜᴘ/ᴄʜᴀɴɴᴇʟ ᴅᴇɴɢᴀɴ ᴅᴇsᴋʀɪᴘsɪ ʟᴇɴɢᴋᴀᴘ</i>
-
-<b>❏ ᴘᴇʀɪɴᴛᴀʜ:</b> <code>{0}sg</code> [ᴜsᴇʀ_ɪᴅ/ʀᴇᴘʟʏ ᴜsᴇʀ]
-<i> ᴜɴᴛᴜᴋ ᴍᴇᴍᴇʀɪᴋsᴀ ʜɪsᴛᴏʀɪ ɴᴀᴍᴀ/ᴜsᴇʀɴᴀᴍᴇ</i>
-
-<b>❏ ᴘᴇʀɪɴᴛᴀʜ:</b> <code>{0}id</> [ᴜsᴇʀɴᴀᴍᴇ/ʀᴇᴘʟʏ]
-<i>ᴜɴᴛᴜᴋ ᴍᴇɴɢᴇᴛᴀʜᴜɪ ɪᴅ ᴅᴀʀɪ ᴜsᴇʀ,ɢʀᴏᴜᴘ,ᴄʜᴀɴɴᴇʟ ᴀᴛᴀᴜ ᴍᴇᴅɪᴀ
-"""
+__HELP__ = get_bhs("spy_cmd")
 
 
 @PY.UBOT("info", sudo=True)
-@PY.TOP_CMD
 async def _(client, message):
+    em = get_emo(client)
     user_id = await extract_user(message)
-    Tm = await message.reply("</b>ᴘʀᴏᴄᴇssɪɴɢ . . .</b>")
+    Tm = await message.reply(bhs("text_proses").format(em.proses))
     if not user_id:
         return await Tm.edit(
             "<bʙᴇʀɪᴋᴀɴ ᴜsᴇʀɪᴅ/ᴜsᴇʀɴᴀᴍᴇ/ʀᴇᴘʟʏ ᴜɴᴛᴜᴋ ᴍᴇɴᴅᴀᴘᴀᴛᴋᴀɴ ɪɴꜰᴏ ᴘᴇɴɢɢᴜɴᴀ ᴛᴇʀsᴇʙᴜᴛ.></b>"
