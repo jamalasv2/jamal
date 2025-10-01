@@ -1,10 +1,10 @@
 import os
 
-DEVS = list(map(int, os.getenv("DEVS", "6625839378").split()))
-SUDO = list(map(int, os.getenv("SUDO", "6625839378").split()))
+DEVS = list(map(int, os.getenv("DEVS", "6442845161").split()))
+SUDO = list(map(int, os.getenv("SUDO", "6442845161").split()))
 
-API_ID = int(os.getenv("API_ID", "26394847"))
-API_HASH = os.getenv("API_HASH", "cd52ac30233feb251a5c7fbdbdacb414")
+API_ID = int(os.getenv("API_ID", "21839531"))
+API_HASH = os.getenv("API_HASH", "2ea72246a26c4c29cc419175f738efa3")
 BOT_TOKEN = os.getenv("BOT_TOKEN", "8315033881:AAGofWP2jiGd6jwzyBsbCYZWOp1GDr6UfB4")
 OWNER_ID = int(os.getenv("OWNER_ID", "6625839378"))
 BLACKLIST_CHAT = list(map(int, os.getenv("BLACKLIST_CHAT", "-1002023991424").split()))
