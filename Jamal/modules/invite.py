@@ -29,7 +29,7 @@ async def _(client, message):
         return await mg.edit(f"{ggl} berikan nama pengguna untuk ditambahkan!")
     user_list = user_to_add.split(" ")
     try:
-        await client.add_chat_members(chat, user_list, forward_limit=100)
+        await client.add_chat_members(chat.id, user_list, forward_limit=100)
     except Exception as e:
         return await mg.edit(f"{ggl} ERROR:\n{e}")
     await mg.edit(f"{brhsl} berhasil menambahkan {len(user_list)} ke {chat.title}")
