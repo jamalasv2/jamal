@@ -15,24 +15,19 @@ __HELP__ = get_bhs("invite_cmd")
 @PY.GROUP
 async def _(client, message):
     em = await get_emo(client)
-    per = message.command[1] if len(message.command) > 1 else message.chat.id
-    mg = await message.reply(f"{prs} memproses..")
+    mg = await message.reply(bhs("text_proses".format(em.proses))
     if len(message.command) < 2:
-        return await mg.edit(f"{ggl} berikan nama pengguna atau id pengguna")
+        return await mg.edit(bhs("invite_nolen").format(em.gagal))
 
-    try:
-        chat = await client.get_chat(per)
-    except:
-        pass
     user_to_add = message.text.split(" ", 1)[1]
     if not user_to_add:
-        return await mg.edit(f"{ggl} berikan nama pengguna untuk ditambahkan!")
+        return await mg.edit(bhs("invite_nolen").format(em.gagal))
     user_list = user_to_add.split(" ")
     try:
-        await client.add_chat_members(chat.id, user_list, forward_limit=100)
+        await client.add_chat_members(message.chat.id, user_list, forward_limit=100)
     except Exception as e:
-        return await mg.edit(f"{ggl} ERROR:\n{e}")
-    await mg.edit(f"{brhsl} berhasil menambahkan {len(user_list)} ke {chat.title}")
+        return await mg.edit(bhs("text_error").format(em.gagal, e)
+    await mg.edit(bhs("invite_sukses").format(em.berhasil, len(user_list), message.chat.title))
 
 
 invite_id = []
@@ -40,9 +35,9 @@ invite_id = []
 
 @PY.UBOT("inviteall", sudo=True)
 @PY.GROUP
-@PY.TOP_CMD
 async def _(client, message):
-    Tm = await message.reply("<b>ᴘʀᴏᴄᴇssɪɴɢ . . .</b>")
+    em = await get_emo(client)
+    Tm = await message.reply(bhs("text_proses").format(em.proses))
     if len(message.command) < 3:
         await message.delete()
         return await Tm.delete()
