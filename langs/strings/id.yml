@@ -123,6 +123,9 @@ pay_invalid : "❌ tidak dapat diproses.\n⚠️ mohon kirimkan bukti pembayaran
 pay_valid : "✅ pembayaranmu telah di konfirmasi.\nsekarang kamu bisa memasang userbot."
 pay_proses : "✅ pembayaran telah di-proses\n mohon tunggu 1 - 6 jam kerja admin\n⚠️ jangan mengirimkan pesan spam selama proses sedang berlangsung atau akun kamu akam terblokir secara otomatis"
 
+#ping
+ping_text : "<blockquote>**{} pong:** {}\n**{} user:** {}\n**{} ubot:** {}</blockquote>"
+
 #set
 set_cmd : "<blockquote>❏ <code>{0}setprefix</code>\n— untuk mengubah handler perintah modul\n\n❏ <code>{0}setemoji</code> value - queri\n— untuk mengubah emoji pada pesan teks\n\n**value:**\n— <code>berhasil</code>    — <code>broadcast</code>\n— <code>gagal</code>    — <code>ping</code>\n— <code>mention</code>    — <code>keterangan</code>\n— <code>waktu</code>    — <code>proses</code></blockquote>"
 set_nop : "{} {} simbol prefix"
