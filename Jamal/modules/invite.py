@@ -2,29 +2,19 @@ import asyncio
 
 from pyrogram.enums import UserStatus
 
-from PyroUbot import *
+from Jamal.core.helpers.class_emoji import get_emo
+from Jamal.core.helpers._client import PY
+from langs bhs, get_bhs
+
 
 __MODULE__ = "invite"
-__HELP__ = """
-<b>『 ʙᴀɴᴛᴜᴀɴ ᴜɴᴛᴜᴋ ɪɴᴠɪᴛᴇ 』</b>
-
-  <b>• ᴘᴇʀɪɴᴛᴀʜ:</b> <code>{0}invite</code> [ᴜsᴇʀɴᴀᴍᴇ] 
-  <b>• ᴘᴇɴᴊᴇʟᴀsᴀɴ:</b> ᴜɴᴛᴜᴋ ᴍᴇɴɢᴜɴᴅᴀɴɢ ᴀɴɢɢᴏᴛᴀ ᴋᴇ ɢʀᴜᴘ ᴀɴᴅᴀ
-
-  <b>• ᴘᴇʀɪɴᴛᴀʜ:</b> <code>{0}inviteall</code> [ᴜsᴇʀɴᴀᴍᴇ_ɢʀᴏᴜᴘ - ᴄᴏʟʟᴅᴏᴡɴ=ᴅᴇᴛɪᴋ ᴘᴇʀ ɪɴᴠɪᴛᴇ]
-  <b>• ᴘᴇɴᴊᴇʟᴀsᴀɴ:</b> ᴜɴᴛᴜᴋ ᴍᴇɴɢᴜɴᴅᴀɴɢ ᴀɴɢɢᴏᴛᴀ ᴅᴀʀɪ ᴏʙʀᴏʟᴀɴ ɢʀᴜᴘ ʟᴀɪɴ ᴋᴇ ᴏʙʀᴏʟᴀɴ ɢʀᴜᴘ ᴀɴᴅᴀ
-
-  <b>• ᴘᴇʀɪɴᴛᴀʜ:</b> <code>{0}cancel</code>
-  <b>• ᴘᴇɴᴊᴇʟᴀsᴀɴ:</b> ᴜɴᴛᴜᴋ ᴍᴇᴍʙᴀᴛᴀʟᴋᴀɴ ᴘᴇʀɪɴᴛᴀʜ ɪɴᴠɪᴛᴇᴀʟʟ
-  """
+__HELP__ = get_bhs("invite_cmd")
 
 
 @PY.UBOT("invite", sudo=True)
 @PY.GROUP
 async def _(client, message):
-    prs = await EMO.PROSES(client)
-    brhsl = await EMO.BERHASIL(client)
-    ggl = await EMO.GAGAL(client)
+    em = await get_emo(client)
     per = message.command[1] if len(message.command) > 1 else message.chat.id
     mg = await message.reply(f"{prs} memproses..")
     if len(message.command) < 2:
