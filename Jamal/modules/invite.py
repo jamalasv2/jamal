@@ -4,7 +4,7 @@ from pyrogram.enums import UserStatus
 
 from Jamal.core.helpers.class_emoji import get_emo
 from Jamal.core.helpers._client import PY
-from langs bhs, get_bhs
+from langs import bhs, get_bhs
 
 
 __MODULE__ = "invite"
