@@ -101,6 +101,17 @@ async def _(client, message):
                 except Exception as error:
                     return await msg.edit(bhs("text_error").format(em.peringatan, error))
 
+    elif query.lower() == "mute":
+        async for dialog in client.get_dialogs():
+            if dialog.chat.type in ChatType.GROUP, ChatType.SUPERGROUP:
+                chat = dialog.chat.id
+                try:
+                    member = await client.get_chat(chat, "me")
+                    if member.status in ChatMemberStatus.RESTRICTED:
+                        done += 1
+                        await client.leave_chat(chat)
+                        await asyncio.sleep(1)
+                        await msg.delete()
 
 
 @PY.UBOT("leavech")
