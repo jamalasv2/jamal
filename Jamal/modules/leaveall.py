@@ -3,9 +3,11 @@ import asyncio
 from pyrogram.enums import ChatType, ChatMemberStatus
 from pyrogram.errors import UserNotParticipant, UserAlreadyParticipant
 
-from PyroUbot.core.helpers.class_emoji import *
-from PyroUbot.config import BLACKLIST_CHAT
-from PyroUbot import *
+from Jamal.core.helpers.class_emoji import get_emo
+from Jamal.config import BLACKLIST_CHAT
+from Jamal import *
+
+from langs import bhs, get_bhs
 
 __MODULE__ = "leaveall"
 __HELP__ = """
