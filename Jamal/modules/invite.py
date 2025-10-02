@@ -46,14 +46,13 @@ async def _(client, message):
     except Exception as error:
         return await Tm.edit(error)
     if message.chat.id in invite_id:
-        return await Tm.edit_text(
-            f"sᴇᴅᴀɴɢ ᴍᴇɴɢɪɴᴠɪᴛᴇ ᴍᴇᴍʙᴇʀ sɪʟᴀʜᴋᴀɴ ᴄᴏʙᴀ ʟᴀɢɪ ɴᴀɴᴛɪ ᴀᴛᴀᴜ ɢᴜɴᴀᴋᴀɴ ᴘᴇʀɪɴᴛᴀʜ: <code>{PREFIX[0]}cancel</code>"
-        )
+        return await Tm.edit_text(bhs("invite_all").format(em.gagal))
+
     else:
         done = 0
         failed = 0
         invite_id.append(message.chat.id)
-        await Tm.edit_text(f"ᴍᴇɴɢᴜɴᴅᴀɴɢ ᴀɴɢɢᴏᴛᴀ ᴅᴀʀɪ {chat.title}")
+        await Tm.edit_text(bhs("invite_proses").format(em.proses, chat.title))
         async for member in client.get_chat_members(chat.id):
             stats = [
                 UserStatus.ONLINE,
@@ -71,24 +70,18 @@ async def _(client, message):
                     await asyncio.sleep(int(message.command[2]))
         invite_id.remove(message.chat.id)
         await Tm.delete()
-        return await message.reply(
-            f"""
-<b><code>{done}</code> ᴀɴɢɢᴏᴛᴀ ʏᴀɴɢ ʙᴇʀʜᴀsɪʟ ᴅɪᴜɴᴅᴀɴɢ</b>
-<b><code>{failed}</code> ᴀɴɢɢᴏᴛᴀ ʏᴀɴɢ ɢᴀɢᴀʟ ᴅɪᴜɴᴅᴀɴɢ</b>
-"""
-        )
+        return await message.reply(bhs("invite_sukses").format(em.berhasil, em.total, done, em.gagal, failed))
 
 
 @PY.UBOT("cancel", sudo=True)
 @PY.GROUP
-@PY.TOP_CMD
 async def _(client, message):
+    em = await get_emo(client)
     if message.chat.id not in invite_id:
-        return await message.reply_text(
-            f"sᴇᴅᴀɴɢ ᴛɪᴅᴀᴋ ᴀᴅᴀ ᴘᴇʀɪɴᴛᴀʜ: <code>{PREFIX[0]}inviteall</code> ʏᴀɴɢ ᴅɪɢᴜɴᴀᴋᴀɴ"
-        )
+        return await message.reply_text(bhs("invite_no").format(em.gagal))
+
     try:
         invite_id.remove(message.chat.id)
-        await message.reply_text("ok inviteall berhasil dibatalkan")
+        await message.reply_text(bhs("invite_cancel").format(em.gagal))
     except Exception as e:
         await message.reply_text(e)
