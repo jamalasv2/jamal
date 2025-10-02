@@ -105,6 +105,11 @@ global_ungb : "{} ketik id pengguna / balas pesan untuk melakukan global un{}"
 invite_cmd : "<blockquote>❏ <code>{0}invite</code> – username / id pengguna\n— untuk menambahkan pengguna kedalam grup\n\n❏ <code>{0}inviteall</code> – username grup - cooldown\n— untuk menambahkan pengguna dari grup lain ke grup kamu\n\n**contoh:**\n— <code>{0}inviteall</code> @higansupport 60\n[ 60 ] adalah detik</blockquote>"
 invite_nolen : "{} ketika nama pengguna / id pengguna untuk ditambahkan kedalam grup"
 invite_sukses : "{} {} pengguna ditambahkan ke {}"
+invite_id : "{} ada proses inviteall yang sedang berlangsung"
+invite_proses : "{} mengundang anggota dari {}"
+invite_sukses : "{} anggota diundang\n{} total: {} anggota\n{} gagal: {} anggota"
+invite_no : "{} tidak ada proses inviteall yang berlangsung"
+invite_cancel : "{} inviteall berhasil di-batalkan"
 
 #joinvc
 joinvc_cmd : "<blockquote>❏ <code>{0}startvc</code>\n— untuk memulai obrolan suara\n\n❏ <code>{0}stopvc</code>\n— untuk mengakhiri obrolan suara\n\n❏ <code>{0}vctitle</code>\n— untuk mengubah judul pada obrolan suara\n\n❏ <code>{0}joinvc</code>\n— untuk menaikkan akun ke obrolan suara\n\n❏ <code>{0}leavevc</code>\n— untuk menurunkan akun dari obrolan suara</blockquote>"
