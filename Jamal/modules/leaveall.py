@@ -58,7 +58,49 @@ async def _(client, message):
 async def _(client, message):
     em = await get_emo(client)
     msg = await message.reply(bhs("text_proses").format(em.proses))
-    
+
+    if len(message.command) < 2:
+        return await msg.edit(bhs("leave_noqueri").format(em.gagal))
+
+    command, query = message.command[:2]
+    done = 0
+
+    if query.lower() == "channel":
+        async for dialog in client.get_dialogs():
+            if dialog.chat.type in ChatType.CHANNEL:
+                chat = dialog.chat.id
+                try:
+                    member = await client.get_chat_member(chat, "me")
+                    if member.status not in ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.OWNER:
+                        done += 1
+                        await client.leave_chat(chat)
+                        await msg.delete()
+                        return await message.reply(bhs("leave_all").format(em.berhasil, done, 'channel'))
+
+                    if len(done) == 0:
+                        return await msg.edit(bhs("leave_novalue").format(em.gagal, 'channel'))
+                except Exception as error:
+                    return await msg.edit(bhs("text_error").format(em.peringatan, error))
+
+    elif query.lower() == "group":
+        async for dialog in client.get_dialogs():
+            if dialog.chat.type in ChatType.GROUP, ChatType.SUPERGROUP:
+                chat = dialog.chat.id
+                try:
+                    member = await client.get_chat_member(chat, "me")
+                    if member.status not in ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.OWNER:
+                        done += 1
+                        await client.leave_chat(chat)
+                        await asyncio.sleep(1)
+                        await msg.delete()
+                        return await message.reply(bhs("leave_all").format(em.berhasil, done, 'group'))
+
+                    if len(done) == 0:
+                        return await msg.edit(bhs("leave_novalue").format(em.gagal, 'group'))
+
+                except Exception as error:
+                    return await msg.edit(bhs("text_error").format(em.peringatan, error))
+
 
 
 @PY.UBOT("leavech")
