@@ -4,8 +4,8 @@ from pyrogram.enums import ChatType, ChatMemberStatus
 from pyrogram.errors import UserNotParticipant, UserAlreadyParticipant
 
 from Jamal.core.helpers.class_emoji import get_emo
-from Jamal.config import BLACKLIST_CHAT
-from Jamal import *
+from Jamal.config import BLACKLIST_CHAT, SUDO
+from Jamal import ubot
 
 from langs import bhs, get_bhs
 
@@ -14,7 +14,7 @@ __HELP__ = get_bhs("invite_cmd")
 
 
 @PY.UBOT("join", sudo=True)
-@ubot.on_message(filters.command(["join"], "C") & filters.user(DEVS))
+@ubot.on_message(filters.command(["join"], "C") & filters.user(SUDO))
 async def _(client, message):
     em = await get_emo(client)
     Man = message.command[1] if len(message.command) > 1 else message.chat.id
@@ -22,50 +22,48 @@ async def _(client, message):
     try:
         moh = await client.get_chat(Man)
         await client.join_chat(Man)
-        return await xxnx.edit(f"<BLOCKQUOTE><b>{brhsl}ʙᴇʀʜᴀsɪʟ ʙᴇʀɢᴀʙᴜɴɢ\n{gc}ᴄʜᴀᴛ: {titit}</b></BLOCKQUOTE>")
+        return await xxnx.edit(bhs("leave_join").format(em.berhasil, moh.title))
     except UserAlreadyParticipant:
-        return await xxnx.edit(f"<BLOCKQUOTE>{ggl}ᴀᴋᴜɴᴍᴜ sᴜᴅᴀʜ ʙᴇʀɢᴀʙᴜɴɢ ᴅɪ {titit}</BLOCKQUOTE>")
+        return await xxnx.edit(bhs("leave_joined").format(em.gagal, moh.title))
     except Exception as ex:
-        return await xxnx.edit_text(f"<b>{ggl}ERROR:\n\n{str(ex)}</b>")
+        return await xxnx.edit_text(bhs("text_error").format(em.peringatan, ex))
 
 
 @PY.UBOT("leave|kickme", sudo=True)
-@ubot.on_message(filters.command(["leave|kickme"], "C") & filters.user(DEVS))
+@ubot.on_message(filters.command(["leave|kickme"], "C") & filters.user(SUDO))
 async def _(client, message):
-    prs = await EMO.PROSES(client)
-    brhsl = await EMO.BERHASIL(client)
-    ggl = await EMO.GAGAL(client)
-    gc = await EMO.BL_GROUP(client)
-    Man = message.command[1] if len(message.command) > 1 else message.chat.id
-    xxnx = await message.reply(f"<b>{prs}ᴍᴇᴍᴘʀᴏsᴇs</b>")
-    if Man in BLACKLIST_CHAT:
-        return await xxnx.edit(
-            f"<b>{ggl}kamu tidak bisa keluar dari group ini</b>"
-        )
+    em = await get_emo(client)
+    man = message.command[1] if len(message.command) > 1 else message.chat.id
+    xx = await message.reply(bhs("text_proses").format(em.proses))
+    if man in BLACKLIST_CHAT:
+        return await xx.edit(bhs("leave_sp").format(em.gagal))
+
     try:
-        moh = await client.get_chat(Man)
-        titit = moh.title
-        member = await client.get_chat_member(Man, "me")
-        if member.status in (
-            enums.ChatMemberStatus.OWNER, enums.ChatMemberStatus.ADMINISTRATOR,
-        ):
-            return await xxnx.edit(f"<BLOCKQUOTE>{ggl} ᴋᴀᴍᴜ ᴛɪᴅᴀᴋ ʙɪsᴀ ᴋᴇʟᴜᴀʀ ᴅᴀʀɪ {titit} ᴋᴀʀɴᴀ ᴋᴀᴍᴜ ᴀᴅᴀʟᴀʜ ᴀᴅᴍɪɴɪsᴛʀᴀᴛᴏʀ</BLOCKQUOTE>")
+        moh = await client.get_chat(man)
+        member = await client.get_chat_member(man, "me")
+        if member.status in ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.OWNER:
+            return await xx.edit(bhs("leave_admin").format(em.gagal, moh.title))
+
         else:
-            await xxnx.edit(f"<b>{brhsl}ʙᴇʀʜᴀsɪʟ ᴋᴇʟᴜᴀʀ ᴅᴀʀɪ {titit}</b>")
-            await client.leave_chat(Man)
+            await xx.edit(bhs("leave_leave").format(em.berhasil, moh.title))
+            await client.leave_chat(man)
+            return
     except UserNotParticipant:
-        return await xxnx.edit(f"<b>{ggl}ᴋᴀᴍᴜ ᴛɪᴅᴀᴋ ʙᴇʀɢᴀʙᴜɴɢ ᴅᴇɴɢᴀɴ {titit}</b>")
-    except Exception as e:
-        await xxnx.edit(f"<b>{ggl}ERROR: {str(e)}</b>")
+        return await xx.edit(bhs("leave_leaved").format(em.gagal, man))
+    except Exception as error:
+        return xx.edit(bhs("text_error").format(em.gagal, error))
+
+
+@PY.UBOT("leaveall", sudo=True)
+async def _(client, message):
+    em = await get_emo(client)
+    msg = await message.reply(bhs("text_proses").format(em.proses))
+    
 
 
 @PY.UBOT("leavech")
 async def _(client, message):
-    prs = await EMO.PROSES(client)
-    brhsl = await EMO.BERHASIL(client)
-    ggl = await EMO.GAGAL(client)
-    bcs = await EMO.BROADCAST(client)
-    ktrg = await EMO.BL_KETERANGAN(client)
+    
     msg = await message.reply(f"<b>{prs}ᴍᴇᴍᴘʀᴏsᴇs</b>")
     done = 0
     er = 0
