@@ -134,6 +134,9 @@ leave_leave : "{} berhasil keluar dari {}"
 leave_leaved : "{} akunmu tidak berada di: **{}**"
 leave_admin : "{} kamu tidak bisa keluar dari **{}** karna kamu adalah administrator"
 leave_sp : "{} kamu tidak bisa keluar dari sini!"
+leave_all : "{} berhasil keluar dari {} {}"
+leave_mute : "{} berhasil keluar dari {} grup yang membatasi akun kamu"
+leave_no : "{} tidak ada grup yang membatasi akun kamu"
 
 #payment
 pay : "💵 lakukan pembayaran"
