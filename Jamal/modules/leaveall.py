@@ -10,39 +10,17 @@ from Jamal import *
 from langs import bhs, get_bhs
 
 __MODULE__ = "leaveall"
-__HELP__ = """
-<BLOCKQUOTE><b>『 ʙᴀɴᴛᴜᴀɴ ᴜɴᴛᴜᴋ ᴊᴏɪɴʟᴇᴀᴠᴇ 』</b>
-
-❏ ᴘᴇʀɪɴᴛᴀʜ: <code>{0}kickme/leave</code>
- ᴜɴᴛᴜᴋ ᴋᴇʟᴜᴀʀ ᴅᴀʀɪ ɢʀᴜᴘ
-
-❏ ᴘᴇʀɪɴᴛᴀʜ: <code>{0}join</code> [ʟɪɴᴋ ɢʀᴏᴜᴘ ᴄʜᴀᴛ]
- ᴜɴᴛᴜᴋ ᴊᴏɪɴ ᴋᴇ ɢʀᴜᴘ ᴍᴇʟᴀʟᴜɪ ʟɪɴᴋ
-
-❏ ᴘᴇʀɪɴᴛᴀʜ: <code>{0}leavegc</code>
- ᴋᴇʟᴜᴀʀ ᴅᴀʀɪ ꜱᴇᴍᴜᴀ ɢʀᴜᴘ
-
-❏ ᴘᴇʀɪɴᴛᴀʜ: <code>{0}leavech</code>
- ᴋᴇʟᴜᴀʀ ᴅᴀʀɪ ꜱᴇᴍᴜᴀ ᴄʜᴀɴɴᴇʟ
-
-❏ᴘᴇʀɪɴᴛᴀʜ: <code>{0}leavemute</code>
- ᴜɴᴛᴜᴋ ᴋᴇʟᴜᴀʀ ᴅᴀʀɪ sᴇᴍᴜᴀ ɢʀᴏᴜᴘ ʏᴀɴɢ ᴍᴇᴍʙᴀᴛᴀsɪ ᴍᴇɴɢɪʀɪᴍ ᴘᴇsᴀɴ</BLOCKQUOTE>
-"""
+__HELP__ = get_bhs("invite_cmd")
 
 
 @PY.UBOT("join", sudo=True)
 @ubot.on_message(filters.command(["join"], "C") & filters.user(DEVS))
 async def _(client, message):
-    prs = await EMO.PROSES(client)
-    brhsl = await EMO.BERHASIL(client)
-    ggl = await EMO.GAGAL(client)
-    gc = await EMO.BL_GROUP(client)
-    ktrg = await EMO.BL_KETERANGAN(client)
+    em = await get_emo(client)
     Man = message.command[1] if len(message.command) > 1 else message.chat.id
-    xxnx = await message.reply_text(f"<b>{prs}ᴍᴇᴍᴘʀᴏsᴇs</b>")
+    xxnx = await message.reply_text(bhs("text_proses").format(em.proses))
     try:
         moh = await client.get_chat(Man)
-        titit = moh.title
         await client.join_chat(Man)
         return await xxnx.edit(f"<BLOCKQUOTE><b>{brhsl}ʙᴇʀʜᴀsɪʟ ʙᴇʀɢᴀʙᴜɴɢ\n{gc}ᴄʜᴀᴛ: {titit}</b></BLOCKQUOTE>")
     except UserAlreadyParticipant:
