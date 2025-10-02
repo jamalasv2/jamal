@@ -150,7 +150,7 @@ scrapper_cmd : "<blockquote>❏ <code>{0}copy</code> — tautan telegram\n— un
 #spy
 spy_cmd : "<blockquote>❏ <code>{0}info</code> — id pengguna / balas pesan\n— untuk mendapatkan info lengkap pengguna telegram\n\n❏ <code>{0}cinfo</code> – tautan publik telegram\n— untuk mendapatkan info lengkap grup / saluran telegram\n\n❏ <code>{0}id</code> – nama pengguna / balas pesan\n— untuk mendapatkan informasi nomor id pengguna telegram\n(bisa digunakan untuk cek id grup & saluran)\n\n❏ <code>{0}sg</code> — id pengguna / balas pesan\n— untuk melihat riwayat lengkap profil akun pengguna telegram\n(akun baru mungkin tidak bisa terdeteksi)</blockquote>"
 spy_nouser : "{} berikan id pengguna untuk melihat informasi akun telegramnya"
-spy_userinfo : 
+spy_userinfo : "aaa"
 
 #text1
 text_proses : "{} memproses..."
