@@ -68,7 +68,7 @@ async def _(client, message):
 
     if query.lower() == "channel":
         async for dialog in client.get_dialogs():
-            if dialog.chat.type in ChatType.CHANNEL:
+            if dialog.chat.type in (ChatType.CHANNEL):
                 chat = dialog.chat.id
                 try:
                     member = await client.get_chat_member(chat, "me")
