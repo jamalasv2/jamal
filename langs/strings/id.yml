@@ -137,6 +137,7 @@ leave_sp : "{} kamu tidak bisa keluar dari sini!"
 leave_all : "{} berhasil keluar dari {} {}"
 leave_mute : "{} berhasil keluar dari {} grup yang membatasi akun kamu"
 leave_no : "{} tidak ada grup yang membatasi akun kamu"
+leave_novalue : "{} akun kamu tidak bergabung di {} manapun"
 
 #payment
 pay : "💵 lakukan pembayaran"
