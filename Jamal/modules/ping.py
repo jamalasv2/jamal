@@ -2,13 +2,14 @@ import asyncio
 from datetime import datetime
 from time import time
 
+from pyrogram import filters
 from pyrogram.raw.functions import Ping
 
 from Jamal.core.helpers._client import PY
 from Jamal.helpers.class_emoji import get_emo
 from Jamal import ubot, bot
 from Jamal.config import SUDO
-from Jamal bhs, get_bhs
+from langs bhs, get_bhs
 
 
 @PY.UBOT("ping|p", sudo=True)
