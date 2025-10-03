@@ -10,7 +10,7 @@ from Jamal import ubot
 from langs import bhs, get_bhs
 
 __MODULE__ = "leaveall"
-__HELP__ = get_bhs("invite_cmd")
+__HELP__ = get_bhs("leave_cmd")
 
 
 @PY.UBOT("join", sudo=True)
@@ -112,78 +112,10 @@ async def _(client, message):
                         await client.leave_chat(chat)
                         await asyncio.sleep(1)
                         await msg.delete()
+                        return await message.reply(bhs("leave_mute").format(em.berhasil, done))
+                    else:
+                        return await msg.edit(bhs("leave_no").format(em.gagal))
 
+                except Exception as error:
+                    return await msg.edit(bhs("text_error").format(em.peringatan, error))
 
-@PY.UBOT("leavech")
-async def _(client, message):
-    
-    msg = await message.reply(f"<b>{prs}ᴍᴇᴍᴘʀᴏsᴇs</b>")
-    done = 0
-    er = 0
-    async for dialog in client.get_dialogs():
-        if dialog.chat.type == ChatType.CHANNEL:
-            chat = dialog.chat.id
-            try:
-                member = await client.get_chat_member(chat, "me")
-                stt = member.status
-                if stt not in (
-                    ChatMemberStatus.OWNER, ChatMemberStatus.ADMINISTRATOR,
-                ):
-                    done += 1
-                    await client.leave_chat(chat)
-            except BaseException:
-                er += 1
-    await msg.delete()
-    return await message.reply(
-        f"<b>{brhsl}ʙᴇʀʜᴀsɪʟ ᴋᴇʟᴜᴀʀ ᴅᴀʀɪ {done} ᴄʜᴀɴɴᴇʟ</b>"
-    )
-
-  
-@PY.UBOT("leavegc")
-async def _(client, message):
-    prs = await EMO.PROSES(client)
-    brhsl = await EMO.BERHASIL(client)
-    ggl = await EMO.GAGAL(client)
-    ktrg = await EMO.BL_KETERANGAN(client)
-    bcs = await EMO.BROADCAST(client)
-    msg = await message.reply(f"<b>{prs}ᴍᴇᴍᴘʀᴏsᴇs</b>")
-    done = 0
-    er = 0
-    async for dialog in client.get_dialogs():
-        if dialog.chat.type in (ChatType.GROUP, ChatType.SUPERGROUP):
-            chat = dialog.chat.id
-            try:
-                member = await client.get_chat_member(chat, "me")
-                stt = member.status
-                if member not in BLACKLIST_CHAT and stt not in (
-                    ChatMemberStatus.OWNER, ChatMemberStatus.ADMINISTRATOR,
-                ):
-                    done += 1
-                    await client.leave_chat(chat)
-            except BaseException:
-                er += 1
-    await msg.delete()
-    return await message.reply(
-        f"<b>{brhsl}ʙᴇʀʜᴀsɪʟ ᴋᴇʟᴜᴀʀ ᴅᴀʀɪ {done} ɢʀᴏᴜᴘ</b>"
-    )
-
-
-@PY.UBOT("leavemute")
-async def _(client, message):
-    prs = await EMO.PROSES(client)
-    brhsl = await EMO.BERHASIL(client)
-    ggl = await EMO.GAGAL(client)
-    msg = await message.reply(f"<b>{prs}ᴍᴇᴍᴘʀᴏsᴇs</b>")
-    done = 0
-    async for dialog in client.get_dialogs():
-        if dialog.chat.type in (ChatType.GROUP, ChatType.SUPERGROUP):
-            chat = dialog.chat.id
-            try:
-                member = await client.get_chat_member(chat, "me")
-                if member.status == ChatMemberStatus.RESTRICTED:
-                    done += 1
-                    await client.leave_chat(chat)
-            except Exception:
-                pass
-    await msg.delete()
-    return await message.reply(f"<BLOCKQUOTE>{brhsl}ʙᴇʀʜᴀsɪʟ ᴋᴇʟᴜᴀʀ ᴅᴀʀɪ {done} ɢʀᴏᴜᴘ ʏᴀɴɢ ᴍᴇᴍʙᴀᴛᴀsɪ</BLOCKQUOTE>")
