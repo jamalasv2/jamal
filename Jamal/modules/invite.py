@@ -15,7 +15,7 @@ __HELP__ = get_bhs("invite_cmd")
 @PY.GROUP
 async def _(client, message):
     em = await get_emo(client)
-    mg = await message.reply(bhs("text_proses".format(em.proses))
+    mg = await message.reply(bhs("text_proses").format(em.proses))
     if len(message.command) < 2:
         return await mg.edit(bhs("invite_nolen").format(em.gagal))
 
