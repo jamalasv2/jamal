@@ -153,5 +153,6 @@ async def get_emo(client):
         waktu  = await EMO.WAKTU(client),
         total = await EMO.TOTAL(client),
         peringatan = await EMO.PERINGATAN(client),
-        akun = await EMO.ACCOUNT(client),
+        account = await EMO.ACCOUNT(client),
+        
     )
