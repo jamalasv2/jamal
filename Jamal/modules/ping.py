@@ -15,7 +15,7 @@ from langs import bhs, get_bhs
 @PY.UBOT("ping|p", sudo=True)
 @ubot.on_message(filters.command(["ping"], "C") & filters.user(SUDO))
 async def _(client, message):
-    em = get_emo(client)
+    em = await get_emo(client)
     start = datetime.now()
     await client.invoke(Ping(ping_id=0))
     end = datetime.now()
