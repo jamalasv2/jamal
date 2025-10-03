@@ -6,7 +6,7 @@ from pyrogram import filters
 from pyrogram.raw.functions import Ping
 
 from Jamal.core.helpers._client import PY
-from Jamal.helpers.class_emoji import get_emo
+from Jamal.core.helpers.class_emoji import get_emo
 from Jamal import ubot, bot
 from Jamal.config import SUDO
 from langs import bhs, get_bhs
