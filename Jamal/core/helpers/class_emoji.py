@@ -127,7 +127,7 @@ class EMO:
 
     async def ACCOUNT(client):
         emot_13 = await get_vars(client.me.id, "EMOJI_ACCOUNT")
-        emot_acc = emot_13 if emo_13 else "5422683699130933153"
+        emot_acc = emot_13 if emot_13 else "5422683699130933153"
         if client.me.is_premium:
             _acc = f"<emoji_id{emot_acc}>🪪</emoji>"
         else:
