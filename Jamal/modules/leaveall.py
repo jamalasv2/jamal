@@ -41,7 +41,7 @@ async def _(client, message):
     try:
         moh = await client.get_chat(man)
         member = await client.get_chat_member(man, "me")
-        if member.status in ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.OWNER:
+        if member.status in (ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.OWNER):
             return await xx.edit(bhs("leave_admin").format(em.gagal, moh.title))
 
         else:
