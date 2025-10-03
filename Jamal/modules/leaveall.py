@@ -70,7 +70,7 @@ async def _(client, message):
                 chat = dialog.chat.id
                 try:
                     member = await client.get_chat_member(chat, "me")
-                    if member.status not in ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.OWNER:
+                    if member.status not in (ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.OWNER):
                         done += 1
                         await client.leave_chat(chat)
                         await msg.delete()
@@ -87,7 +87,7 @@ async def _(client, message):
                 chat = dialog.chat.id
                 try:
                     member = await client.get_chat_member(chat, "me")
-                    if member.status not in ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.OWNER:
+                    if member.status not in (ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.OWNER):
                         done += 1
                         await client.leave_chat(chat)
                         await asyncio.sleep(1)
