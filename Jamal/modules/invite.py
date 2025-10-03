@@ -28,7 +28,7 @@ async def _(client, message):
         await asyncio.sleep(1)
         await mg.edit(bhs("invite_sukses").format(em.berhasil, len(user_list), message.chat.title))
     except Exception as e:
-        return await mg.edit(bhs("text_error").format(em.gagal, e)
+        return await mg.edit(bhs("text_error").format(em.gagal, e))
 
 
 invite_id = []
