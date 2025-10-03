@@ -58,7 +58,6 @@ async def _(client, message):
 async def _(client, message):
     em = await get_emo(client)
     msg = await message.reply(bhs("text_proses").format(em.proses))
-
     if len(message.command) < 2:
         return await msg.edit(bhs("leave_noqueri").format(em.gagal))
 
