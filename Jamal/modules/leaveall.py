@@ -95,3 +95,6 @@ async def _(client, message):
                     else:
                         return await msg.edit(bhs("leave_no").format(em.gagal))
 
+                except Exception as error:
+                    return await msg.edit(bhs("text_error").format(em.peringatan, error))
+
