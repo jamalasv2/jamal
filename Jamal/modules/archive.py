@@ -20,14 +20,14 @@ async def _(client, message):
     chats = await get_global_id(client, query)
     done = 0
 
-    if query not in ["all", "bot", "channel", "group", "personal"] or not command:
+    if query not in ["all", "bot", "channel", "group", "personal"] or if len(message.command) < 2:
         return await msg.edit(bhs("arsip_ggl").format(em.gagal))
 
     for chat_id in chats:
         try:
             await client.archive_chats(chat_id)
             await msg.delete()
-            return await message.reply(bhs("arsip_sukses").format(em.berhasil, em.total, len(chats), em.keterangan, command))
+            return await message.reply(bhs("arsip_sukses").format(em.berhasil, em.total, len(chats), em.keterangan, query))
         except Exception as error:
             return await msg.edit(bhs("text_error").format(em.peringatan, error))
 
