@@ -64,6 +64,7 @@ async def _(client, message):
 
     command, query = message.command[:2]
     chats = await get_global_id(client, query)
+    done = 0
 
     if query not in ["channel", "group", "mute"]:
         return await msg.edit(bhs("leave_noqueri").format(em.gagal))
@@ -72,13 +73,15 @@ async def _(client, message):
         try:
             member = await client.get_chat_member(chat_id, "me")
             if member.status not in [ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.OWNER]:
+                done += 1
                 await client.leave_chat(chat_id)
                 await msg.delete()
-                return await message.reply(bhs("leave_all").format(em.berhasil, int(chat_id), query))
+                return await message.reply(bhs("leave_all").format(em.berhasil, done, query))
             elif member.status in [ChatMemberStatus.RESTRICTED]:
+                done += 1
                 await client.leave_chat(chat_id)
                 await msg.delete()
-                return await message.reply(bhs("leave_mute").format(em.berhasil, int(chat_id)))
+                return await message.reply(bhs("leave_mute").format(em.berhasil, done))
             elif member.status not in [ChatMemberStatus.RESTRICTED]:
                 return await msg.edit(bhs("leave_no").format(em.gagal))
             else:
