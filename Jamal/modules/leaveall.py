@@ -65,23 +65,10 @@ async def _(client, message):
     command, query = message.command[:2]
     chats = await get_global_id(client, query)
 
-    if query not in ["channel", "group", "mute"]:
+    if query not in ["channel", "group":
         return await msg.edit(bhs("leave_noqueri").format(em.gagal))
 
-    for chat_id in chats:
-        try:
-            member = await client.get_chat_member(chat_id, "me")
-            if member.status not in [ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.OWNER]:
-                await client.leave_chat(chat_id)
-                await msg.delete()
-                return await message.reply(bhs("leave_all").format(em.berhasil, int(chat_id), query))
-
-            else:
-                return await msg.edit(bhs("leave_novalue").format(em.gagal, query))
-        except Exception as error:
-            return await msg.edit(bhs("text_error").format(em.peringatan, error))
-
-    if query.lower() == "mute":
+    elif query.lower() == "mute":
         async for dialog in client.get_dialogs():
             if dialog.chat.type in [ChatType.GROUP, ChatType.SUPERGROUP]:
                 chat = dialog.chat.id
@@ -97,4 +84,18 @@ async def _(client, message):
 
                 except Exception as error:
                     return await msg.edit(bhs("text_error").format(em.peringatan, error))
+
+    else:
+        for chat_id in chats:
+        try:
+            member = await client.get_chat_member(chat_id, "me")
+            if member.status not in [ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.OWNER]:
+                await client.leave_chat(chat_id)
+                await msg.delete()
+                return await message.reply(bhs("leave_all").format(em.berhasil, int(chat_id), query))
+
+            else:
+                return await msg.edit(bhs("leave_novalue").format(em.gagal, query))
+        except Exception as error:
+            return await msg.edit(bhs("text_error").format(em.peringatan, error))
 
