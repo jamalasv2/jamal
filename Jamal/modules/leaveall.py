@@ -5,7 +5,7 @@ from pyrogram.enums import ChatType, ChatMemberStatus
 from pyrogram.errors import UserNotParticipant, UserAlreadyParticipant
 
 from Jamal.core.helpers.class_emoji import get_emo
-from Jamal.core.helpers._client import PY
+from Jamal.core.helpers._client import PY, get_global_id
 from Jamal.config import BLACKLIST_CHAT, SUDO
 from Jamal import ubot
 
@@ -53,7 +53,7 @@ async def _(client, message):
     except UserNotParticipant:
         return await xx.edit(bhs("leave_leaved").format(em.gagal, man))
     except Exception as error:
-        return xx.edit(bhs("text_error").format(em.gagal, error))
+        return xx.edit(bhs("text_error").format(em.peringatan, error))
 
 
 @PY.UBOT("leaveall", sudo=True)
@@ -63,60 +63,28 @@ async def _(client, message):
     if len(message.command) < 2:
         return await msg.edit(bhs("leave_noqueri").format(em.gagal))
 
-    command, query = message.command[:2]
     done = 0
+    command, query = message.command[:2]
+    chats = await get_global_id(client, query)
 
-    if query.lower() == "channel":
-        async for dialog in client.get_dialogs():
-            if dialog.chat.type in (ChatType.CHANNEL):
-                chat = dialog.chat.id
-                try:
-                    member = await client.get_chat_member(chat, "me")
-                    if member.status not in (ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.OWNER):
-                        done += 1
-                        await client.leave_chat(chat)
-                        await msg.delete()
-                        return await message.reply(bhs("leave_all").format(em.berhasil, done, 'channel'))
+    if query not in ["channel", "group", "mute"]:
+        return await msg.edit(bhs("leave_noqueri").format(em.gagal))
 
-                    if len(done) == 0:
-                        return await msg.edit(bhs("leave_novalue").format(em.gagal, 'channel'))
-                except Exception as error:
-                    return await msg.edit(bhs("text_error").format(em.peringatan, error))
-
-    elif query.lower() == "group":
-        async for dialog in client.get_dialogs():
-            if dialog.chat.type in (ChatType.GROUP, ChatType.SUPERGROUP):
-                chat = dialog.chat.id
-                try:
-                    member = await client.get_chat_member(chat, "me")
-                    if member.status not in (ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.OWNER):
-                        done += 1
-                        await client.leave_chat(chat)
-                        await asyncio.sleep(1)
-                        await msg.delete()
-                        return await message.reply(bhs("leave_all").format(em.berhasil, done, 'group'))
-
-                    if len(done) == 0:
-                        return await msg.edit(bhs("leave_novalue").format(em.gagal, 'group'))
-
-                except Exception as error:
-                    return await msg.edit(bhs("text_error").format(em.peringatan, error))
-
-    elif query.lower() == "mute":
-        async for dialog in client.get_dialogs():
-            if dialog.chat.type in (ChatType.GROUP, ChatType.SUPERGROUP):
-                chat = dialog.chat.id
-                try:
-                    member = await client.get_chat(chat, "me")
-                    if member.status in ChatMemberStatus.RESTRICTED:
-                        done += 1
-                        await client.leave_chat(chat)
-                        await asyncio.sleep(1)
-                        await msg.delete()
-                        return await message.reply(bhs("leave_mute").format(em.berhasil, done))
-                    else:
-                        return await msg.edit(bhs("leave_no").format(em.gagal))
-
-                except Exception as error:
-                    return await msg.edit(bhs("text_error").format(em.peringatan, error))
+    for chat_id in chats:
+        try:
+            member = await client.get_chat_member(chat_id, "me")
+            if member.status not in [ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.OWNER]:
+                await client.leave_chat(chat_id)
+                done += 1
+                await msg.delete()
+                return await message.reply(bhs("leave_all").format(em.berhasil, done, query))
+            elif member.status in [ChatMemberStatus.RESTRICTED]:
+                await client.leave_chat(chat_id)
+                done += 1
+                await msg.delete()
+                return await message.reply(bhs("leave_mute").format(em.berhasil, done))
+            elif len(chats) == 0:
+                return await msg.edit(bhs("leave_novalue").format(em.gagal, query))
+        except Exception as error:
+            return await msg.edit(bhs("text_error").format(em.peringatan, error))
 
