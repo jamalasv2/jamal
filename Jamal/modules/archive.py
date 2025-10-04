@@ -15,12 +15,12 @@ __HELP__ = get_bhs("arsip_cmd")
 async def _(client, message):
     em = await get_emo(client)
     msg = await message.reply(bhs("text_proses").format(em.proses))
-    command = message.command[:2]
+    command, query = message.command[:2]
 
-    chats = await get_global_id(client, command)
+    chats = await get_global_id(client, query)
     done = 0
 
-    if command not in ["all", "bot", "channel", "group", "personal"]:
+    if query not in ["all", "bot", "channel", "group", "personal"]:
         return await msg.edit(bhs("arsip_ggl").format(em.gagal))
 
     for chat_id in chats:
