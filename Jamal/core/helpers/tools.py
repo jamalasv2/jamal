@@ -94,7 +94,7 @@ async def get_global_id(client, query):
     chat_types = {
         "global": [ChatType.CHANNEL, ChatType.GROUP, ChatType.SUPERGROUP],
         "group": [ChatType.GROUP, ChatType.SUPERGROUP],
-        "pc": [ChatType.PRIVATE],
+        "personal": [ChatType.PRIVATE],
         "bot": [ChatType.BOT],
         "channel": [ChatType.CHANNEL],
         "all": [ChatType.CHANNEL, ChatType.BOT, ChatType.PRIVATE, ChatType.GROUP, ChatType.SUPERGROUP]
