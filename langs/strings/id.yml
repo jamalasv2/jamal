@@ -139,6 +139,9 @@ leave_mute : "{} berhasil keluar dari {} grup yang membatasi akun kamu"
 leave_no : "{} tidak ada grup yang membatasi akun kamu"
 leave_novalue : "{} akun kamu tidak bergabung di {} manapun"
 
+#logs
+logs_cmd : "<blockquote>❏ <code>{0}logs</code> – on / off\n— untuk mengaktifkan / menonaktifkan logs channel\n\n**note:**\n— gunakan opsi <code>none</code> untuk menghapus channel logs jika tidak sengaja keluar atau jika logs tidak berfungsi</blockquote>"
+
 #payment
 pay : "💵 lakukan pembayaran"
 pay_bukti : "mohon kirim foto/tangkapan layar bukti pembayaran anda"
