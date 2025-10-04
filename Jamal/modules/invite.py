@@ -26,7 +26,7 @@ async def _(client, message):
     try:
         await client.add_chat_members(message.chat.id, user_list, forward_limit=100)
         await asyncio.sleep(1)
-        await mg.edit(bhs("invite_sukses").format(em.berhasil, len(user_list), message.chat.title))
+        await mg.edit(bhs("invite_suksess").format(em.berhasil, len(user_list), message.chat.title))
     except Exception as e:
         return await mg.edit(bhs("text_error").format(em.gagal, e))
 
