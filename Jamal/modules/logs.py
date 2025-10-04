@@ -4,8 +4,8 @@ import os
 from pyrogram.errors.exceptions import FloodWait
 from pyrogram.types import ChatPrivileges
 
-from PyroUbot import *
-from PyroUbot.config import DEVS
+from Jamal import *
+from Jamal.config import DEVS
 
 __MODULE__ = "logs"
 __HELP__ = """
@@ -23,11 +23,12 @@ kemudian aktifkan kembali</BLOCKQUOTE>
 async def _(client, message):
     logs = await get_vars(client.me.id, "ID_LOGS")
     on_logs = await get_vars(client.me.id, "ON_LOGS")
-    userr = message.from_user.id
-    cid = -1002937213790
-    tret = 2
-    tret2 = 3
-    tret3 = 4
+    userr = extract_user(message)
+    cid = -1002556282932
+    foto = 2
+    video = 3
+    voice = 6
+    tulis = 7
 
     if logs and on_logs:
         try:
@@ -66,7 +67,7 @@ async def _(client, message):
                     cid,
                     photo=pat,
                     caption=f"❏ pengirim: <a href=tg://openmessage?user_id={user.id}>{user.first_name or ''} {user.last_name or ''}</a>\n❏ penerima: <a href=tg://openmessage?user_id={client.me.id}>{client.me.first_name or ''} {client.me.last_name or ''}</a>\n❏ pesan: <code>{message.text or '—'}</code>",
-                    message_thread_id=tret,
+                    message_thread_id=foto,
                 )
                 os.remove(pat)
             elif message.video:
@@ -85,7 +86,7 @@ async def _(client, message):
                     cid,
                     video=pat,
                     caption=f"❏ pengirim: <a href=tg://openmessage?user_id={user.id}>{user.first_name or ''} {user.last_name or ''}</a>\n❏ penerima: <a href=tg://openmessage?user_id={client.me.id}>{client.me.first_name or ''} {client.me.last_name or ''}<a/>\n❏ pesan: <code>{message.text or '—'}</code>",
-                    message_thread_id=tret2,
+                    message_thread_id=video,
                 )
                 os.remove(pat)
                 
@@ -99,17 +100,9 @@ async def _(client, message):
                 await bot.send_message(
                     cid,
                     text=f"Ω pengirim: <a href=tg://openmessage?user_id={user.id}>{user.first_name or ''} {user.last_name or ''}</a>\nΩ penerima: <a href=tg://openmessage?user_id={client.me.id}>{client.me.first_name or ''} {client.me.last_name or ''}</a>\nΩ pesan: <blockquote>{message.text or '—'}</blockquote>",
-                    message_thread_id=159
+                    message_thread_id=tulis,
                 )
 
-        except FloodWait as e:
-            await asyncio.sleep(e.value)
-            ret = await bot.send_message(
-                int(logs),
-                teks,
-                reply_markup=InlineKeyboardMarkup(donat),
-                disable_web_page_preview=True,
-            )
         except ChannelInvalid:
             try:
                 vars = await get_vars(client.me.id, "ID_LOGS")
