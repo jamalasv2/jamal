@@ -97,6 +97,7 @@ async def get_global_id(client, query):
         "personal": [ChatType.PRIVATE],
         "bot": [ChatType.BOT],
         "channel": [ChatType.CHANNEL],
+        "mute": [ChatType.GROUP, ChatType.SUPERGROUP],
         "all": [ChatType.CHANNEL, ChatType.BOT, ChatType.PRIVATE, ChatType.GROUP, ChatType.SUPERGROUP]
     }
     async for dialog in client.get_dialogs():
