@@ -1,6 +1,6 @@
 import wget
 
-from PyroUbot import *
+from Jamal import *
 
 __MODULE__ = "logs"
 __HELP__ = """
