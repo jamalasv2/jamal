@@ -82,9 +82,7 @@ async def _(client, message):
                 await client.leave_chat(chat_id)
                 await msg.delete()
                 return await message.reply(bhs("leave_mute").format(em.berhasil, done))
-            elif member.status not in [ChatMemberStatus.RESTRICTED]:
-                return await msg.edit(bhs("leave_no").format(em.gagal))
-            elif len(done) == 0:
+            else:
                 return await msg.edit(bhs("leave_novalue").format(em.gagal, query))
         except Exception as error:
             return await msg.edit(bhs("text_error").format(em.peringatan, error))
