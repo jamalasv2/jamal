@@ -85,8 +85,7 @@ async def _(client, message):
                 except Exception as error:
                     return await msg.edit(bhs("text_error").format(em.peringatan, error))
 
-    else:
-        for chat_id in chats:
+    for chat_id in chats:
         try:
             member = await client.get_chat_member(chat_id, "me")
             if member.status not in [ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.OWNER]:
