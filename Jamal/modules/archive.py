@@ -20,7 +20,7 @@ async def _(client, message):
     chats = await get_global_id(client, query)
     done = 0
 
-    if query not in ["all", "bot", "channel", "group", "personal"]:
+    if query not in ["all", "bot", "channel", "group", "personal"] or not command:
         return await msg.edit(bhs("arsip_ggl").format(em.gagal))
 
     for chat_id in chats:
