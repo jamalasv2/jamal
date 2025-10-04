@@ -126,7 +126,7 @@ joinvc_noteks : "{} berikan teks untuk ubah judul pada obrolan suara"
 joinvc_teks : "{} judul obrolan suara pada **{}** diubah menjadi : **{}**"
 
 #leaveall
-leave_cmd : "<blockquote>❏ <code>{0}join</code> tautan grup/saluran telegram\n— untuk bergabung ke grup / saluran melalui tautan\n\n❏ <code>{0}leave</code> / <code>{0}kickme</code>\n— untuk keluar dari grup\n\n❏ <code>{0}leaveall</code> queri\n— untuk keluar dari semua queri yang diberikan\n\n— **queri:**\n— <code>channel</code>\n— <code>group</code>\n— <code>mute</code></blockquote>"
+leave_cmd : "<blockquote>❏ <code>{0}join</code> tautan grup/saluran telegram\n— untuk bergabung ke grup / saluran melalui tautan\n\n❏ <code>{0}kickme</code>\n— untuk keluar dari grup\n\n❏ <code>{0}leave</code> queri\n— untuk keluar dari semua queri yang diberikan\n\n**queri:**\n— <code>channel</code>\n— <code>group</code>\n— <code>mute</code></blockquote>"
 leave_noqueri : "{} berikan queri untuk menggunakan modul ini"
 leave_join : "{} berhasil bergabung ke: {}"
 leave_joined : "{} akunmu sudah berada di {}"
