@@ -65,7 +65,7 @@ async def _(client, message):
     command, query = message.command[:2]
     chats = await get_global_id(client, query)
 
-    if query not in ["channel", "group"]:
+    if query not in ["channel", "group", "mute"]:
         return await msg.edit(bhs("leave_noqueri").format(em.gagal))
 
     for chat_id in chats:
