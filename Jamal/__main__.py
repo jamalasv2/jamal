@@ -38,7 +38,11 @@ async def main():
         except asyncio.TimeoutError:
             print(f"[𝗜𝗡𝗙𝗢]: {int(_ubot['name'])} 𝗧𝗜𝗗𝗔𝗞 𝗗𝗔𝗣𝗔𝗧 𝗠𝗘𝗥𝗘𝗦𝗣𝗢𝗡")
         except Exception as e:
-            print(f"[𝗜𝗡𝗙𝗢]: {int(_ubot['name'])}\n{e}")
+            await remove_ubot(int(_ubot["name"]))
+            await rem_expired_date(int(_ubot["name"]))
+            await remove_all_vars(int(_ubot["name"]))
+            await remove_from_vars(bot.me.id, "PREM_USERS", int(_ubot["name"]))
+            print(f"[𝗜𝗡𝗙𝗢]: {int(_ubot['name'])} dihapus karena:\n{e}")
         except UserDeactivated:
             await remove_ubot(int(_ubot["name"]))
             await rem_expired_date(int(_ubot["name"]))
