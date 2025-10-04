@@ -30,8 +30,8 @@ async def _(client, message):
         return await xxnx.edit_text(bhs("text_error").format(em.peringatan, ex))
 
 
-@PY.UBOT("leave|kickme", sudo=True)
-@ubot.on_message(filters.command(["leave|kickme"], "C") & filters.user(SUDO))
+@PY.UBOT("kickme", sudo=True)
+@ubot.on_message(filters.command(["kickme"], "C") & filters.user(SUDO))
 async def _(client, message):
     em = await get_emo(client)
     man = message.command[1] if len(message.command) > 1 else message.chat.id
@@ -55,18 +55,18 @@ async def _(client, message):
         return xx.edit(bhs("text_error").format(em.peringatan, error))
 
 
-@PY.UBOT("leaveall", sudo=True)
+@PY.UBOT("leave", sudo=True)
 async def _(client, message):
     em = await get_emo(client)
     msg = await message.reply(bhs("text_proses").format(em.proses))
     if len(message.command) < 2:
         return await msg.edit(bhs("leave_noqueri").format(em.gagal))
 
+    if query not in ["channel", "group"]:
+        return await msg.edit(bhs("leave_noqueri").format(em.gagal))
+
     command, query = message.command[:2]
     chats = await get_global_id(client, query)
-
-    if query not in ["channel", "group", "mute"]:
-        return await msg.edit(bhs("leave_noqueri").format(em.gagal))
 
     for chat_id in chats:
         try:
@@ -75,12 +75,23 @@ async def _(client, message):
                 await client.leave_chat(chat_id)
                 await msg.delete()
                 return await message.reply(bhs("leave_all").format(em.berhasil, int(chat_id), query))
-            elif member.status in [ChatMemberStatus.RESTRICTED]:
-                await client.leave_chat(chat_id)
-                await msg.delete()
-                return await message.reply(bhs("leave_mute").format(em.berhasil, int(chat_id)))
+
             else:
                 return await msg.edit(bhs("leave_novalue").format(em.gagal, query))
         except Exception as error:
             return await msg.edit(bhs("text_error").format(em.peringatan, error))
+
+    if query.lowet() == "mute":
+        async for dialog in client.get_dialogs():
+            if dialog.chat.type in [ChatType.GROUP, ChatType.SUPERGROUP]:
+                chat = dialog.chat.id
+                try:
+                    member = await client.get_chat_member(chat, "me")
+                    if member.status in [ChatMemberStatus.RESTRICTED]:
+                        await client.leave_chats(chat)
+                        await msg.delete()
+                        return await message.reply(bhs("leave_mute").format(em.berhasil, int(chat)))
+
+                    else:
+                        return await msg.edit(bhs("leave_no").format(em.gagal))
 
