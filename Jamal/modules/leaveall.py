@@ -74,12 +74,12 @@ async def _(client, message):
             if member.status not in [ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.OWNER]:
                 await client.leave_chat(chat_id)
                 await msg.delete()
-                return await message.reply(bhs("leave_all").format(em.berhasil, len(chats), query))
+                return await message.reply(bhs("leave_all").format(em.berhasil, len(chat_id), query))
             elif member.status in [ChatMemberStatus.RESTRICTED]:
                 await client.leave_chat(chat_id)
                 await msg.delete()
                 return await message.reply(bhs("leave_mute").format(em.berhasil, len(chat_id)))
-            elif len(chats) == 0:
+            elif len(chat_id) == 0:
                 return await msg.edit(bhs("leave_novalue").format(em.gagal, query))
         except Exception as error:
             return await msg.edit(bhs("text_error").format(em.peringatan, error))
