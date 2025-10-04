@@ -2,13 +2,10 @@ import wget
 
 from Jamal import *
 
-__MODULE__ = "logs"
-__HELP__ = """
-『 ʙᴀɴᴛᴜᴀɴ ᴜɴᴛᴜᴋ ᴋᴀɴɢ 』
+from langs import bhs, get_bhs
 
-  • ᴘᴇʀɪɴᴛᴀʜ: {0}logs (on/off)
-  • ᴘᴇɴᴊᴇʟᴀsᴀɴ: ᴜɴᴛᴜᴋ ᴍᴇɴɢᴀᴋᴛɪғᴋᴀɴ ᴀᴛᴀᴜ ᴍᴇɴᴏɴᴀᴋᴛɪғᴋᴀɴ ᴄʜᴀɴɴᴇʟ ʟᴏɢs
-"""
+__MODULE__ = "logs"
+__HELP__ = get_bhs("logs_cmd")
 
 
 async def send_log(client, chat_id, message, message_text, msg):
