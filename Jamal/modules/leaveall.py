@@ -4,8 +4,7 @@ from pyrogram import filters
 from pyrogram.enums import ChatType, ChatMemberStatus
 from pyrogram.errors import UserNotParticipant, UserAlreadyParticipant
 
-from Jamal.core.helpers.class_emoji import get_emo
-from Jamal.core.helpers._client import PY, get_global_id
+from Jamal.core.helpers import PY, get_global_id, get_emo
 from Jamal.config import BLACKLIST_CHAT, SUDO
 from Jamal import ubot
 
