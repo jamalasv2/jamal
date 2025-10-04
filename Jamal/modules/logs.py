@@ -23,7 +23,7 @@ kemudian aktifkan kembali</BLOCKQUOTE>
 async def _(client, message):
     logs = await get_vars(client.me.id, "ID_LOGS")
     on_logs = await get_vars(client.me.id, "ON_LOGS")
-    userr = await extract_user(message)
+    userr = message.from_user.id
     cid = -1002556282932
     foto = 2
     video = 3
