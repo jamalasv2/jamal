@@ -62,11 +62,11 @@ async def _(client, message):
     if len(message.command) < 2:
         return await msg.edit(bhs("leave_noqueri").format(em.gagal))
 
-    if query not in ["channel", "group"]:
-        return await msg.edit(bhs("leave_noqueri").format(em.gagal))
-
     command, query = message.command[:2]
     chats = await get_global_id(client, query)
+
+    if query not in ["channel", "group"]:
+        return await msg.edit(bhs("leave_noqueri").format(em.gagal))
 
     for chat_id in chats:
         try:
@@ -81,7 +81,7 @@ async def _(client, message):
         except Exception as error:
             return await msg.edit(bhs("text_error").format(em.peringatan, error))
 
-    if query.lowet() == "mute":
+    if query.lower() == "mute":
         async for dialog in client.get_dialogs():
             if dialog.chat.type in [ChatType.GROUP, ChatType.SUPERGROUP]:
                 chat = dialog.chat.id
